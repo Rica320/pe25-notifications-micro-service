@@ -18,4 +18,12 @@ public class GreetingResourceTest {
              .body(is("Hello RESTEasy"));
     }
 
+    @Test
+    public void testHelloEndpoint2() {
+        given()
+          .when().get("/hello")
+          .then()
+             .statusCode(400)
+             .body(is("Hello RESTEas444y"));
+    }
 }
