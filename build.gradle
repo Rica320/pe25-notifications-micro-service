@@ -12,9 +12,7 @@ dependencies {
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
     implementation 'io.quarkus:quarkus-hibernate-validator'
     implementation 'io.quarkus:quarkus-resteasy-jsonb'
-    implementation 'io.quarkiverse.githubapp:quarkus-github-app-command-airline:1.16.0'
     implementation 'io.quarkus:quarkus-resteasy-jackson'
-    implementation 'io.quarkiverse.githubapp:quarkus-github-app:1.16.0'
     implementation 'io.quarkus:quarkus-arc'
     implementation 'io.quarkus:quarkus-resteasy'
     testImplementation 'io.quarkus:quarkus-junit5'
