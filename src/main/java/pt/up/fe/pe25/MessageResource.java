@@ -67,7 +67,7 @@ public class MessageResource {
             postData.put("template[name]", "testing");
             postData.put("template[language][code]", "pt_PT");
 
-            // Set up the HttpURLConnection and configure 
+            // Set up the HttpURLConnection and configure
             // the request method, content type,
             // and headers
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
