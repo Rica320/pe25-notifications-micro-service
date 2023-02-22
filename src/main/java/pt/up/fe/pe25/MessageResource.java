@@ -67,7 +67,8 @@ public class MessageResource {
             postData.put("template[name]", "testing");
             postData.put("template[language][code]", "pt_PT");
 
-            // Set up the HttpURLConnection and configure the request method, content type,
+            // Set up the HttpURLConnection and configure 
+            // the request method, content type,
             // and headers
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
@@ -88,7 +89,8 @@ public class MessageResource {
             // Read the response from the server and print it to the console
             BufferedReader in = new BufferedReader(
                 new InputStreamReader(conn.getInputStream()));
-            String inputLine;
+
+           String inputLine;
             StringBuffer response = new StringBuffer();
             while ((inputLine = in.readLine()) != null) {
                 response.append(inputLine);
