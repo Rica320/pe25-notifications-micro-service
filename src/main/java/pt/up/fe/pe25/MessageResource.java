@@ -26,7 +26,8 @@ import io.github.cdimascio.dotenv.Dotenv;
 @Path("/message")
 public class MessageResource {
     // Helper function to convert a Map to a URL-encoded query string
-    private static String getQuery(Map<String, String> params) throws UnsupportedEncodingException {
+    private static String getQuery(final Map<String, String> params)
+            throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder();
         boolean first = true;
         for (Map.Entry<String, String> entry : params.entrySet()) {
@@ -42,7 +43,11 @@ public class MessageResource {
         return result.toString();
     }
 
-    public String sendRequest(String text) {
+    /**
+     * @param text TODO text to send
+     * @return Returns the response of the api request
+     */
+    public final String sendRequest(final String text) {
         // Set up the URL and the request parameters
         Dotenv dotenv = Dotenv.load(); // load .env file
 
@@ -52,11 +57,12 @@ public class MessageResource {
             String accessToken = dotenv.get("WHATSAPP_TOKEN");
             String testingNumber = dotenv.get("TEST_PHONE_NUMBER");
 
-            url = new URL("https://graph.facebook.com/v15.0/" + phoneId + "/messages");
+            url = new URL(
+                "https://graph.facebook.com/v15.0/" + phoneId + "/messages");
 
             Map<String, String> postData = new HashMap<>();
             postData.put("messaging_product", "whatsapp");
-            postData.put("to", "");
+            postData.put("to", testingNumber);
             postData.put("type", "template");
             postData.put("template[name]", "testing");
             postData.put("template[language][code]", "pt_PT");
@@ -66,19 +72,22 @@ public class MessageResource {
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Authorization", "Bearer " + accessToken);
-            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            conn.setRequestProperty("Content-Type",
+             "application/x-www-form-urlencoded");
             conn.setDoOutput(true);
 
             // Write the request parameters to the output stream and close it
             OutputStream os = conn.getOutputStream();
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+            BufferedWriter writer = new BufferedWriter(
+                new OutputStreamWriter(os, "UTF-8"));
             writer.write(getQuery(postData));
             writer.flush();
             writer.close();
             os.close();
 
             // Read the response from the server and print it to the console
-            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            BufferedReader in = new BufferedReader(
+                new InputStreamReader(conn.getInputStream()));
             String inputLine;
             StringBuffer response = new StringBuffer();
             while ((inputLine = in.readLine()) != null) {
@@ -92,9 +101,13 @@ public class MessageResource {
         }
     }
 
+    /**
+     * @param text TODO text to be sent
+     * @return Send a message to the whatsapp api
+     */
     @POST
     @Produces(MediaType.TEXT_PLAIN)
-    public String message(@FormParam("text") String text) {
+    public final String message(@FormParam("text") final String text) {
         return sendRequest(text);
     }
 
