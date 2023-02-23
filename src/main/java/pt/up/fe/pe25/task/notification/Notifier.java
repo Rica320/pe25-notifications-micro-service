@@ -11,8 +11,6 @@ import java.util.List;
 @Entity
 public class Notifier extends PanacheEntity {
 
-    @Id
-    public Long id;
 
     @ElementCollection
     @CollectionTable(name = "notification_services")
@@ -27,4 +25,19 @@ public class Notifier extends PanacheEntity {
     private LocalDateTime createdAt;
 
 
+    public Long getId() {
+        return id;
+    }
+
+    public List<String> getNotificationServices() {
+        return notificationServices;
+    }
+
+    public NotificationData getNotificationData() {
+        return notificationData;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
 }
