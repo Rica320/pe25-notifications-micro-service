@@ -1,8 +1,10 @@
 package pt.up.fe.pe25.task.notification;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -17,7 +19,12 @@ public class Notifier extends PanacheEntity {
     private List<String> notificationServices;
 
 
+    @Embedded
+    private NotificationData notificationData;
 
+    @Column(name = "created_at")
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 
 
 }
