@@ -11,27 +11,20 @@ import java.util.List;
 @Entity
 public class Notifier extends PanacheEntity {
 
+    // https://quarkus.io/guides/hibernate-orm-panache
 
     @ElementCollection
     @CollectionTable(name = "notification_services")
-    private List<String> notificationServices;
+    public List<String> notificationServices;
 
 
     @Embedded
-    private NotificationData notificationData;
+    public NotificationData notificationData;
 
     @Column(name = "created_at")
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-
-    public List<String> getNotificationServices() {
-        return notificationServices;
-    }
-
-    public NotificationData getNotificationData() {
-        return notificationData;
-    }
 
     public LocalDateTime getCreatedAt() {
         return createdAt;

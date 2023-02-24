@@ -14,6 +14,7 @@ public class NotifierResource {
     @Transactional
     public Response createNotifier(Notifier notifier) {
         notifier.persist();
+        //System.out.println(notifier.getNotificationData().getReceiverPhone());
         return Response.status(Response.Status.CREATED).entity(notifier).build();
     }
 
