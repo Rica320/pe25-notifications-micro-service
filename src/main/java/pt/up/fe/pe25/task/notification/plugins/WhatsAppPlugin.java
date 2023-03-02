@@ -11,8 +11,9 @@ public class WhatsAppPlugin extends PluginDecorator{
 
     @Override
     public boolean notify(NotificationData notificationData) {
-        super.notify(notificationData);
-        // TODO
+        if (notificationService != null)
+            super.notify(notificationData);
+        System.out.println("Sending WhatsApp notification");
         return false;
     }
 }

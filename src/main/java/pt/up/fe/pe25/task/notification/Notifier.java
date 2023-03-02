@@ -29,4 +29,12 @@ public class Notifier extends PanacheEntity {
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
+
+    public List<String> getNotificationTypes() {
+        return notificationServices;
+    }
+
+    public NotificationData getNotificationData() {
+        return notificationData;
+    }
 }
