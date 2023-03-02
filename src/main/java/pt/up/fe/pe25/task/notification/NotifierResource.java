@@ -19,7 +19,15 @@ public class NotifierResource {
     public Response createNotifier(Notifier notifier) {
         notifier.persist();
         //System.out.println(notifier.getNotificationData().getReceiverPhone());
-        notificationFactory.create(notifier.getNotificationTypes()).notify(notifier.getNotificationData());
+        // TODO: VER QUESTAO DO THROW ... se nao houver plugin válido, nao faz nada mas guarda ticket
+        // TODO: talvez seja melhor fazer um throw e nao guardar o ticket
+        try {
+            notificationFactory.create(notifier.getNotificationServices()).notify(notifier.getNotificationData());
+        }
+        catch (IllegalArgumentException e) {
+            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+        }
+
         return Response.status(Response.Status.CREATED).entity(notifier).build();
     }
 

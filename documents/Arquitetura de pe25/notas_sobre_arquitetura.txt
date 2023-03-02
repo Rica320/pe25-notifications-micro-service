@@ -1,5 +1,5 @@
 > Poderá ser benéfico adicionar um openapi
 > Será também engraçado conseguir definir logica de envio de mensagens ... por exemplo, se plugin x falha usa y.
-> Será necessário adicionar uma frábica de plugins que consoante os plugins recebido [num array de strings ou de outro objeto] criará o consequente notifier
+> Será necessário adicionar uma frábica de plugins que consoante os plugins recebido [num array de strings ou de outro objeto(para passar argumentos adicionais)] criará o consequente notifier
 > Agendamento de notificações também seria um feature a ter em conta
-> Um array de objetos notifier n é uma situação muito razoável pois tinhamos de percorrer cada um dos objetos para chamar as notificações 
+> Um array de objetos notifier n é uma situação muito razoável pois tinhamos de percorrer cada um dos objetos para chamar as notificações e criar varios tickets

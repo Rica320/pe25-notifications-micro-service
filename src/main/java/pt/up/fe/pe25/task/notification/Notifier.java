@@ -30,7 +30,7 @@ public class Notifier extends PanacheEntity {
         return createdAt;
     }
 
-    public List<String> getNotificationTypes() {
+    public List<String> getNotificationServices() {
         return notificationServices;
     }
 
