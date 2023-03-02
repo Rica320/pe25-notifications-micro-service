@@ -11,9 +11,9 @@ import org.json.JSONObject;
 
 public class WhatsAppPlugin extends PluginDecorator{
 
-    private static final String PRODUCT_ID = "5ea95684-b279-4cc9-aba9-872a5bdf4a52";
-    private static final String PHONE_ID = "27088";
-    private static final String MAYTAPI_KEY = "e1a4c1bf-90ca-43c5-8563-86ea773455dd";
+    private static final String PRODUCT_ID = "XXXXXXX";
+    private static final String PHONE_ID = "XXXXX";
+    private static final String MAYTAPI_KEY = "XXXXXXX";
 
     public WhatsAppPlugin(NotificationService notificationService) {
         super(notificationService);
