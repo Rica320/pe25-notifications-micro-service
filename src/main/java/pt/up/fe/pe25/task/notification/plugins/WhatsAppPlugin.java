@@ -8,12 +8,15 @@ import java.net.*;
 import java.io.*;
 import java.util.List;
 import org.json.JSONObject;
+import io.github.cdimascio.dotenv.Dotenv;
 
 public class WhatsAppPlugin extends PluginDecorator{
 
-    private static final String PRODUCT_ID = "XXXXX";
-    private static final String PHONE_ID = "XXXX";
-    private static final String MAYTAPI_KEY = "XXXXX";
+    private static final Dotenv dotenv = Dotenv.load();
+    private static final String PRODUCT_ID = dotenv.get("PRODUCT_ID");
+    private static final String PHONE_ID = dotenv.get("PHONE_ID");
+    private static final String MAYTAPI_KEY = dotenv.get("MAYTAPI_KEY");
+
 
     public WhatsAppPlugin(NotificationService notificationService) {
         super(notificationService);

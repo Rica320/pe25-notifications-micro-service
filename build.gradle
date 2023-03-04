@@ -21,8 +21,10 @@ dependencies {
     implementation 'io.quarkus:quarkus-arc'
     implementation 'io.quarkus:quarkus-resteasy'
     implementation group: 'org.json', name: 'json', version: '20230227'
+    implementation 'io.github.cdimascio:dotenv-java:2.3.2'
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
+
 }
 
 group 'pt.up.fe.pe25'
