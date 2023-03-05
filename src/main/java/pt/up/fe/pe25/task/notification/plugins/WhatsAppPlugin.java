@@ -1,12 +1,12 @@
 package pt.up.fe.pe25.task.notification.plugins;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import pt.up.fe.pe25.task.notification.NotificationData;
 import pt.up.fe.pe25.task.notification.NotificationService;
-import java.net.*;
-import java.io.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.json.JSONObject;
 import io.github.cdimascio.dotenv.Dotenv;
 
@@ -16,6 +16,13 @@ public class WhatsAppPlugin extends PluginDecorator{
     private static final String PRODUCT_ID = dotenv.get("PRODUCT_ID");
     private static final String PHONE_ID = dotenv.get("PHONE_ID");
     private static final String MAYTAPI_KEY = dotenv.get("MAYTAPI_KEY");
+
+    private static final String httpMethod = "POST";
+    private static final Map<String, String> headers = new HashMap<>();
+    static {
+        headers.put("Content-Type", "application/json");
+        headers.put("x-maytapi-key", MAYTAPI_KEY);
+    }
 
 
     public WhatsAppPlugin(NotificationService notificationService) {
@@ -27,15 +34,8 @@ public class WhatsAppPlugin extends PluginDecorator{
         if (notificationService != null)
             super.notify(notificationData);
 
-        try {
-            JSONObject jsonResponse = sendLinkMessage("https://latitude.to/articles-by-country/pt/portugal/8013/estadio-do-dragao",
-                    "Estádio do Dragão","XXXXXXXXXXX");
-            if(jsonResponse.getBoolean("success"))
-                System.out.println("successful operation");
-            else System.out.println(jsonResponse.getString("message"));
-        } catch (IOException | JSONException e) {
-            e.printStackTrace();
-        }
+        sendLinkMessage("https://latitude.to/articles-by-country/pt/portugal/8013/estadio-do-dragao",
+                "Estádio do Dragão","XXXXXXXXXXX");
 
         return false;
     }
@@ -45,14 +45,25 @@ public class WhatsAppPlugin extends PluginDecorator{
      *
      * @param groupName the name of the group
      * @param phoneNumbers a list of phone numbers to add to the group
-     * @return a JSONObject representing the request's response
-     * @throws IOException if there is an error sending the request
-     * @throws JSONException if there is an error parsing the JSON response
+     * @return the ID of the new group if the request is successful, false otherwise
      */
-    public static JSONObject createGroup(String groupName, List<String> phoneNumbers) throws IOException, JSONException {
+    public static Object createGroup(String groupName, List<String> phoneNumbers) {
+        String url = "https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/createGroup";
         String requestBody = "{\"name\": \"" + groupName + "\", " +
                 "\"numbers\": " + new JSONArray(phoneNumbers) + "}";
-        return sendPostRequest("https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/createGroup", requestBody);
+        JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
+        if (response == null) {
+            System.out.println("Failed to send message. Response is null.");
+            return false;
+        }
+        boolean success = response.getBoolean("success");
+        if (success) {
+            return response.getJSONObject("data").getString("id");
+        } else {
+            String message = response.getString("message");
+            System.out.println("Failed to create group. Reason: " + message);
+            return false;
+        }
     }
 
     /**
@@ -61,32 +72,56 @@ public class WhatsAppPlugin extends PluginDecorator{
      * @param groupId the ID of the group
      * @param phoneNumber the phone number to add or remove
      * @param isAddOperation true to add the phone number, false to remove it
-     * @return a JSONObject representing the request's response
-     * @throws IOException if there is an error sending the request
-     * @throws JSONException if there is an error parsing the JSON response
+     * @return true if the message was sent successfully; false otherwise
      */
-    public static JSONObject updateGroup(String groupId, String phoneNumber, boolean isAddOperation) throws IOException, JSONException {
+    public static boolean updateGroup(String groupId, String phoneNumber, boolean isAddOperation){
         String endpoint = isAddOperation ? "add" : "remove";
+        String url = "https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/group/" + endpoint;
         String requestBody = "{\"conversation_id\": \"" + groupId + "\", " +
                 "\"number\": " + phoneNumber + "}";
-        return sendPostRequest("https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/group/" + endpoint, requestBody);
+        JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
+        if (response == null) {
+            System.out.println("Failed to send message. Response is null.");
+            return false;
+        }
+        boolean success = response.getBoolean("success");
+        if (success) {
+            System.out.println("Group member updated successfully");
+            return true;
+        } else {
+            String message = response.getString("message");
+            System.out.println("Failed to update group member. Reason: " + message);
+            return false;
+        }
     }
 
 
     /**
      * Used to send a text message to an individual person or group chat.
      *
-     * @param message the text message to send
+     * @param text the text message to send
      * @param receiver the phone number or group ID of the message recipient
-     * @return a JSONObject representing the request's response
-     * @throws IOException if there is an error sending the request
-     * @throws JSONException if there is an error parsing the JSON response
+     * @return true if the message was sent successfully; false otherwise
      */
-    public static JSONObject sendTextMessage(String message, String receiver) throws IOException, JSONException {
+    public static boolean sendTextMessage(String text, String receiver){
+        String url = "https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/sendMessage";
         String requestBody = "{\"to_number\": \"" + receiver + "\", " +
                 "\"type\": \"text\", " +
-                "\"message\": \"" + message + "\"}";
-        return sendPostRequest("https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/sendMessage", requestBody);
+                "\"message\": \"" + text + "\"}";
+        JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
+        if (response == null) {
+            System.out.println("Failed to send message. Response is null.");
+            return false;
+        }
+        boolean success = response.getBoolean("success");
+        if (success) {
+            System.out.println("Message sent successfully");
+            return true;
+        } else {
+            String message = response.getString("message");
+            System.out.println("Failed to send message. Reason: " + message);
+            return false;
+        }
     }
 
     /**
@@ -95,16 +130,28 @@ public class WhatsAppPlugin extends PluginDecorator{
      * @param media the Base64-encoded media content to send (e.g., an image or video) or a URL to that media
      * @param caption the optional caption text for the media message
      * @param receiver the phone number or group ID of the message recipient
-     * @return a JSONObject representing the request's response
-     * @throws IOException if there is an error sending the request
-     * @throws JSONException if there is an error parsing the JSON response
+     * @return true if the message was sent successfully; false otherwise
      */
-    public static JSONObject sendMediaMessage(String media, String caption, String receiver) throws IOException, JSONException {
+    public static boolean sendMediaMessage(String media, String caption, String receiver){
+        String url = "https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/sendMessage";
         String requestBody = "{\"to_number\": \"" + receiver + "\", " +
                 "\"type\": \"media\", " +
                 "\"message\": \"" + media + "\", " +
                 "\"text\": \"" + caption + "\"}";
-        return sendPostRequest("https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/sendMessage", requestBody);
+        JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
+        if (response == null) {
+            System.out.println("Failed to send message. Response is null.");
+            return false;
+        }
+        boolean success = response.getBoolean("success");
+        if (success) {
+            System.out.println("Message sent successfully");
+            return true;
+        } else {
+            String message = response.getString("message");
+            System.out.println("Failed to send message. Reason: " + message);
+            return false;
+        }
     }
 
     /**
@@ -114,76 +161,60 @@ public class WhatsAppPlugin extends PluginDecorator{
      * @param longitude the longitude of the location in decimal degrees (DD)
      * @param locationText the name or description of the location
      * @param receiver the phone number or group ID of the message recipient
-     * @return a JSONObject representing the request's response
-     * @throws IOException if there is an error sending the request
-     * @throws JSONException if there is an error parsing the JSON response
+     * @return true if the message was sent successfully; false otherwise
      */
-    public static JSONObject sendLocationMessage(String latitude, String longitude, String locationText, String receiver) throws IOException, JSONException {
+    public static boolean sendLocationMessage(String latitude, String longitude, String locationText, String receiver){
+        String url = "https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/sendMessage";
         String requestBody = "{\"to_number\": \"" + receiver + "\", " +
                 "\"type\": \"location\", " +
                 "\"text\": \"" + locationText + "\", " +
                 "\"latitude\": \"" + latitude + "\", " +
                 "\"longitude\": \"" + longitude + "\"}";
-        return sendPostRequest("https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/sendMessage", requestBody);
+        JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
+        if (response == null) {
+            System.out.println("Failed to send message. Response is null.");
+            return false;
+        }
+        boolean success = response.getBoolean("success");
+        if (success) {
+            System.out.println("Message sent successfully");
+            return true;
+        } else {
+            String message = response.getString("message");
+            System.out.println("Failed to send message. Reason: " + message);
+            return false;
+        }
     }
+
 
     /**
      * Used to send a link message to an individual person or group chat.
      *
-     * @param url the link to send
-     * @param text optional text to include with the link
+     * @param link     the link to send
+     * @param text     optional text to include with the link
      * @param receiver the phone number or group ID of the message recipient
-     * @return a JSONObject representing the request's response
-     * @throws IOException if there is an error sending the request
-     * @throws JSONException if there is an error parsing the JSON response
+     * @return true if the message was sent successfully; false otherwise
      */
-    public static JSONObject sendLinkMessage(String url, String text, String receiver) throws IOException, JSONException {
+    public static boolean sendLinkMessage(String link, String text, String receiver) {
+        String url = "https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/sendMessage";
         String requestBody = "{\"to_number\": \"" + receiver + "\"," +
                 " \"type\": \"link\", " +
-                "\"message\": \"" + url + "\", " +
+                "\"message\": \"" + link + "\", " +
                 "\"text\": \"" + text + "\"}";
-        return sendPostRequest("https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/sendMessage", requestBody);
-    }
-
-
-
-
-    /**
-     * Sends an HTTP POST request to the specified URL with the given request body.
-     *
-     * @param urlString the URL to send the request to
-     * @param requestBody the request body to send
-     * @return a JSONObject representing the response from the server
-     * @throws IOException if there is an error sending or receiving the request
-     * @throws JSONException if there is an error parsing the JSON response
-     */
-    public static JSONObject sendPostRequest(String urlString, String requestBody) throws IOException, JSONException {
-        URL url = new URL(urlString);
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("POST");
-        conn.setRequestProperty("Content-Type", "application/json");
-        conn.setRequestProperty("x-maytapi-key", MAYTAPI_KEY);
-        conn.setDoOutput(true);
-
-        OutputStream os = conn.getOutputStream();
-        os.write(requestBody.getBytes());
-        os.flush();
-        os.close();
-
-        int responseCode = conn.getResponseCode();
-        System.out.println("Response code: " + responseCode);
-
-        InputStream is = conn.getInputStream();
-        BufferedReader br = new BufferedReader(new InputStreamReader(is));
-        String line;
-        StringBuilder response = new StringBuilder();
-        while ((line = br.readLine()) != null) {
-            response.append(line);
+        JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
+        if (response == null) {
+            System.out.println("Failed to send message. Response is null.");
+            return false;
         }
-        br.close();
-
-        System.out.println("Response body: " + response);
-
-        return new JSONObject(response.toString());
+        boolean success = response.getBoolean("success");
+        if (success) {
+            System.out.println("Message sent successfully");
+            return true;
+        } else {
+            String message = response.getString("message");
+            System.out.println("Failed to send message. Reason: " + message);
+            return false;
+        }
     }
+
 }
