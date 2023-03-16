@@ -8,21 +8,31 @@ import java.util.List;
 import java.util.Map;
 
 import org.json.JSONObject;
-import io.github.cdimascio.dotenv.Dotenv;
+
+
+import com.oracle.svm.core.annotate.Inject;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 public class WhatsAppPlugin extends PluginDecorator{
 
-    private static final Dotenv dotenv = Dotenv.load();
-    private static final String PRODUCT_ID = dotenv.get("PRODUCT_ID");
-    private static final String PHONE_ID = dotenv.get("PHONE_ID");
-    private static final String MAYTAPI_KEY = dotenv.get("MAYTAPI_KEY");
+    @Inject
+    @ConfigProperty(name = "pt.fe.up.pe25.whatsapp.product_id")
+    String PRODUCT_ID;
 
-    private static final String httpMethod = "POST";
-    private static final Map<String, String> headers = new HashMap<>();
-    static {
+    @Inject
+    @ConfigProperty(name = "pt.fe.up.pe25.whatsapp.phone_id")
+    String PHONE_ID;
+
+    @Inject
+    @ConfigProperty(name = "pt.fe.up.pe25.whatsapp.maytapi_key")
+    String MAYTAPI_KEY;
+
+    private final String httpMethod = "POST";
+    private final Map<String, String> headers = new HashMap<>();
+    {{
         headers.put("Content-Type", "application/json");
         headers.put("x-maytapi-key", MAYTAPI_KEY);
-    }
+    }}
 
 
     public WhatsAppPlugin(NotificationService notificationService) {
@@ -33,6 +43,11 @@ public class WhatsAppPlugin extends PluginDecorator{
     public boolean notify(NotificationData notificationData){
         if (notificationService != null)
             super.notify(notificationData);
+
+        //print class fields
+        System.out.println("PRODUCT_ID: " + PRODUCT_ID);
+        System.out.println("PHONE_ID: " + PHONE_ID);
+        System.out.println("MAYTAPI_KEY: " + MAYTAPI_KEY);
 
         sendLinkMessage("https://latitude.to/articles-by-country/pt/portugal/8013/estadio-do-dragao",
                 "Estádio do Dragão","XXXXXXXXXXX");
@@ -47,7 +62,7 @@ public class WhatsAppPlugin extends PluginDecorator{
      * @param phoneNumbers a list of phone numbers to add to the group
      * @return the ID of the new group if the request is successful, false otherwise
      */
-    public static Object createGroup(String groupName, List<String> phoneNumbers) {
+    public Object createGroup(String groupName, List<String> phoneNumbers) {
         String url = "https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/createGroup";
         String requestBody = "{\"name\": \"" + groupName + "\", " +
                 "\"numbers\": " + new JSONArray(phoneNumbers) + "}";
@@ -74,7 +89,7 @@ public class WhatsAppPlugin extends PluginDecorator{
      * @param isAddOperation true to add the phone number, false to remove it
      * @return true if the message was sent successfully; false otherwise
      */
-    public static boolean updateGroup(String groupId, String phoneNumber, boolean isAddOperation){
+    public  boolean updateGroup(String groupId, String phoneNumber, boolean isAddOperation){
         String endpoint = isAddOperation ? "add" : "remove";
         String url = "https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/group/" + endpoint;
         String requestBody = "{\"conversation_id\": \"" + groupId + "\", " +
@@ -103,7 +118,7 @@ public class WhatsAppPlugin extends PluginDecorator{
      * @param receiver the phone number or group ID of the message recipient
      * @return true if the message was sent successfully; false otherwise
      */
-    public static boolean sendTextMessage(String text, String receiver){
+    public boolean sendTextMessage(String text, String receiver){
         String url = "https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/sendMessage";
         String requestBody = "{\"to_number\": \"" + receiver + "\", " +
                 "\"type\": \"text\", " +
@@ -132,7 +147,7 @@ public class WhatsAppPlugin extends PluginDecorator{
      * @param receiver the phone number or group ID of the message recipient
      * @return true if the message was sent successfully; false otherwise
      */
-    public static boolean sendMediaMessage(String media, String caption, String receiver){
+    public boolean sendMediaMessage(String media, String caption, String receiver){
         String url = "https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/sendMessage";
         String requestBody = "{\"to_number\": \"" + receiver + "\", " +
                 "\"type\": \"media\", " +
@@ -163,7 +178,7 @@ public class WhatsAppPlugin extends PluginDecorator{
      * @param receiver the phone number or group ID of the message recipient
      * @return true if the message was sent successfully; false otherwise
      */
-    public static boolean sendLocationMessage(String latitude, String longitude, String locationText, String receiver){
+    public boolean sendLocationMessage(String latitude, String longitude, String locationText, String receiver){
         String url = "https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/sendMessage";
         String requestBody = "{\"to_number\": \"" + receiver + "\", " +
                 "\"type\": \"location\", " +
@@ -195,7 +210,7 @@ public class WhatsAppPlugin extends PluginDecorator{
      * @param receiver the phone number or group ID of the message recipient
      * @return true if the message was sent successfully; false otherwise
      */
-    public static boolean sendLinkMessage(String link, String text, String receiver) {
+    public boolean sendLinkMessage(String link, String text, String receiver) {
         String url = "https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/sendMessage";
         String requestBody = "{\"to_number\": \"" + receiver + "\"," +
                 " \"type\": \"link\", " +
