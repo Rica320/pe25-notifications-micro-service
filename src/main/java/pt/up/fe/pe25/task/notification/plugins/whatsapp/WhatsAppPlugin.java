@@ -1,5 +1,6 @@
-package pt.up.fe.pe25.task.notification.plugins;
+package pt.up.fe.pe25.task.notification.plugins.whatsapp;
 
+import pt.up.fe.pe25.task.notification.plugins.whatsapp.WhatsAppProperties;
 import org.json.JSONArray;
 import pt.up.fe.pe25.task.notification.NotificationData;
 import pt.up.fe.pe25.task.notification.NotificationService;
@@ -10,34 +11,49 @@ import java.util.Map;
 import org.json.JSONObject;
 
 
-import com.oracle.svm.core.annotate.Inject;
-import org.eclipse.microprofile.config.inject.ConfigProperty;
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
-public class WhatsAppPlugin extends PluginDecorator{
+import pt.up.fe.pe25.task.notification.plugins.PluginDecorator;
 
-    @Inject
-    @ConfigProperty(name = "pt.fe.up.pe25.whatsapp.product_id")
-    String PRODUCT_ID;
 
-    @Inject
-    @ConfigProperty(name = "pt.fe.up.pe25.whatsapp.phone_id")
-    String PHONE_ID;
-
-    @Inject
-    @ConfigProperty(name = "pt.fe.up.pe25.whatsapp.maytapi_key")
-    String MAYTAPI_KEY;
+public class WhatsAppPlugin extends PluginDecorator {
 
     private final String httpMethod = "POST";
-    private final Map<String, String> headers = new HashMap<>();
-    {{
+    private Map<String, String> headers = new HashMap<>();
+
+    private String PRODUCT_ID;
+    private String PHONE_ID;
+    private String MAYTAPI_KEY;
+
+    @PostConstruct
+    public void initialize() {
+        headers = new HashMap<>();
         headers.put("Content-Type", "application/json");
-        headers.put("x-maytapi-key", MAYTAPI_KEY);
-    }}
+        headers.put("x-maytapi-key",  MAYTAPI_KEY);
+    }
+
+    public WhatsAppPlugin set_PRODUCT_ID(String PRODUCT_ID) {
+        this.PRODUCT_ID = PRODUCT_ID;
+        return this;
+    }
+
+    public WhatsAppPlugin set_PHONE_ID(String PHONE_ID) {
+        this.PHONE_ID = PHONE_ID;
+        return this;
+    }
+
+    public WhatsAppPlugin set_MAYTAPI_KEY(String MAYTAPI_KEY) {
+        this.MAYTAPI_KEY = MAYTAPI_KEY;
+        return this;
+    }
+
 
 
     public WhatsAppPlugin(NotificationService notificationService) {
         super(notificationService);
     }
+
 
     @Override
     public boolean notify(NotificationData notificationData){
