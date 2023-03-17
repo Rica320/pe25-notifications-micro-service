@@ -23,7 +23,6 @@ public class MsTeamsPlugin extends PluginDecorator {
 
     private Map<String, String> headers = new HashMap<>();
 
-    // TODO notifier
     public MsTeamsPlugin(NotificationService notificationService) {
         super(notificationService);
     }
@@ -34,14 +33,14 @@ public class MsTeamsPlugin extends PluginDecorator {
         headers.put("Content-Type", "text/plain");
     }
 
-    /*@Override
+    @Override
     public boolean notify(NotificationData notificationData){
         if (notificationService != null)
             super.notify(notificationData);
 
-        // TODO call message
+        sendMessages(notificationData);
         return false;
-    }*/
+    }
 
     @Transactional
     public MsTeam addTeam(String url) {
@@ -51,19 +50,27 @@ public class MsTeamsPlugin extends PluginDecorator {
        return msTeam;
     }
 
-    public String sendMessages(NotificationData notificationData) {
+    /**
+     * Send a message to all teams.
+     * @param notificationData Data to send including a list of teams
+     */
+    public void sendMessages(NotificationData notificationData) {
         for (Long teamId : notificationData.getTeams()) {
             MsTeam team = MsTeam.findById(teamId);
-            if (team == null) return "That team does not exist";
-            String status = sendMessage(team.getUrl(),
+            if (team == null) throw new IllegalArgumentException("That team does not exist");
+            sendMessage(team.getUrl(),
                 notificationData.getMessage(),
                 notificationData.getTicketId());
-            if (status != "") return status;
         }
-        return "";
     }
 
-    public String sendMessage(String url, String message, String ticketId) {
+    /**
+     * Send a message to a ms teams webhook.
+     * @param url Url of the webhook (channel)
+     * @param message Message to send
+     * @param ticketId Id of the ticket
+     */
+    public void sendMessage(String url, String message, String ticketId) {
         String body = String.format("""
                 {
             \"@type\": \"MessageCard\",
@@ -82,7 +89,6 @@ public class MsTeamsPlugin extends PluginDecorator {
 
 
         if (sendRequest(url, body, "POST", headers) == null)
-            return "Error sending message";
-        return "";
+            throw new IllegalArgumentException("Error sending message");
     }
 }

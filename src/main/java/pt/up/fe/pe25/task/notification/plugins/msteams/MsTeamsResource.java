@@ -38,11 +38,12 @@ public class MsTeamsResource {
     public Response sendMessage(NotificationData notificationData) {
         System.out.print(notificationData);
         MsTeamsPlugin msTeamsPlugin = new MsTeamsPlugin(null);
-        String status = msTeamsPlugin.sendMessages(notificationData);
-        if (status == "")
+        try {
+            msTeamsPlugin.sendMessages(notificationData);
             return Response.status(Response.Status.CREATED).entity(notificationData).build();
-        else 
-            return Response.status(Response.Status.BAD_REQUEST).entity(status).build();
+        }
+        catch (IllegalArgumentException e) {
+            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+        }
     }
-    
 }
