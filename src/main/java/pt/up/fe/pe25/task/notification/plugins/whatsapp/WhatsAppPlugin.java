@@ -60,11 +60,6 @@ public class WhatsAppPlugin extends PluginDecorator {
         if (notificationService != null)
             super.notify(notificationData);
 
-        //print class fields
-        System.out.println("PRODUCT_ID: " + PRODUCT_ID);
-        System.out.println("PHONE_ID: " + PHONE_ID);
-        System.out.println("MAYTAPI_KEY: " + MAYTAPI_KEY);
-
         sendLinkMessage("https://latitude.to/articles-by-country/pt/portugal/8013/estadio-do-dragao",
                 "Estádio do Dragão","XXXXXXXXXXX");
 
@@ -84,16 +79,14 @@ public class WhatsAppPlugin extends PluginDecorator {
                 "\"numbers\": " + new JSONArray(phoneNumbers) + "}";
         JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
         if (response == null) {
-            System.out.println("Failed to send message. Response is null.");
-            return false;
+            throw new IllegalArgumentException("Failed to create group. Response is null.");
         }
         boolean success = response.getBoolean("success");
         if (success) {
             return response.getJSONObject("data").getString("id");
         } else {
             String message = response.getString("message");
-            System.out.println("Failed to create group. Reason: " + message);
-            return false;
+            throw new IllegalArgumentException("Failed to create group. Reason: " + message);
         }
     }
 
@@ -112,17 +105,14 @@ public class WhatsAppPlugin extends PluginDecorator {
                 "\"number\": " + phoneNumber + "}";
         JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
         if (response == null) {
-            System.out.println("Failed to send message. Response is null.");
-            return false;
+            throw new IllegalArgumentException("Failed to create group. Response is null.");
         }
         boolean success = response.getBoolean("success");
         if (success) {
-            System.out.println("Group member updated successfully");
             return true;
         } else {
             String message = response.getString("message");
-            System.out.println("Failed to update group member. Reason: " + message);
-            return false;
+            throw new IllegalArgumentException("Failed to create group. Reason: " + message);
         }
     }
 
@@ -141,17 +131,14 @@ public class WhatsAppPlugin extends PluginDecorator {
                 "\"message\": \"" + text + "\"}";
         JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
         if (response == null) {
-            System.out.println("Failed to send message. Response is null.");
-            return false;
+            throw new IllegalArgumentException("Failed to create group. Response is null.");
         }
         boolean success = response.getBoolean("success");
         if (success) {
-            System.out.println("Message sent successfully");
             return true;
         } else {
             String message = response.getString("message");
-            System.out.println("Failed to send message. Reason: " + message);
-            return false;
+            throw new IllegalArgumentException("Failed to create group. Reason: " + message);
         }
     }
 
@@ -171,17 +158,14 @@ public class WhatsAppPlugin extends PluginDecorator {
                 "\"text\": \"" + caption + "\"}";
         JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
         if (response == null) {
-            System.out.println("Failed to send message. Response is null.");
-            return false;
+            throw new IllegalArgumentException("Failed to create group. Response is null.");
         }
         boolean success = response.getBoolean("success");
         if (success) {
-            System.out.println("Message sent successfully");
             return true;
         } else {
             String message = response.getString("message");
-            System.out.println("Failed to send message. Reason: " + message);
-            return false;
+            throw new IllegalArgumentException("Failed to create group. Reason: " + message);
         }
     }
 
@@ -203,17 +187,14 @@ public class WhatsAppPlugin extends PluginDecorator {
                 "\"longitude\": \"" + longitude + "\"}";
         JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
         if (response == null) {
-            System.out.println("Failed to send message. Response is null.");
-            return false;
+            throw new IllegalArgumentException("Failed to create group. Response is null.");
         }
         boolean success = response.getBoolean("success");
         if (success) {
-            System.out.println("Message sent successfully");
             return true;
         } else {
             String message = response.getString("message");
-            System.out.println("Failed to send message. Reason: " + message);
-            return false;
+            throw new IllegalArgumentException("Failed to create group. Reason: " + message);
         }
     }
 
@@ -234,17 +215,14 @@ public class WhatsAppPlugin extends PluginDecorator {
                 "\"text\": \"" + text + "\"}";
         JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
         if (response == null) {
-            System.out.println("Failed to send message. Response is null.");
-            return false;
+            throw new IllegalArgumentException("Failed to create group. Response is null.");
         }
         boolean success = response.getBoolean("success");
         if (success) {
-            System.out.println("Message sent successfully");
             return true;
         } else {
             String message = response.getString("message");
-            System.out.println("Failed to send message. Reason: " + message);
-            return false;
+            throw new IllegalArgumentException("Failed to create group. Reason: " + message);
         }
     }
 
