@@ -44,10 +44,11 @@ public class MsTeamsPlugin extends PluginDecorator {
 
     @Transactional
     public MsTeam addTeam(String url) {
-        // TODO check if team already exists
-       MsTeam msTeam = new MsTeam(url);
-       msTeam.persist();
-       return msTeam;
+        if (MsTeam.count("url", url) > 0)
+            throw new IllegalArgumentException("That team already exists");
+        MsTeam msTeam = new MsTeam(url);
+        msTeam.persist();
+        return msTeam;
     }
 
     /**

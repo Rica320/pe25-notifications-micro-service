@@ -4,14 +4,16 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 @Entity
+/**
+ * This class represents a Microsoft Teams team.
+ * To communicate with a team, first get a webhook and then use it to send messages.
+ */
 public class MsTeam extends PanacheEntity {
     MsTeam() {}
 
