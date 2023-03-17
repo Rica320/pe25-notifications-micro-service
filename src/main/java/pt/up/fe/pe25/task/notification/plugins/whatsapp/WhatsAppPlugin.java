@@ -105,14 +105,14 @@ public class WhatsAppPlugin extends PluginDecorator {
                 "\"number\": " + phoneNumber + "}";
         JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
         if (response == null) {
-            throw new IllegalArgumentException("Failed to create group. Response is null.");
+            throw new IllegalArgumentException("Failed to update group. Response is null.");
         }
         boolean success = response.getBoolean("success");
         if (success) {
             return true;
         } else {
             String message = response.getString("message");
-            throw new IllegalArgumentException("Failed to create group. Reason: " + message);
+            throw new IllegalArgumentException("Failed to update group. Reason: " + message);
         }
     }
 
@@ -131,14 +131,14 @@ public class WhatsAppPlugin extends PluginDecorator {
                 "\"message\": \"" + text + "\"}";
         JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
         if (response == null) {
-            throw new IllegalArgumentException("Failed to create group. Response is null.");
+            throw new IllegalArgumentException("Failed to send text message. Response is null.");
         }
         boolean success = response.getBoolean("success");
         if (success) {
             return true;
         } else {
             String message = response.getString("message");
-            throw new IllegalArgumentException("Failed to create group. Reason: " + message);
+            throw new IllegalArgumentException("Failed to send text message. Reason: " + message);
         }
     }
 
@@ -158,14 +158,14 @@ public class WhatsAppPlugin extends PluginDecorator {
                 "\"text\": \"" + caption + "\"}";
         JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
         if (response == null) {
-            throw new IllegalArgumentException("Failed to create group. Response is null.");
+            throw new IllegalArgumentException("Failed to send media message. Response is null.");
         }
         boolean success = response.getBoolean("success");
         if (success) {
             return true;
         } else {
             String message = response.getString("message");
-            throw new IllegalArgumentException("Failed to create group. Reason: " + message);
+            throw new IllegalArgumentException("Failed to send media message. Reason: " + message);
         }
     }
 
@@ -187,14 +187,14 @@ public class WhatsAppPlugin extends PluginDecorator {
                 "\"longitude\": \"" + longitude + "\"}";
         JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
         if (response == null) {
-            throw new IllegalArgumentException("Failed to create group. Response is null.");
+            throw new IllegalArgumentException("Failed to send location message. Response is null.");
         }
         boolean success = response.getBoolean("success");
         if (success) {
             return true;
         } else {
             String message = response.getString("message");
-            throw new IllegalArgumentException("Failed to create group. Reason: " + message);
+            throw new IllegalArgumentException("Failed to send location message. Reason: " + message);
         }
     }
 
@@ -215,14 +215,14 @@ public class WhatsAppPlugin extends PluginDecorator {
                 "\"text\": \"" + text + "\"}";
         JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
         if (response == null) {
-            throw new IllegalArgumentException("Failed to create group. Response is null.");
+            throw new IllegalArgumentException("Failed to send link message. Response is null.");
         }
         boolean success = response.getBoolean("success");
         if (success) {
             return true;
         } else {
             String message = response.getString("message");
-            throw new IllegalArgumentException("Failed to create group. Reason: " + message);
+            throw new IllegalArgumentException("Failed to send link message. Reason: " + message);
         }
     }
 
