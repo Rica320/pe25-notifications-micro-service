@@ -18,6 +18,10 @@ public class NotificationData {
     @Column(name = "message")
     private String message;
 
+    @ElementCollection
+    @Column(name = "teams", columnDefinition = "bigint")
+    private List<Long> teams;
+
     // TODO: Add more fields ... Some will be more specific to each service and will probably be added in another place
 
 
@@ -43,5 +47,9 @@ public class NotificationData {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public List<Long> getTeams() {
+        return List.of(1L,2L);
     }
 }

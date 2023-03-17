@@ -52,7 +52,6 @@ public abstract class PluginDecorator implements NotificationService {
             os.close();
 
             int responseCode = conn.getResponseCode();
-            System.out.println("Response code: " + responseCode);
 
             if (responseCode >= 200 && responseCode <= 299) {
                 InputStream is = conn.getInputStream();
@@ -66,7 +65,7 @@ public abstract class PluginDecorator implements NotificationService {
 
                 System.out.println("Response body: " + response);
 
-                return new JSONObject(response.toString());
+                return new JSONObject("{message:" + response.toString() + "}");
             } else {
                 System.out.println("Request failed with response code: " + responseCode);
                 return null;
