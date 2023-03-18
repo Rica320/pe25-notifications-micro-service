@@ -20,6 +20,7 @@ dependencies {
     implementation 'org.postgresql:postgresql'
     implementation 'io.quarkus:quarkus-hibernate-orm-panache'
     implementation 'io.quarkus:quarkus-arc'
+    implementation 'io.quarkus:quarkus-quartz'
     implementation 'io.quarkus:quarkus-resteasy'
     implementation 'io.quarkus:quarkus-scheduler'
     implementation group: 'org.json', name: 'json', version: '20230227'
