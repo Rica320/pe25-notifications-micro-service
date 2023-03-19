@@ -31,9 +31,9 @@ public class MailPlugin extends PluginDecorator {
             super.notify(notificationData);
 
         Uni<Void> x = mailer.send(
-                Mail.withText("quarkus@quarkus.io",
-                        "Ahoy from Quarkus",
-                        "A simple email sent from a Quarkus application using the reactive API."
+                Mail.withHtml(String.join(",", notificationData.getReceiverEmails()),
+                        notificationData.getSubject(),
+                        notificationData.getMessage()
                 ));
 
         x.subscribe().with(

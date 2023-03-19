@@ -1,8 +1,10 @@
 package pt.up.fe.pe25.task.notification;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Embeddable
 public class NotificationData {
@@ -12,6 +14,13 @@ public class NotificationData {
 
     @Column(name = "receiver_phone")
     private String receiverPhone;
+
+    @ElementCollection
+    @Column(name = "receiver_emails")
+    private List<String> receiverEmails;
+
+    @Column(name = "subject")
+    private String subject;
 
     @Column(name = "message")
     private String message;
@@ -51,5 +60,21 @@ public class NotificationData {
 
     public void setDateToSend(LocalDateTime dateToSend) {
         this.dateToSend = dateToSend;
+    }
+
+    public List<String> getReceiverEmails() {
+        return receiverEmails;
+    }
+
+    public void setReceiverEmails(List<String> receiverEmails) {
+        this.receiverEmails = receiverEmails;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 }
