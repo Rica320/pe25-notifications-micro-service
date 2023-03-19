@@ -1,6 +1,7 @@
 package pt.up.fe.pe25.task.notification;
 
 import io.quarkus.mailer.reactive.ReactiveMailer;
+import io.quarkus.qute.Template;
 import pt.up.fe.pe25.task.notification.plugins.WhatsAppPlugin;
 import pt.up.fe.pe25.task.notification.plugins.smtp.MailPlugin;
 
@@ -16,6 +17,9 @@ public class NotificationFactoryImpl implements NotificationFactory{
         @Inject
         ReactiveMailer mailer;
 
+        @Inject
+        Template template;
+
         @Override
         public NotificationService create(List<String> types) throws IllegalArgumentException{
             NotificationService notificationService = null;
@@ -23,7 +27,7 @@ public class NotificationFactoryImpl implements NotificationFactory{
             for (String s : types) {
                 switch (s) {
                     case "whatsapp" -> notificationService = new WhatsAppPlugin(notificationService);
-                    case "email" -> notificationService = new MailPlugin(notificationService, mailer);
+                    case "email" -> notificationService = new MailPlugin(notificationService, mailer, template);
                     default -> {
                     }
                 }
