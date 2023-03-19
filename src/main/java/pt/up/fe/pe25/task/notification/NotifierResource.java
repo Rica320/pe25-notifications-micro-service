@@ -5,6 +5,10 @@ import javax.ws.rs.core.Response;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+
+import io.quarkus.mailer.Mail;
+import io.quarkus.mailer.reactive.ReactiveMailer;
+import io.smallrye.mutiny.Uni;
 import org.quartz.SchedulerException;
 
 @Path("/notifier")
@@ -15,6 +19,9 @@ public class NotifierResource {
 
     @Inject
     NotificationScheduler notificationScheduler;
+
+    @Inject
+    ReactiveMailer mailer;
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -46,5 +53,18 @@ public class NotifierResource {
     public Response getNotifiers() {
         return Response.ok(Notifier.listAll()).build();
     }
+
+    @GET
+    @Path("/reactive")
+    public Uni<Void> sendEmailUsingReactiveMailer() {
+        // https://quarkus.io/guides/mailer
+        return mailer.send(
+                Mail.withText("quarkus@quarkus.io",
+                        "Ahoy from Quarkus",
+                        "A simple email sent from a Quarkus application using the reactive API."
+                )
+        );
+    }
+
 }
 
