@@ -11,7 +11,6 @@ import pt.up.fe.pe25.task.notification.plugins.PluginDecorator;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import java.io.IOException;
 
 @RequestScoped
 public class MailPlugin extends PluginDecorator {
