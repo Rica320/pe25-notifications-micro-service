@@ -1,5 +1,6 @@
 package pt.up.fe.pe25.task.notification;
 
+import pt.up.fe.pe25.task.notification.plugins.smpp.SmsPlugin;
 import pt.up.fe.pe25.task.notification.plugins.whatsapp.WhatsAppPlugin;
 import pt.up.fe.pe25.task.notification.plugins.whatsapp.WhatsAppProperties;
 
@@ -23,11 +24,10 @@ public class NotificationFactoryImpl implements NotificationFactory{
                 switch (s) {
                     case "whatsapp":
                         // TODO: isto é uma solução temporária, por algum motivo o @Inject não está a funcionar dentro do WhatsAppPlugin
-                        notificationService = new WhatsAppPlugin(notificationService)
-                                .set_PRODUCT_ID(whatsAppProperties.get_PRODUCT_ID())
-                                .set_PHONE_ID(whatsAppProperties.get_PHONE_ID())
-                                .set_MAYTAPI_KEY(whatsAppProperties.get_MAYTAPI_KEY());
+                        notificationService = new WhatsAppPlugin(notificationService);
                         break;
+                    case "sms":
+                        notificationService = new SmsPlugin(notificationService);
                     default:
                         break;
                 }
