@@ -1,17 +1,20 @@
 package pt.up.fe.pe25.task.notification;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
+import java.util.List;
 import java.time.LocalDateTime;
 
 @Embeddable
 public class NotificationData {
 
-    @Column(name = "sender_phone")
-    private String senderPhone;
+    @Column(name = "ticket_id")
+    private String ticketId;
 
+    @ElementCollection
     @Column(name = "receiver_phone")
-    private String receiverPhone;
+    private List<String> receiverPhone;
 
     @Column(name = "message")
     private String message;
@@ -21,19 +24,19 @@ public class NotificationData {
     // TODO: Add more fields ... Some will be more specific to each service and will probably be added in another place
 
 
-    public String getSenderPhone() {
-        return senderPhone;
+    public String getTicketId() {
+        return ticketId;
     }
 
-    public void setSenderPhone(String senderPhone) {
-        this.senderPhone = senderPhone;
+    public void setTicketId(String ticketId) {
+        this.ticketId = ticketId;
     }
 
-    public String getReceiverPhone() {
+    public List<String> getReceiverPhone() {
         return receiverPhone;
     }
 
-    public void setReceiverPhone(String receiverPhone) {
+    public void setReceiverPhone(List<String> receiverPhone) {
         this.receiverPhone = receiverPhone;
     }
 
