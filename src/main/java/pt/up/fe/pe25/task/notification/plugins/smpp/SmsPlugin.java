@@ -16,7 +16,6 @@ import pt.up.fe.pe25.task.notification.NotificationService;
 import pt.up.fe.pe25.task.notification.plugins.PluginDecorator;
 
 import java.io.IOException;
-import java.util.Date;
 
 public class SmsPlugin extends PluginDecorator {
     private static final TimeFormatter TIME_FORMATTER = new AbsoluteTimeFormatter();
@@ -58,35 +57,39 @@ public class SmsPlugin extends PluginDecorator {
                     systemId, password, null, TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.ISDN,
                     null));
 
-            Address[] addresses = new Address[notificationData.getReceiverPhone().size()];
-            int i = 0;
-            for (String addr: notificationData.getReceiverPhone()) {
-                Address address = new Address(TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.ISDN, addr);
-                addresses[i] = address;
-                i++;
-            }
-
             try {
                 /*
+                Address[] addresses = new Address[notificationData.getReceiverPhone().size()];
+                int i = 0;
+                for (String addr: notificationData.getReceiverPhone()) {
+                    Address address = new Address(TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.ISDN, addr);
+                    addresses[i] = address;
+                    i++;
+                }
+                //Send to mult addr
                 SubmitMultiResult submitMultiResult = session.submitMultiple("CMT",
-                        TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.UNKNOWN, sender,
+                        TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.ISDN, sender,
                         addresses,
-                        new ESMClass(), (byte)0, (byte)1,  TIME_FORMATTER.format(new Date()), null,
+                        new ESMClass(), (byte)0, (byte)1,  null, null,
                         new RegisteredDelivery(SMSCDeliveryReceipt.DEFAULT), ReplaceIfPresentFlag.REPLACE,
                         new GeneralDataCoding(Alphabet.ALPHA_DEFAULT, MessageClass.CLASS1, false),
                         (byte)0, notificationData.getMessage().getBytes());
                 String messageId = submitMultiResult.getMessageId();
-                 */
+                */
+
+                //Send to single addr
 
                 SubmitSmResult submitSmResult = session.submitShortMessage("CMT",
-                        TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.ISDN, "13105551212",
-                        TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.ISDN, "13105551212",
-                        new ESMClass(), (byte)0, (byte)1,  TIME_FORMATTER.format(new Date()), null,
-                        new RegisteredDelivery(SMSCDeliveryReceipt.DEFAULT), (byte)0, new GeneralDataCoding(Alphabet.ALPHA_DEFAULT, MessageClass.CLASS1, false), (byte)0,
+                        TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.ISDN, sender,
+                        TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.ISDN, "999999999",
+                        new ESMClass(), (byte)0, (byte)1,  null, null,
+                        new RegisteredDelivery(SMSCDeliveryReceipt.DEFAULT), (byte)0,
+                        new GeneralDataCoding(Alphabet.ALPHA_DEFAULT, MessageClass.CLASS1, false), (byte)0,
                         notificationData.getMessage().getBytes());
                 String messageId = submitSmResult.getMessageId();
 
                 System.out.println("Message successfully submitted (message_id = " + messageId + ")");
+
             } catch (PDUException e) {
                 // Invalid PDU parameter
                 System.out.println(e);
