@@ -34,6 +34,12 @@ public class NotificationData {
     @Column(name = "media")
     private String media;
 
+    @Column(name = "group_name")
+    private String groupName;
+
+    @Column(name = "group_id")
+    private String groupId;
+
     @Column(name = "date_to_send")
     private LocalDateTime dateToSend;
     // TODO: Add more fields ... Some will be more specific to each service and will probably be added in another place
@@ -101,6 +107,22 @@ public class NotificationData {
 
     public void setMedia(String media) {
         this.media = media;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
     }
 
     public LocalDateTime getDateToSend() {

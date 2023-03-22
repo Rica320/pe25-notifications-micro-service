@@ -6,9 +6,90 @@ import pt.up.fe.pe25.task.notification.NotificationData;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.List;
 
 @Path("/whatsapp")
 public class WhatsAppResource {
+
+    @Path("/group/create")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    /**
+     * Creates a group with the given name and adds the given phone numbers to it.
+     * @param groupData Data to create the group
+     * @return Response with the data sent.
+     **/
+    public Response createGroup(NotificationData notificationData) {
+
+        String groupName = notificationData.getGroupName();
+        List<String> phoneNumbers = notificationData.getPhoneList();
+
+        WhatsAppPlugin whatsappPlugin = new WhatsAppPlugin(null);
+
+        try {
+            String groupId = whatsappPlugin.createGroup(groupName, phoneNumbers);
+            return Response.status(Response.Status.CREATED).entity(groupId).build();
+        }
+        catch (IllegalArgumentException e) {
+            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+        }
+    }
+
+    @Path("/group/add")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    /**
+     * Adds a phone number from a group.
+     * @param notificationData Data to update the group
+     * @return Response with the data sent.
+     **/
+    public Response addToGroup(NotificationData notificationData) {
+
+            String groupId = notificationData.getGroupId();
+            String phoneNumber = notificationData.getReceiver();
+
+            WhatsAppPlugin whatsappPlugin = new WhatsAppPlugin(null);
+
+            try {
+                whatsappPlugin.updateGroup(groupId, phoneNumber, true);
+                return Response.status(Response.Status.CREATED).entity(notificationData).build();
+            }
+            catch (IllegalArgumentException e) {
+                return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+            }
+    }
+
+    @Path("/group/remove")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    /**
+     * Removes a phone number from a group.
+     * @param notificationData Data to update the group
+     * @return Response with the data sent.
+     **/
+    public Response removeFromGroup(NotificationData notificationData) {
+
+        String groupId = notificationData.getGroupId();
+        String phoneNumber = notificationData.getReceiver();
+
+        WhatsAppPlugin whatsappPlugin = new WhatsAppPlugin(null);
+
+        try {
+            whatsappPlugin.updateGroup(groupId, phoneNumber, false);
+            return Response.status(Response.Status.CREATED).entity(notificationData).build();
+        }
+        catch (IllegalArgumentException e) {
+            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+        }
+    }
+
+
 
     @Path("/message/text")
     @POST
