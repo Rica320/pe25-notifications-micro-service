@@ -25,6 +25,12 @@ public class NotificationData {
     @Column(name = "receiver")
     private String receiver;
 
+    @Column(name = "latitude")
+    private String latitude;
+
+    @Column(name = "longitude")
+    private String longitude;
+
     @Column(name = "date_to_send")
     private LocalDateTime dateToSend;
     // TODO: Add more fields ... Some will be more specific to each service and will probably be added in another place
@@ -68,6 +74,22 @@ public class NotificationData {
 
     public void setReceiver(String receiver) {
         this.receiver = receiver;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 
     public LocalDateTime getDateToSend() {

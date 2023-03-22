@@ -10,17 +10,44 @@ import javax.ws.rs.core.MediaType;
 @Path("/whatsapp")
 public class WhatsAppResource {
 
+    @Path ("/message/location")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    /**
+     * Sends a location message to a phone number
+     * @param notificationData Data to send
+     * @return Response with the data sent.
+     **/
+    public Response sendLocationMessage(NotificationData notificationData) {
+
+        String latitude = notificationData.getLatitude();
+        String longitude = notificationData.getLongitude();
+        String message = notificationData.getMessage();
+        String receiverPhone = notificationData.getReceiver();
+
+        WhatsAppPlugin whatsappPlugin = new WhatsAppPlugin(null);
+
+        try {
+            whatsappPlugin.sendLocationMessage(latitude, longitude, message, receiverPhone);
+            return Response.status(Response.Status.CREATED).entity(notificationData).build();
+        }
+        catch (IllegalArgumentException e) {
+            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+        }
+    }
+
 
     @Path("/message/link")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    /** Send a link message to a phone number
-     * @param link - link to be sent
-     * @param text - text to be sent
-     * @param receiverPhone - phone number of the receiver
-     * @return Response with status code and message
+    /**
+     * Sends a link message to a phone number
+     * @param notificationData Data to send
+     * @return Response with the data sent.
      **/
     public Response sendLinkMessage(NotificationData notificationData) {
 
