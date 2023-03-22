@@ -31,6 +31,9 @@ public class NotificationData {
     @Column(name = "longitude")
     private String longitude;
 
+    @Column(name = "media")
+    private String media;
+
     @Column(name = "date_to_send")
     private LocalDateTime dateToSend;
     // TODO: Add more fields ... Some will be more specific to each service and will probably be added in another place
@@ -90,6 +93,14 @@ public class NotificationData {
 
     public void setLongitude(String longitude) {
         this.longitude = longitude;
+    }
+
+    public String getMedia() {
+        return media;
+    }
+
+    public void setMedia(String media) {
+        this.media = media;
     }
 
     public LocalDateTime getDateToSend() {
