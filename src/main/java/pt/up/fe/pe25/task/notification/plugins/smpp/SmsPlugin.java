@@ -1,6 +1,6 @@
 package pt.up.fe.pe25.task.notification.plugins.smpp;
 
-import org.eclipse.microprofile.config.Config;
+import org.eclipse.microprofile.config.ConfigProvider;
 import org.jsmpp.InvalidResponseException;
 import org.jsmpp.PDUException;
 import org.jsmpp.bean.*;
@@ -8,29 +8,31 @@ import org.jsmpp.extra.NegativeResponseException;
 import org.jsmpp.extra.ResponseTimeoutException;
 import org.jsmpp.session.BindParameter;
 import org.jsmpp.session.SMPPSession;
-import org.jsmpp.session.SubmitMultiResult;
+import org.jsmpp.session.SubmitSmResult;
 import org.jsmpp.util.AbsoluteTimeFormatter;
 import org.jsmpp.util.TimeFormatter;
 import pt.up.fe.pe25.task.notification.NotificationData;
 import pt.up.fe.pe25.task.notification.NotificationService;
 import pt.up.fe.pe25.task.notification.plugins.PluginDecorator;
 
-import javax.inject.Inject;
 import java.io.IOException;
 import java.util.Date;
 
 public class SmsPlugin extends PluginDecorator {
-    @Inject
-    Config config;
     private static final TimeFormatter TIME_FORMATTER = new AbsoluteTimeFormatter();
-    private final String host = config.getValue("pt.fe.up.pe25.smpp.host", String.class);
-    private final int port = Integer.parseInt(config.getValue("pt.fe.up.pe25.smpp.port", String.class));
-    private final String systemId = config.getValue("pt.fe.up.pe25.smpp.systemId", String.class);
-    private final String password = config.getValue("pt.fe.up.pe25.smpp.password", String.class);
-    private final String sender = config.getValue("pt.fe.up.pe25.smpp.sender", String.class);
+    private String host;
+    private int port;
+    private String systemId;
+    private String password;
+    private String sender;
 
     public SmsPlugin(NotificationService notificationService) {
         super(notificationService);
+        this.host = ConfigProvider.getConfig().getValue("pt.fe.up.pe25.smpp.host", String.class);
+        this.port = Integer.parseInt(ConfigProvider.getConfig().getValue("pt.fe.up.pe25.smpp.port", String.class));
+        this.systemId = ConfigProvider.getConfig().getValue("pt.fe.up.pe25.smpp.systemId", String.class);
+        this.password = ConfigProvider.getConfig().getValue("pt.fe.up.pe25.smpp.password", String.class);
+        this.sender = ConfigProvider.getConfig().getValue("pt.fe.up.pe25.smpp.sender", String.class);
     }
 
     @Override
@@ -44,21 +46,28 @@ public class SmsPlugin extends PluginDecorator {
 
     private void sendSMS(NotificationData notificationData) {
 
+        System.out.println("host: " + host);
+        System.out.println("port: " + port);
+        System.out.println("systemId: " + systemId);
+        System.out.println("password: " + password);
+        System.out.println("sender: " + sender);
+
         SMPPSession session = new SMPPSession();
         try {
-            session.connectAndBind(host, Integer.parseInt(String.valueOf(port)), new BindParameter(BindType.BIND_TX,
-                    systemId, password, "cp", TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.UNKNOWN,
+            session.connectAndBind(host, port, new BindParameter(BindType.BIND_TX,
+                    systemId, password, null, TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.ISDN,
                     null));
 
             Address[] addresses = new Address[notificationData.getReceiverPhone().size()];
             int i = 0;
             for (String addr: notificationData.getReceiverPhone()) {
-                Address address = new Address(TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.UNKNOWN, addr);
+                Address address = new Address(TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.ISDN, addr);
                 addresses[i] = address;
                 i++;
             }
 
             try {
+                /*
                 SubmitMultiResult submitMultiResult = session.submitMultiple("CMT",
                         TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.UNKNOWN, sender,
                         addresses,
@@ -67,21 +76,31 @@ public class SmsPlugin extends PluginDecorator {
                         new GeneralDataCoding(Alphabet.ALPHA_DEFAULT, MessageClass.CLASS1, false),
                         (byte)0, notificationData.getMessage().getBytes());
                 String messageId = submitMultiResult.getMessageId();
+                 */
+
+                SubmitSmResult submitSmResult = session.submitShortMessage("CMT",
+                        TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.ISDN, "13105551212",
+                        TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.ISDN, "13105551212",
+                        new ESMClass(), (byte)0, (byte)1,  TIME_FORMATTER.format(new Date()), null,
+                        new RegisteredDelivery(SMSCDeliveryReceipt.DEFAULT), (byte)0, new GeneralDataCoding(Alphabet.ALPHA_DEFAULT, MessageClass.CLASS1, false), (byte)0,
+                        notificationData.getMessage().getBytes());
+                String messageId = submitSmResult.getMessageId();
+
                 System.out.println("Message successfully submitted (message_id = " + messageId + ")");
             } catch (PDUException e) {
                 // Invalid PDU parameter
-                System.out.println("Invalid PDU parameter");
+                System.out.println(e);
             } catch (ResponseTimeoutException e) {
                 // Response timeout
-                System.out.println("Response timeout");
+                System.out.println(e);
             } catch (InvalidResponseException e) {
                 // Invalid response
-                System.out.println("Invalid response");
+                System.out.println(e);
             } catch (NegativeResponseException e) {
                 // Receiving negative response (non-zero command_status)
-                System.out.println("Receiving negative response");
+                System.out.println(e);
             } catch (IOException e) {
-                System.out.println("IO Exception");
+                System.out.println(e);
             }
 
             session.unbindAndClose();
