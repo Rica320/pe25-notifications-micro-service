@@ -45,12 +45,6 @@ public class SmsPlugin extends PluginDecorator {
 
     private void sendSMS(NotificationData notificationData) {
 
-        System.out.println("host: " + host);
-        System.out.println("port: " + port);
-        System.out.println("systemId: " + systemId);
-        System.out.println("password: " + password);
-        System.out.println("sender: " + sender);
-
         SMPPSession session = new SMPPSession();
         try {
             session.connectAndBind(host, port, new BindParameter(BindType.BIND_TX,
@@ -58,8 +52,8 @@ public class SmsPlugin extends PluginDecorator {
                     null));
 
             try {
-                /*
-                Address[] addresses = new Address[notificationData.getReceiverPhone().size()];
+
+                /*Address[] addresses = new Address[notificationData.getReceiverPhone().size()];
                 int i = 0;
                 for (String addr: notificationData.getReceiverPhone()) {
                     Address address = new Address(TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.ISDN, addr);
@@ -74,14 +68,13 @@ public class SmsPlugin extends PluginDecorator {
                         new RegisteredDelivery(SMSCDeliveryReceipt.DEFAULT), ReplaceIfPresentFlag.REPLACE,
                         new GeneralDataCoding(Alphabet.ALPHA_DEFAULT, MessageClass.CLASS1, false),
                         (byte)0, notificationData.getMessage().getBytes());
-                String messageId = submitMultiResult.getMessageId();
-                */
+                String messageId = submitMultiResult.getMessageId();*/
+
 
                 //Send to single addr
-
                 SubmitSmResult submitSmResult = session.submitShortMessage("CMT",
                         TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.ISDN, sender,
-                        TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.ISDN, "999999999",
+                        TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.ISDN, notificationData.getReceiverPhone().get(0),
                         new ESMClass(), (byte)0, (byte)1,  null, null,
                         new RegisteredDelivery(SMSCDeliveryReceipt.DEFAULT), (byte)0,
                         new GeneralDataCoding(Alphabet.ALPHA_DEFAULT, MessageClass.CLASS1, false), (byte)0,
@@ -92,24 +85,25 @@ public class SmsPlugin extends PluginDecorator {
 
             } catch (PDUException e) {
                 // Invalid PDU parameter
-                System.out.println(e);
+                throw new IllegalArgumentException(e);
             } catch (ResponseTimeoutException e) {
                 // Response timeout
-                System.out.println(e);
+                throw new IllegalArgumentException(e);
             } catch (InvalidResponseException e) {
                 // Invalid response
-                System.out.println(e);
+                throw new IllegalArgumentException(e);
             } catch (NegativeResponseException e) {
                 // Receiving negative response (non-zero command_status)
-                System.out.println(e);
+                throw new IllegalArgumentException(e);
             } catch (IOException e) {
-                System.out.println(e);
+                throw new IllegalArgumentException(e);
             }
 
             session.unbindAndClose();
 
         } catch (IOException e) {
-            System.out.println("Failed connect and bind to host");
+            // Failed connect and bind to host
+            throw new IllegalArgumentException(e);
         }
     }
 }
