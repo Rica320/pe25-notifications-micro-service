@@ -13,11 +13,17 @@ public class NotificationData {
     private String ticketId;
 
     @ElementCollection
-    @Column(name = "receiver_phone")
-    private List<String> receiverPhone;
+    @Column(name = "phone_list")
+    private List<String> phoneList;
 
     @Column(name = "message")
     private String message;
+
+    @Column(name = "link")
+    private String link;
+
+    @Column(name = "receiver")
+    private String receiver;
 
     @Column(name = "date_to_send")
     private LocalDateTime dateToSend;
@@ -32,12 +38,12 @@ public class NotificationData {
         this.ticketId = ticketId;
     }
 
-    public List<String> getReceiverPhone() {
-        return receiverPhone;
+    public List<String> getPhoneList() {
+        return phoneList;
     }
 
-    public void setReceiverPhone(List<String> receiverPhone) {
-        this.receiverPhone = receiverPhone;
+    public void setPhoneList(List<String> phoneList) {
+        this.phoneList = phoneList;
     }
 
     public String getMessage() {
@@ -46,6 +52,22 @@ public class NotificationData {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public String getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
     }
 
     public LocalDateTime getDateToSend() {

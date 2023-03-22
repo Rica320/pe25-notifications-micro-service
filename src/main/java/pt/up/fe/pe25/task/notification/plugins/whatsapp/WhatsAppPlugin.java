@@ -166,7 +166,7 @@ public class WhatsAppPlugin extends PluginDecorator {
                 "\"message\": \"" + link + "\", " +
                 "\"text\": \"" + text + "\"}";
         JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
-        return processResponse(response);
+        return true;
     }
 
     /**
