@@ -4,6 +4,48 @@ This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
 
+## Implemented Plugins and Their Features
+
+This section outlines the list of plugins that we have implemented along with their features. The following is a list of plugins and their respective features and corresponding endpoint:
+
+### WhatsApp
+
+- [x] Send text messages
+  - Endpoint: /whatsapp/message/text
+- [x] Send messages with media files such as images and videos
+  - Endpoint: /whatsapp/message/media
+- [x] Send messages with location
+  - Endpoint: /whatsapp/message/location
+- [x] Send messages with link
+  - Endpoint: /whatsapp/message/link
+- [x] Create a group
+  - Endpoint: /whatsapp/group/create
+- [x] Add a person to the group
+  - Endpoint: /whatsapp/group/add
+- [x] Remove a person from the group
+  - Endpoint: /whatsapp/group/remove
+
+### Microsoft Teams
+
+- [ ] TEMPLATE
+  - Endpoint: TEMPLATE
+- [ ] TEMPLATE
+  - Endpoint: TEMPLATE
+
+### SMTP
+
+- [ ] TEMPLATE
+  - Endpoint: TEMPLATE
+- [ ] TEMPLATE
+  - Endpoint: TEMPLATE
+
+### SMS
+
+- [ ] TEMPLATE
+  - Endpoint: TEMPLATE
+- [ ] TEMPLATE
+  - Endpoint: TEMPLATE
+
 ## Prerequisites
 
 You must have the following docker container running:
