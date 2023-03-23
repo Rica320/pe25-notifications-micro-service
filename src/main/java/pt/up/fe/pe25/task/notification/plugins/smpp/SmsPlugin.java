@@ -39,49 +39,29 @@ public class SmsPlugin extends PluginDecorator {
         if (notificationService != null)
             super.notify(notificationData);
 
-        sendSMS(notificationData);
+        sendMessage(notificationData);
         return false;
     }
 
-    private void sendSMS(NotificationData notificationData) {
+    public void sendMessage(NotificationData notificationData) {
 
         SMPPSession session = new SMPPSession();
         try {
             session.connectAndBind(host, port, new BindParameter(BindType.BIND_TX,
-                    systemId, password, null, TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.ISDN,
+                    systemId, password, null, TypeOfNumber.UNKNOWN, NumberingPlanIndicator.UNKNOWN,
                     null));
-
             try {
-
-                /*Address[] addresses = new Address[notificationData.getReceiverPhone().size()];
-                int i = 0;
-                for (String addr: notificationData.getReceiverPhone()) {
-                    Address address = new Address(TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.ISDN, addr);
-                    addresses[i] = address;
-                    i++;
+                for (String destPhone: notificationData.getReceiverPhone()) {
+                    SubmitSmResult submitSmResult = session.submitShortMessage("CMT",
+                            TypeOfNumber.ALPHANUMERIC, NumberingPlanIndicator.UNKNOWN, sender,
+                            TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.ISDN, destPhone,
+                            new ESMClass(), (byte) 0, (byte) 1, null, null,
+                            new RegisteredDelivery(SMSCDeliveryReceipt.DEFAULT), (byte) 0,
+                            new GeneralDataCoding(Alphabet.ALPHA_DEFAULT, MessageClass.CLASS1, false),
+                            (byte) 0, (notificationData.getTicketId() + "\n" + notificationData.getMessage()).getBytes());
+                    String messageId = submitSmResult.getMessageId();
+                    System.out.println("Message successfully submitted (message_id = " + messageId + ")");
                 }
-                //Send to mult addr
-                SubmitMultiResult submitMultiResult = session.submitMultiple("CMT",
-                        TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.ISDN, sender,
-                        addresses,
-                        new ESMClass(), (byte)0, (byte)1,  null, null,
-                        new RegisteredDelivery(SMSCDeliveryReceipt.DEFAULT), ReplaceIfPresentFlag.REPLACE,
-                        new GeneralDataCoding(Alphabet.ALPHA_DEFAULT, MessageClass.CLASS1, false),
-                        (byte)0, notificationData.getMessage().getBytes());
-                String messageId = submitMultiResult.getMessageId();*/
-
-
-                //Send to single addr
-                SubmitSmResult submitSmResult = session.submitShortMessage("CMT",
-                        TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.ISDN, sender,
-                        TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.ISDN, notificationData.getReceiverPhone().get(0),
-                        new ESMClass(), (byte)0, (byte)1,  null, null,
-                        new RegisteredDelivery(SMSCDeliveryReceipt.DEFAULT), (byte)0,
-                        new GeneralDataCoding(Alphabet.ALPHA_DEFAULT, MessageClass.CLASS1, false), (byte)0,
-                        notificationData.getMessage().getBytes());
-                String messageId = submitSmResult.getMessageId();
-
-                System.out.println("Message successfully submitted (message_id = " + messageId + ")");
 
             } catch (PDUException e) {
                 // Invalid PDU parameter
