@@ -39,12 +39,11 @@ This section outlines the list of plugins that we have implemented along with th
 - [ ] TEMPLATE
   - Endpoint: TEMPLATE
 
-### SMS
+### SMPP
 
-- [ ] TEMPLATE
-  - Endpoint: TEMPLATE
-- [ ] TEMPLATE
-  - Endpoint: TEMPLATE
+- [x] Send SMS messages
+  - Endpoint: /sms/message
+
 
 ## Prerequisites
 
