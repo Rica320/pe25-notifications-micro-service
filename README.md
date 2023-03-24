@@ -34,16 +34,18 @@ This section outlines the list of plugins that we have implemented along with th
 
 ### SMTP
 
-- [ ] TEMPLATE
-  - Endpoint: TEMPLATE
-- [ ] TEMPLATE
-  - Endpoint: TEMPLATE
+- [x] Qute Template 
+- [x] Send Smpt emails
+  - Endpoint: /notifier for now
 
 ### SMPP
 
 - [x] Send SMS messages
   - Endpoint: /sms/message
 
+### Other features
+ - [x] Limit to the endpoint use
+ - [x] Schedule notification
 
 ## Prerequisites
 
