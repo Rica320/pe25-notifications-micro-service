@@ -5,12 +5,16 @@ import javax.ws.rs.core.Response;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import org.quartz.SchedulerException;
 
 @Path("/notifier")
 public class NotifierResource {
 
     @Inject
     NotificationFactory notificationFactory;
+
+    @Inject
+    NotificationScheduler notificationScheduler;
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -22,9 +26,15 @@ public class NotifierResource {
         // TODO: VER QUESTAO DO THROW ... se nao houver plugin válido, nao faz nada mas guarda ticket
         // TODO: talvez seja melhor fazer um throw e nao guardar o ticket
         try {
-            notificationFactory.create(notifier.getNotificationServices()).notify(notifier.getNotificationData());
+
+            if (notifier.getNotificationData().getDateToSend() == null)
+                notificationFactory.create(notifier.getNotificationServices()).notify(notifier.getNotificationData());
+            else
+                notificationScheduler.scheduleNotification(notifier.getNotificationData(),
+                        notificationFactory.create(notifier.getNotificationServices()));
+
         }
-        catch (IllegalArgumentException e) {
+        catch (IllegalArgumentException | SchedulerException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
 

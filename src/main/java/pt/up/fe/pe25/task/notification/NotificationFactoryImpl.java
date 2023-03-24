@@ -36,8 +36,6 @@ public class NotificationFactoryImpl implements NotificationFactory{
                 }
             }
 
-            System.out.println("whatsAppProperties: " + whatsAppProperties.get_PHONE_ID());
-
             if (notificationService == null)
                 throw new IllegalArgumentException("No valid notification type was provided");
 
