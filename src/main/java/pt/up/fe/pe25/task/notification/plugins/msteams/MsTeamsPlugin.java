@@ -4,6 +4,8 @@ import pt.up.fe.pe25.task.notification.plugins.whatsapp.WhatsAppProperties;
 import org.json.JSONArray;
 import pt.up.fe.pe25.task.notification.NotificationData;
 import pt.up.fe.pe25.task.notification.NotificationService;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,13 +58,18 @@ public class MsTeamsPlugin extends PluginDecorator {
      * @param notificationData Data to send including a list of teams
      */
     public void sendMessages(NotificationData notificationData) {
+        List<Long> erros = new ArrayList<>();
         for (Long teamId : notificationData.getTeams()) {
             MsTeam team = MsTeam.findById(teamId);
-            if (team == null) throw new IllegalArgumentException("That team does not exist");
+            if (team == null) {
+                erros.add(teamId);
+                continue;
+            }
             sendMessage(team.getUrl(),
                 notificationData.getMessage(),
                 notificationData.getTicketId());
         }
+        if (erros.size() > 0) throw new IllegalArgumentException("Those teams do not exist: " + erros.toString());
     }
 
     /**
