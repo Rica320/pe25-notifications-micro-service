@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Send Notification</title>
+
+</head>
+<body>
+<h1>Send Notification</h1>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 50px;
+    }
+
+    h1 {
+        font-size: 32px;
+        margin-bottom: 30px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 500px;
+    }
+
+    label {
+        margin-top: 20px;
+        font-size: 16px;
+    }
+
+    select,
+    textarea,
+    input {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 10px;
+        font-size: 16px;
+        margin-top: 10px;
+        width: 100%;
+        resize: none;
+    }
+
+    select[multiple] {
+        height: 100px;
+    }
+
+    input[type=submit] {
+        background-color: #4CAF50;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+
+    .notification {
+        margin-top: 30px;
+        width: 500px;
+    }
+
+    .notification h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .notification p {
+        margin-top: 5px;
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .notification ul {
+        list-style: none;
+        margin-top: 5px;
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .notification li:before {
+        content: "- ";
+    }
+
+    /* New styles */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .form-group select[multiple],
+    .form-group textarea,
+    .form-group input {
+        height: 40px;
+    }
+
+    .form-group input[type=text] {
+        width: 50%;
+    }
+
+    .form-group input[type=submit] {
+        width: 30%;
+    }
+
+    .error-message {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+</style>
+<form method="POST" action="/notifier" id="notifier-form">
+    <div>
+        <label for="service">Service:</label>
+        <select id="service" name="service" multiple>
+            <option value="email">Email</option>
+            <option value="sms">SMS</option>
+            <option value="whatsapp">WhatsApp</option>
+        </select>
+    </div>
+    <div>
+        <label for="receiverEmails">Receiver Emails:</label>
+        <textarea id="receiverEmails" name="receiverEmails" required></textarea>
+    </div>
+    <div>
+        <label for="receiverPhone">Receiver Phone:</label>
+        <input id="receiverPhone" type="text" name="receiverPhones"/>
+    </div>
+    <div>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+    </div>
+    <input type="submit" value="Send"/>
+</form>
+
+<script>
+    const form = document.querySelector('#notifier-form');
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const notificationServices = Array.from(form.service.selectedOptions).map(option => option.value);
+        const notificationData = {
+            ticketId: "UMGrupo",
+            receiverEmails: form.receiverEmails.value.split(',').map(email => email.trim()),
+            dateToSend: "2023-03-19T15:47:00",
+            receiverPhone: form.receiverPhone.value,
+            message: form.message.value
+        };
+
+        fetch('/notifier', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic ' + btoa('user:user')
+            },
+            body: JSON.stringify({
+                notificationServices: notificationServices,
+                notificationData: notificationData
+            })
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
+    });
+</script>
+
+
+</body>
+</html>
