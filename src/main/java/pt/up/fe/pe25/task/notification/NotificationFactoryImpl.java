@@ -1,5 +1,6 @@
 package pt.up.fe.pe25.task.notification;
 
+import pt.up.fe.pe25.task.notification.plugins.msteams.MsTeamsPlugin;
 import pt.up.fe.pe25.task.notification.plugins.whatsapp.WhatsAppPlugin;
 import pt.up.fe.pe25.task.notification.plugins.whatsapp.WhatsAppProperties;
 
@@ -28,6 +29,8 @@ public class NotificationFactoryImpl implements NotificationFactory{
                                 .set_PHONE_ID(whatsAppProperties.get_PHONE_ID())
                                 .set_MAYTAPI_KEY(whatsAppProperties.get_MAYTAPI_KEY());
                         break;
+                    case "msteams":
+                        notificationService = new MsTeamsPlugin(notificationService);
                     default:
                         break;
                 }

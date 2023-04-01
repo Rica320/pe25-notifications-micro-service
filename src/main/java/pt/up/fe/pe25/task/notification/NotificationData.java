@@ -19,6 +19,10 @@ public class NotificationData {
     @Column(name = "message")
     private String message;
 
+    @ElementCollection
+    @Column(name = "teams")
+    public List<Long> teams;
+
     @Column(name = "link")
     private String link;
 
@@ -67,6 +71,10 @@ public class NotificationData {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public List<Long> getTeams() {
+        return teams;
     }
 
     public String getLink() {

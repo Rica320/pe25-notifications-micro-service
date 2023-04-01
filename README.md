@@ -8,6 +8,11 @@ If you want to learn more about Quarkus, please visit its website: https://quark
 
 This section outlines the list of plugins that we have implemented along with their features. The following is a list of plugins and their respective features and corresponding endpoint:
 
+### Notifier
+
+- [x] Send messages through multiple plugins.
+  - Endpoint: /notifier
+
 ### WhatsApp
 
 - [x] Send text messages
@@ -27,10 +32,10 @@ This section outlines the list of plugins that we have implemented along with th
 
 ### Microsoft Teams
 
-- [ ] TEMPLATE
-  - Endpoint: TEMPLATE
-- [ ] TEMPLATE
-  - Endpoint: TEMPLATE
+- [x] Add a webhook to the database
+  - Endpoint: /msteams/add
+- [x] Send a message to a team or teams
+  - Endpoint: /msteams/message
 
 ### SMTP
 
