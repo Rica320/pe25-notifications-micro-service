@@ -4,9 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import pt.up.fe.pe25.task.notification.NotificationData;
 import pt.up.fe.pe25.task.notification.NotificationService;
-import pt.up.fe.pe25.task.notification.plugins.whatsapp.WhatsAppProperties;
 
-import javax.inject.Inject;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;

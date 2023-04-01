@@ -1,5 +1,6 @@
 package pt.up.fe.pe25.task.notification.plugins.msteams;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.core.Response;
 
 import pt.up.fe.pe25.task.notification.NotificationData;
@@ -14,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 @Path("/msteams")
 public class MsTeamsResource {
     @POST
+    @RolesAllowed("user")
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -46,6 +48,7 @@ public class MsTeamsResource {
 
     @Path("/message") 
     @POST
+    @RolesAllowed("user")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
