@@ -13,11 +13,32 @@ public class NotificationData {
     private String ticketId;
 
     @ElementCollection
-    @Column(name = "receiver_phone")
-    private List<String> receiverPhone;
+    @Column(name = "phone_list")
+    private List<String> phoneList;
 
     @Column(name = "message")
     private String message;
+
+    @Column(name = "link")
+    private String link;
+
+    @Column(name = "receiver")
+    private String receiver;
+
+    @Column(name = "latitude")
+    private String latitude;
+
+    @Column(name = "longitude")
+    private String longitude;
+
+    @Column(name = "media")
+    private String media;
+
+    @Column(name = "group_name")
+    private String groupName;
+
+    @Column(name = "group_id")
+    private String groupId;
 
     @Column(name = "date_to_send")
     private LocalDateTime dateToSend;
@@ -32,12 +53,12 @@ public class NotificationData {
         this.ticketId = ticketId;
     }
 
-    public List<String> getReceiverPhone() {
-        return receiverPhone;
+    public List<String> getPhoneList() {
+        return phoneList;
     }
 
-    public void setReceiverPhone(List<String> receiverPhone) {
-        this.receiverPhone = receiverPhone;
+    public void setPhoneList(List<String> phoneList) {
+        this.phoneList = phoneList;
     }
 
     public String getMessage() {
@@ -46,6 +67,62 @@ public class NotificationData {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public String getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getMedia() {
+        return media;
+    }
+
+    public void setMedia(String media) {
+        this.media = media;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
     }
 
     public LocalDateTime getDateToSend() {
