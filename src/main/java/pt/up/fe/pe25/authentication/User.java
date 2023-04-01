@@ -10,6 +10,8 @@ import io.quarkus.security.jpa.Roles;
 import io.quarkus.security.jpa.UserDefinition;
 import io.quarkus.security.jpa.Username;
 
+import java.util.List;
+
 @Entity
 @Table(name = "test_user")
 @UserDefinition
@@ -17,9 +19,9 @@ public class User extends PanacheEntity {
     @Username
     public String username;
     @Password
-    public String password;
+    protected String password;
     @Roles
-    public String role;
+    protected String role;
 
     /**
      * Adds a new user to the database
@@ -30,8 +32,24 @@ public class User extends PanacheEntity {
     public static void add(String username, String password, String role) {
         User user = new User();
         user.username = username;
-        user.password = BcryptUtil.bcryptHash(password);
-        user.role = role;
+        user.setPassword(BcryptUtil.bcryptHash(password));
+        user.setRole(role);
         user.persist();
+    }
+
+    public static User findByUsername(String username) {
+        return find("username", username).firstResult();
+    }
+
+    public static List<User> findByRole(String role) {
+        return find("role", role).list();
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

@@ -56,8 +56,8 @@ public class WhatsAppPlugin extends PluginDecorator {
         if (notificationService != null)
             super.notify(notificationData);
 
-        sendLinkMessage("https://latitude.to/articles-by-country/pt/portugal/8013/estadio-do-dragao",
-                "Estádio do Dragão","XXXXXXXXXXX");
+        //sendLinkMessage("https://latitude.to/articles-by-country/pt/portugal/8013/estadio-do-dragao",
+        //      "Estádio do Dragão","XXXXXXXXXXX");
 
         return false;
     }
