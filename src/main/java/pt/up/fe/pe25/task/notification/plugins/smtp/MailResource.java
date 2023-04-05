@@ -5,6 +5,7 @@ import io.quarkus.qute.Template;
 import pt.up.fe.pe25.task.notification.NotificationData;
 import pt.up.fe.pe25.task.notification.Notifier;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
@@ -26,6 +27,7 @@ public class MailResource {
 
     @Path("/message")
     @POST
+    @RolesAllowed({"user"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional

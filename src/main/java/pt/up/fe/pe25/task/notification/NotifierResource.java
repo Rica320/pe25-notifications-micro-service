@@ -22,7 +22,7 @@ public class NotifierResource {
     NotificationScheduler notificationScheduler;
 
     @POST
-    @RolesAllowed("user")
+    @RolesAllowed({"user"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional

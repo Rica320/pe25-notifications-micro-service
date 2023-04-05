@@ -14,7 +14,7 @@ public class WhatsAppResource {
 
     @Path("/group/create")
     @POST
-    @RolesAllowed("user")
+    @RolesAllowed({"user"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -41,7 +41,7 @@ public class WhatsAppResource {
 
     @Path("/group/add")
     @POST
-    @RolesAllowed("user")
+    @RolesAllowed({"user"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -68,7 +68,7 @@ public class WhatsAppResource {
 
     @Path("/group/remove")
     @POST
-    @RolesAllowed("user")
+    @RolesAllowed({"user"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -97,7 +97,7 @@ public class WhatsAppResource {
 
     @Path("/message/text")
     @POST
-    @RolesAllowed("user")
+    @RolesAllowed({"user"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -124,7 +124,7 @@ public class WhatsAppResource {
 
     @Path("/message/media")
     @POST
-    @RolesAllowed("user")
+    @RolesAllowed({"user"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -152,7 +152,7 @@ public class WhatsAppResource {
 
     @Path ("/message/location")
     @POST
-    @RolesAllowed("user")
+    @RolesAllowed({"user"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -182,7 +182,7 @@ public class WhatsAppResource {
 
     @Path("/message/link")
     @POST
-    @RolesAllowed("user")
+    @RolesAllowed({"user"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional

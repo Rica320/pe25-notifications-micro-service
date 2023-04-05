@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 @Path("/msteams")
 public class MsTeamsResource {
     @POST
-    @RolesAllowed("user")
+    @RolesAllowed({"user"})
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -48,7 +48,7 @@ public class MsTeamsResource {
 
     @Path("/message") 
     @POST
-    @RolesAllowed("user")
+    @RolesAllowed({"user"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional

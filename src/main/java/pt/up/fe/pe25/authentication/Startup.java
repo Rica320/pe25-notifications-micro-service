@@ -6,13 +6,16 @@ import javax.transaction.Transactional;
 
 import io.quarkus.runtime.StartupEvent;
 
+import java.util.Collections;
+import java.util.List;
+
 
 @Singleton
 public class Startup {
     @Transactional
     public void loadUsers(@Observes StartupEvent evt) {
         User.deleteAll();
-        User.add("admin", "admin", "admin");
-        User.add("user", "user", "user");
+        User.add("admin", "admin", Collections.singletonList("admin"));
+        User.add("user", "user", List.of("user", "admin"));
     }
 }

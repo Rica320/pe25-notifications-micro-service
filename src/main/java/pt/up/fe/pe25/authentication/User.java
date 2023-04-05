@@ -1,5 +1,6 @@
 package pt.up.fe.pe25.authentication;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -21,15 +22,16 @@ public class User extends PanacheEntity {
     @Password
     protected String password;
     @Roles
-    protected String role;
+    @ElementCollection
+    protected List<String> role;
 
     /**
      * Adds a new user to the database
      * @param username the username
      * @param password the unencrypted password (it will be encrypted with bcrypt)
-     * @param role the comma-separated roles
+     * @param role a list of roles
      */
-    public static void add(String username, String password, String role) {
+    public static void add(String username, String password, List<String> role) {
         User user = new User();
         user.username = username;
         user.setPassword(BcryptUtil.bcryptHash(password));
@@ -49,7 +51,7 @@ public class User extends PanacheEntity {
         this.password = password;
     }
 
-    public void setRole(String role) {
+    public void setRole(List<String> role) {
         this.role = role;
     }
 }
