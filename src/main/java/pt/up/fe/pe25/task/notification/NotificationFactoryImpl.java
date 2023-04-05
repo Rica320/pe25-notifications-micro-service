@@ -1,10 +1,16 @@
 package pt.up.fe.pe25.task.notification;
 
+import io.quarkus.mailer.reactive.ReactiveMailer;
+import io.quarkus.qute.Template;
+import pt.up.fe.pe25.task.notification.plugins.smtp.MailPlugin;
+
+import javax.enterprise.context.ApplicationScoped;
+
+
 import pt.up.fe.pe25.task.notification.plugins.msteams.MsTeamsPlugin;
 import pt.up.fe.pe25.task.notification.plugins.whatsapp.WhatsAppPlugin;
 import pt.up.fe.pe25.task.notification.plugins.whatsapp.WhatsAppProperties;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.List;
 
@@ -12,6 +18,11 @@ import java.util.List;
 public class NotificationFactoryImpl implements NotificationFactory{
 
         @Inject
+        ReactiveMailer mailer;
+
+        @Inject
+        Template template;
+
         WhatsAppProperties whatsAppProperties;
 
         @Override
@@ -31,6 +42,8 @@ public class NotificationFactoryImpl implements NotificationFactory{
                         break;
                     case "msteams":
                         notificationService = new MsTeamsPlugin(notificationService);
+                    case "email":
+                        notificationService = new MailPlugin(notificationService, mailer, template);
                     default:
                         break;
                 }

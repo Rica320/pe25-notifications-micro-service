@@ -43,7 +43,16 @@ public class Notifier extends PanacheEntity {
         return notificationData;
     }
 
+
     public static List<Notifier> findByUser(User user) {
         return find("user", user).list();
+    }
+
+    public void setNotificationServices(List<String> notificationServices) {
+        this.notificationServices = notificationServices;
+    }
+
+    public void setNotificationData(NotificationData notificationData) {
+        this.notificationData = notificationData;
     }
 }
