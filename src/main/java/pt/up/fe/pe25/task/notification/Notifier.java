@@ -37,4 +37,12 @@ public class Notifier extends PanacheEntity {
     public NotificationData getNotificationData() {
         return notificationData;
     }
+
+    public void setNotificationServices(List<String> notificationServices) {
+        this.notificationServices = notificationServices;
+    }
+
+    public void setNotificationData(NotificationData notificationData) {
+        this.notificationData = notificationData;
+    }
 }
