@@ -7,16 +7,12 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import io.quarkus.test.junit.QuarkusTest;
-import pt.up.fe.pe25.task.notification.NotificationData;
 import pt.up.fe.pe25.task.notification.NotificationService;
 import pt.up.fe.pe25.task.notification.plugins.whatsapp.WhatsAppPlugin;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;

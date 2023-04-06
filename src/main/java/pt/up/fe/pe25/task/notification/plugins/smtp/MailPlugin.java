@@ -44,7 +44,7 @@ public class MailPlugin extends PluginDecorator {
 
             x.subscribe().with(
                     item -> System.out.println("Sent"),
-                    failure -> System.out.println("Failed to send email: " + failure.getMessage())
+                    failure -> {throw new IllegalArgumentException("Failed to send email: " + failure.getMessage());}
             );
         } catch (Exception e) {
             return false; // TODO: dps temos de arranjar maneira de devolver isto ao resource para que ele diga quais estão indisponíveis
