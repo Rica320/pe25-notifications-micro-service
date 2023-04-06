@@ -9,10 +9,8 @@ import pt.up.fe.pe25.task.notification.NotificationData;
 import pt.up.fe.pe25.task.notification.NotificationService;
 import pt.up.fe.pe25.task.notification.plugins.PluginDecorator;
 
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
-@RequestScoped
 public class MailPlugin extends PluginDecorator {
 
     ReactiveMailer mailer;

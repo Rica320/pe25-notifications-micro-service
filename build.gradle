@@ -28,6 +28,8 @@ dependencies {
     implementation 'io.github.cdimascio:dotenv-java:2.3.2'
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
+    testImplementation 'org.mockito:mockito-core:3.12.4'
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.12.4'
 
 }
 
