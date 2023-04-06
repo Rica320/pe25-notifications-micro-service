@@ -34,7 +34,7 @@ public abstract class PluginDecorator implements NotificationService {
      * @param headers a map of headers to include in the request (can be null if not applicable)
      * @return a JSONObject representing the response from the server
      */
-    public static JSONObject sendRequest(String urlString, String requestBody, String httpMethod, Map<String, String> headers) {
+    public JSONObject sendRequest(String urlString, String requestBody, String httpMethod, Map<String, String> headers) {
         try {
             URL url = new URL(urlString);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
