@@ -1,4 +1,4 @@
-package pt.up.fe.pe25.task.notification.plugins.twilio.sms;
+package pt.up.fe.pe25.task.notification.plugins.twilio;
 
 import org.eclipse.microprofile.config.Config;
 

@@ -1,7 +1,8 @@
-package pt.up.fe.pe25.task.notification.plugins.twilio.sms;
+package pt.up.fe.pe25.task.notification.plugins.twilio.voice;
 
 import com.twilio.Twilio;
-import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.rest.api.v2010.account.Call;
+import com.twilio.type.Twiml;
 import pt.up.fe.pe25.task.notification.NotificationData;
 import pt.up.fe.pe25.task.notification.NotificationService;
 import pt.up.fe.pe25.task.notification.plugins.PluginDecorator;
@@ -11,15 +12,15 @@ import javax.inject.Singleton;
 
 
 @Singleton
-public class TwilioSMSPlugin extends PluginDecorator {
+public class TwilioCallPlugin extends PluginDecorator {
 
-    public TwilioSMSPlugin(NotificationService notificationService) {
+    public TwilioCallPlugin(NotificationService notificationService) {
         super(notificationService);
     }
 
     private TwilioConfig twilioConfig;
 
-    public TwilioSMSPlugin(NotificationService notificationService, TwilioConfig twilioConfig) {
+    public TwilioCallPlugin(NotificationService notificationService, TwilioConfig twilioConfig) {
         super(notificationService);
         this.twilioConfig = twilioConfig;
         Twilio.init(twilioConfig.getAccountSid(), twilioConfig.getAuthToken());
@@ -30,17 +31,14 @@ public class TwilioSMSPlugin extends PluginDecorator {
         if (notificationService != null)
             super.notify(notificationData);
 
-        //List<String> smsList = new ArrayList<>();
         for (String destPhone: notificationData.getPhoneList()) {
-            Message sms = Message.creator(
+            Call call = Call.creator(
                     new com.twilio.type.PhoneNumber(destPhone),
                     new com.twilio.type.PhoneNumber(twilioConfig.getPhoneNumber()),
-                    notificationData.getMessage())
+                    new Twiml(notificationData.getMessage()))
                     .create();
-
-            //smsList.add(sms.getSid()); .... TODO: add Loggers
         }
-
+        // add log messaging
 
         return true;
     }
