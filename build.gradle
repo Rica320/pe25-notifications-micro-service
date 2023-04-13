@@ -22,6 +22,8 @@ dependencies {
     implementation 'io.quarkus:quarkus-hibernate-orm'
     implementation 'io.quarkus:quarkus-jdbc-postgresql'
     implementation 'org.postgresql:postgresql'
+    implementation 'com.twilio.sdk:twilio:9.4.0'
+    implementation 'org.projectlombok:lombok:1.18.26'
     implementation 'io.quarkus:quarkus-hibernate-orm-panache'
     implementation 'io.quarkus:quarkus-arc'
     implementation 'io.quarkus:quarkus-quartz'
