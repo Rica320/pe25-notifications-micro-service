@@ -16,6 +16,8 @@ dependencies {
     implementation 'io.quarkus:quarkus-resteasy-mutiny'
     implementation 'io.quarkus:quarkus-mailer'
     implementation 'io.quarkus:quarkus-qute'
+    implementation 'io.quarkus:quarkus-resteasy'
+    implementation group: 'org.jsmpp', name: 'jsmpp', version: '3.0.0'
     implementation 'io.quarkus:quarkus-resteasy-jackson'
     implementation 'io.quarkus:quarkus-hibernate-orm'
     implementation 'io.quarkus:quarkus-jdbc-postgresql'
