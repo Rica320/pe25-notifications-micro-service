@@ -5,6 +5,7 @@ import javax.ws.rs.core.Response;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+
 import org.quartz.SchedulerException;
 
 @Path("/notifier")
