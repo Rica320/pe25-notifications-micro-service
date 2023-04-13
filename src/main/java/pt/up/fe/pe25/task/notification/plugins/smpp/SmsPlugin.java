@@ -51,7 +51,7 @@ public class SmsPlugin extends PluginDecorator {
                     systemId, password, null, TypeOfNumber.UNKNOWN, NumberingPlanIndicator.UNKNOWN,
                     null));
             try {
-                for (String destPhone: notificationData.getReceiverPhone()) {
+                for (String destPhone: notificationData.getPhoneList()) {
                     SubmitSmResult submitSmResult = session.submitShortMessage("CMT",
                             TypeOfNumber.ALPHANUMERIC, NumberingPlanIndicator.UNKNOWN, sender,
                             TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.ISDN, destPhone,
@@ -63,21 +63,10 @@ public class SmsPlugin extends PluginDecorator {
                     System.out.println("Message successfully submitted (message_id = " + messageId + ")");
                 }
 
-            } catch (PDUException e) {
-                // Invalid PDU parameter
-                throw new IllegalArgumentException(e);
-            } catch (ResponseTimeoutException e) {
-                // Response timeout
-                throw new IllegalArgumentException(e);
-            } catch (InvalidResponseException e) {
-                // Invalid response
-                throw new IllegalArgumentException(e);
-            } catch (NegativeResponseException e) {
-                // Receiving negative response (non-zero command_status)
-                throw new IllegalArgumentException(e);
-            } catch (IOException e) {
+            } catch (PDUException | ResponseTimeoutException | InvalidResponseException | NegativeResponseException | IOException e) {
                 throw new IllegalArgumentException(e);
             }
+
 
             session.unbindAndClose();
 
