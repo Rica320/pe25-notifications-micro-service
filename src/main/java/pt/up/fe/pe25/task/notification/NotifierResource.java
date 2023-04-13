@@ -1,12 +1,12 @@
 package pt.up.fe.pe25.task.notification;
 
+import org.quartz.SchedulerException;
+
 import javax.inject.Inject;
-import javax.ws.rs.core.Response;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-
-import org.quartz.SchedulerException;
+import javax.ws.rs.core.Response;
 
 @Path("/notifier")
 public class NotifierResource {
@@ -23,7 +23,7 @@ public class NotifierResource {
     @Transactional
     public Response createNotifier(Notifier notifier) {
         notifier.persist();
-        //System.out.println(notifier.getNotificationData().getReceiverPhone());
+
         // TODO: VER QUESTAO DO THROW ... se nao houver plugin válido, nao faz nada mas guarda ticket
         // TODO: talvez seja melhor fazer um throw e nao guardar o ticket
         try {
