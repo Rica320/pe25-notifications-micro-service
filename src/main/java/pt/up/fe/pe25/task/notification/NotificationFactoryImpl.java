@@ -25,6 +25,7 @@ public class NotificationFactoryImpl implements NotificationFactory{
     @Inject
     Template template;
 
+    @Inject
     WhatsAppProperties whatsAppProperties;
 
     @Override

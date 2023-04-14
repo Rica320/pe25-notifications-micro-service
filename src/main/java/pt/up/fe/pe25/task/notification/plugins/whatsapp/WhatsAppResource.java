@@ -11,6 +11,11 @@ import java.util.List;
 @Path("/whatsapp")
 public class WhatsAppResource {
 
+    WhatsAppPlugin whatsappPlugin = new WhatsAppPlugin(null).set_PRODUCT_ID("xxxx")
+            .set_PHONE_ID("xxxx")
+            .set_MAYTAPI_KEY("xxxxx");
+
+
     @Path("/group/create")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -23,10 +28,9 @@ public class WhatsAppResource {
      **/
     public Response createGroup(NotificationData notificationData) {
 
+        whatsappPlugin.initialize();
         String groupName = notificationData.getGroupName();
         List<String> phoneNumbers = notificationData.getPhoneList();
-
-        WhatsAppPlugin whatsappPlugin = new WhatsAppPlugin(null);
 
         try {
             String groupId = whatsappPlugin.createGroup(groupName, phoneNumbers);
@@ -49,10 +53,9 @@ public class WhatsAppResource {
      **/
     public Response addToGroup(NotificationData notificationData) {
 
+            whatsappPlugin.initialize();
             String groupId = notificationData.getGroupId();
             String phoneNumber = notificationData.getReceiver();
-
-            WhatsAppPlugin whatsappPlugin = new WhatsAppPlugin(null);
 
             try {
                 whatsappPlugin.updateGroup(groupId, phoneNumber, true);
@@ -75,10 +78,9 @@ public class WhatsAppResource {
      **/
     public Response removeFromGroup(NotificationData notificationData) {
 
+        whatsappPlugin.initialize();
         String groupId = notificationData.getGroupId();
         String phoneNumber = notificationData.getReceiver();
-
-        WhatsAppPlugin whatsappPlugin = new WhatsAppPlugin(null);
 
         try {
             whatsappPlugin.updateGroup(groupId, phoneNumber, false);
@@ -103,10 +105,9 @@ public class WhatsAppResource {
      **/
     public Response sendTextMessage(NotificationData notificationData) {
 
+        whatsappPlugin.initialize();
         String message = notificationData.getMessage();
         String receiverPhone = notificationData.getReceiver();
-
-        WhatsAppPlugin whatsappPlugin = new WhatsAppPlugin(null);
 
         try {
             whatsappPlugin.sendTextMessage(message, receiverPhone);
@@ -129,11 +130,10 @@ public class WhatsAppResource {
      **/
     public Response sendMediaMessage(NotificationData notificationData) {
 
+        whatsappPlugin.initialize();
         String media = notificationData.getMedia();
         String message = notificationData.getMessage();
         String receiverPhone = notificationData.getReceiver();
-
-        WhatsAppPlugin whatsappPlugin = new WhatsAppPlugin(null);
 
         try {
             whatsappPlugin.sendMediaMessage(media, message, receiverPhone);
@@ -156,12 +156,11 @@ public class WhatsAppResource {
      **/
     public Response sendLocationMessage(NotificationData notificationData) {
 
+        whatsappPlugin.initialize();
         String latitude = notificationData.getLatitude();
         String longitude = notificationData.getLongitude();
         String message = notificationData.getMessage();
         String receiverPhone = notificationData.getReceiver();
-
-        WhatsAppPlugin whatsappPlugin = new WhatsAppPlugin(null);
 
         try {
             whatsappPlugin.sendLocationMessage(latitude, longitude, message, receiverPhone);
@@ -185,11 +184,10 @@ public class WhatsAppResource {
      **/
     public Response sendLinkMessage(NotificationData notificationData) {
 
+        whatsappPlugin.initialize();
         String link = notificationData.getLink();
         String message = notificationData.getMessage();
         String receiverPhone = notificationData.getReceiver();
-
-        WhatsAppPlugin whatsappPlugin = new WhatsAppPlugin(null);
 
         try {
             whatsappPlugin.sendLinkMessage(link, message, receiverPhone);
