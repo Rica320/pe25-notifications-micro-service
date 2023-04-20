@@ -50,7 +50,7 @@ public class NotifierResource {
     }
 
     @GET
-    @RolesAllowed("user")
+    @RolesAllowed({"user"})
     @Produces(MediaType.APPLICATION_JSON)
     public Response getNotifiers(@Context SecurityContext securityContext) {
         User user = User.findByUsername(securityContext.getUserPrincipal().getName());
