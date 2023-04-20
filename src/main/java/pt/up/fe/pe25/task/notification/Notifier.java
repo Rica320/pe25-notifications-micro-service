@@ -2,8 +2,11 @@ package pt.up.fe.pe25.task.notification;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import org.hibernate.annotations.CreationTimestamp;
+import pt.up.fe.pe25.authentication.User;
 
 import javax.persistence.*;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.SecurityContext;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -25,6 +28,8 @@ public class Notifier extends PanacheEntity {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
+    @ManyToOne
+    public User user;
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
@@ -36,6 +41,11 @@ public class Notifier extends PanacheEntity {
 
     public NotificationData getNotificationData() {
         return notificationData;
+    }
+
+
+    public static List<Notifier> findByUser(User user) {
+        return find("user", user).list();
     }
 
     public void setNotificationServices(List<String> notificationServices) {
