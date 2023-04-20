@@ -5,7 +5,6 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
 import java.util.List;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Embeddable
 public class NotificationData {
@@ -20,6 +19,10 @@ public class NotificationData {
     @ElementCollection
     @Column(name = "receiver_emails")
     private List<String> receiverEmails;
+
+    @ElementCollection
+    @Column(name = "attachments")
+    private List<String> attachments;
 
     @Column(name = "subject")
     private String subject;
@@ -163,5 +166,9 @@ public class NotificationData {
 
     public void setSubject(String subject) {
         this.subject = subject;
+    }
+
+    public List<String> getAttachments() {
+        return attachments;
     }
 }
