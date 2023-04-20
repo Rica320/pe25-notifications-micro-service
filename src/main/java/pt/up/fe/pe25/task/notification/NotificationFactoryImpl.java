@@ -2,22 +2,18 @@ package pt.up.fe.pe25.task.notification;
 
 import io.quarkus.mailer.reactive.ReactiveMailer;
 import io.quarkus.qute.Template;
-import pt.up.fe.pe25.task.notification.plugins.smtp.MailPlugin;
-
+import javax.inject.Inject;
 import javax.enterprise.context.ApplicationScoped;
+import java.util.List;
 
-
+import pt.up.fe.pe25.task.notification.plugins.smtp.MailPlugin;
 import pt.up.fe.pe25.task.notification.plugins.msteams.MsTeamsPlugin;
-
 import pt.up.fe.pe25.task.notification.plugins.smpp.SmsPlugin;
 import pt.up.fe.pe25.task.notification.plugins.twilio.TwilioConfig;
 import pt.up.fe.pe25.task.notification.plugins.twilio.sms.TwilioSMSPlugin;
 import pt.up.fe.pe25.task.notification.plugins.twilio.voice.TwilioCallPlugin;
 import pt.up.fe.pe25.task.notification.plugins.whatsapp.WhatsAppPlugin;
 import pt.up.fe.pe25.task.notification.plugins.whatsapp.WhatsAppProperties;
-
-import javax.inject.Inject;
-import java.util.List;
 
 @ApplicationScoped
 public class NotificationFactoryImpl implements NotificationFactory{
@@ -31,6 +27,7 @@ public class NotificationFactoryImpl implements NotificationFactory{
     @Inject
     TwilioConfig twilioConfig;
 
+    @Inject
     WhatsAppProperties whatsAppProperties;
 
     @Override
