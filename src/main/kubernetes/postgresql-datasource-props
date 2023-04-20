@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgresql-datasource-props
+data:
+  POSTGRESQL_URL: "jdbc:postgresql://postgres:5432/db"
+  POSTGRESQL_USERNAME: "username"
+  POSTGRESQL_PASSWORD: "password"
+
+
