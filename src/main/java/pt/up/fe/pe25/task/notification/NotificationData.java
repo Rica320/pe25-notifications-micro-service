@@ -1,8 +1,6 @@
 package pt.up.fe.pe25.task.notification;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 import java.util.List;
 import java.time.LocalDateTime;
 
@@ -20,8 +18,7 @@ public class NotificationData {
     @Column(name = "receiver_emails")
     private List<String> receiverEmails;
 
-    @ElementCollection
-    @Column(name = "attachments")
+    @Transient
     private List<String> attachments;
 
     @Column(name = "subject")
@@ -166,6 +163,10 @@ public class NotificationData {
 
     public void setSubject(String subject) {
         this.subject = subject;
+    }
+
+    public void setAttachments(List<String> attachments) {
+        this.attachments = attachments;
     }
 
     public List<String> getAttachments() {
