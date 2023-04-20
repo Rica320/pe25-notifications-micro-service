@@ -172,4 +172,6 @@ public class NotificationData {
     public List<String> getAttachments() {
         return attachments;
     }
+
+
 }

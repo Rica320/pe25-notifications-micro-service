@@ -85,6 +85,9 @@ public class MailPlugin extends PluginDecorator {
                 if (!attachments.isEmpty())
                     mail.setAttachments(attachments);
 
+                mail.setSubject(notificationData.getSubject());
+
+
                 Uni<Void> x = mailer.send(mail);
 
                 x.subscribe().with(
