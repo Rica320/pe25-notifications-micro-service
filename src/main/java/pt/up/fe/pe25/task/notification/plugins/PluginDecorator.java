@@ -5,12 +5,10 @@ import org.json.JSONObject;
 import pt.up.fe.pe25.task.notification.NotificationData;
 import pt.up.fe.pe25.task.notification.NotificationService;
 
-
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
-
 
 public abstract class PluginDecorator implements NotificationService {
 

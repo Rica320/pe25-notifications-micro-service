@@ -1,12 +1,16 @@
 package pt.up.fe.pe25.task.notification;
 
-import org.quartz.SchedulerException;
-
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
+
+import org.quartz.SchedulerException;
+import pt.up.fe.pe25.authentication.User;
 
 @Path("/notifier")
 public class NotifierResource {
@@ -18,10 +22,13 @@ public class NotifierResource {
     NotificationScheduler notificationScheduler;
 
     @POST
+    @RolesAllowed({"user"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public Response createNotifier(Notifier notifier) {
+    public Response createNotifier(@Context SecurityContext securityContext, Notifier notifier) {
+
+        notifier.user = User.findByUsername(securityContext.getUserPrincipal().getName());
         notifier.persist();
 
         // TODO: VER QUESTAO DO THROW ... se nao houver plugin válido, nao faz nada mas guarda ticket
@@ -43,9 +50,11 @@ public class NotifierResource {
     }
 
     @GET
+    @RolesAllowed({"user"})
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getNotifiers() {
-        return Response.ok(Notifier.listAll()).build();
+    public Response getNotifiers(@Context SecurityContext securityContext) {
+        User user = User.findByUsername(securityContext.getUserPrincipal().getName());
+        return Response.ok(Notifier.findByUser(user)).build();
     }
 }
 

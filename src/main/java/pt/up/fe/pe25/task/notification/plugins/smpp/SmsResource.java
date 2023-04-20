@@ -2,6 +2,7 @@ package pt.up.fe.pe25.task.notification.plugins.smpp;
 
 import pt.up.fe.pe25.task.notification.NotificationData;
 
+import javax.annotation.security.RolesAllowed;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -16,6 +17,7 @@ public class SmsResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"user"})
     @Transactional
     /**
      * Sends a text message to a list of phone numbers
