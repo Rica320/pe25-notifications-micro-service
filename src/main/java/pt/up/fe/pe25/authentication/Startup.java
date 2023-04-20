@@ -15,7 +15,7 @@ public class Startup {
     @Transactional
     public void loadUsers(@Observes StartupEvent evt) {
         User.deleteAll();
-        User.add("admin", "admin", Collections.singletonList("admin"));
-        User.add("user", "user", List.of("user", "admin"));
+        User.add("admin", "admin", List.of("user", "admin"));
+        User.add("user", "user", Collections.singletonList("user"));
     }
 }

@@ -3,6 +3,7 @@ package pt.up.fe.pe25.task.notification.plugins.twilio.voice;
 import pt.up.fe.pe25.task.notification.NotificationData;
 import pt.up.fe.pe25.task.notification.plugins.twilio.TwilioConfig;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
@@ -22,6 +23,7 @@ public class TwilioCallResource {
     @Path("/send")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"user"})
     @Transactional
     public Response sendMessage(NotificationData notificationData) {
         TwilioCallPlugin twilioCallPlugin = new TwilioCallPlugin(null, twilioConfig);
