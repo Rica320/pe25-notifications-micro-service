@@ -12,7 +12,6 @@ import org.json.JSONObject;
 import javax.annotation.PostConstruct;
 import pt.up.fe.pe25.task.notification.plugins.PluginDecorator;
 
-
 public class WhatsAppPlugin extends PluginDecorator {
 
     private final String httpMethod = "POST";
@@ -56,8 +55,6 @@ public class WhatsAppPlugin extends PluginDecorator {
         if (notificationService != null)
             super.notify(notificationData);
 
-        //sendLinkMessage("https://latitude.to/articles-by-country/pt/portugal/8013/estadio-do-dragao",
-        //      "Estádio do Dragão","XXXXXXXXXXX");
 
         return false;
     }
@@ -188,14 +185,15 @@ public class WhatsAppPlugin extends PluginDecorator {
         if (response == null) {
             throw new IllegalArgumentException("Failure - Reason : Response is null.");
         }
-        boolean success = response.getBoolean("success");
+        JSONObject messageJson = response.getJSONObject("message");
+        boolean success = messageJson.getBoolean("success");
         if (success) {
             if (groupId != null) {
-                groupId.set(response.getJSONObject("data").getString("id"));
+                groupId.set(messageJson.getJSONObject("data").getString("id"));
             }
             return true;
         } else {
-            String message = response.getString("message");
+            String message = messageJson.getString("message");
             throw new IllegalArgumentException("Failure - Reason: " + message);
         }
     }
