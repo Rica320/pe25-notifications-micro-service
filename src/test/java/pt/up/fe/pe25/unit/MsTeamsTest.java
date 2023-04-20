@@ -27,12 +27,13 @@ public class MsTeamsTest {
     public void testAddTeam() {
         MsTeamsPlugin msTeamsPlugin = new MsTeamsPlugin(null);
 
-        msTeamsPlugin.addTeam("test");
-        MsTeam team = MsTeam.findById(1L);
-        assertEquals("test", team.getUrl());
+        msTeamsPlugin.addTeam("test_add");
+        MsTeam team = MsTeam.findById(MsTeam.count());
+        assertEquals("test_add", team.getUrl());
     } 
 
     @Test
+    @Transactional
     public void testAddTeamTwice() {
         MsTeamsPlugin msTeamsPlugin = new MsTeamsPlugin(null);
 
@@ -44,19 +45,22 @@ public class MsTeamsTest {
     }
 
     @Test
+    @Transactional
     public void testSendMessages() {
         MsTeamsPlugin msTeamsPlugin = mock(MsTeamsPlugin.class);
         doNothing().when(msTeamsPlugin).sendMessage(any(String.class), any(String.class), any(String.class));
         when(msTeamsPlugin.addTeam(any(String.class))).thenCallRealMethod();
         doCallRealMethod().when(msTeamsPlugin).sendMessages(any(NotificationData.class));
 
+        msTeamsPlugin.addTeam("test_message");
+
         NotificationData notificationData = new NotificationData();
         notificationData.setMessage("test");
         notificationData.setTicketId("test");
-        notificationData.setTeams(List.of(1L));
+        notificationData.setTeams(List.of(MsTeam.count()));
         msTeamsPlugin.sendMessages(notificationData);
 
-        verify(msTeamsPlugin, times(1)).sendMessage("test", "test", "test");
+        verify(msTeamsPlugin, times(1)).sendMessage("test_message", "test", "test");
     }
 
 

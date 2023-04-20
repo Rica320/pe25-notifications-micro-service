@@ -22,6 +22,10 @@ public class MsTeamsPlugin extends PluginDecorator {
         super(notificationService);
     }
 
+    public MsTeamsPlugin() {
+        super(null);
+    }
+
     @PostConstruct
     public void initialize() {
         headers = new HashMap<>();
