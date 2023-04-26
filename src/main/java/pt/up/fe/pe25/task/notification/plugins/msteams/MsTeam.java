@@ -17,7 +17,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 public class MsTeam extends PanacheEntity {
     MsTeam() {}
 
-    MsTeam(String url) {
+    public MsTeam(String url) {
         this.url = url;
     }
 
@@ -25,6 +25,10 @@ public class MsTeam extends PanacheEntity {
 
     public String getUrl() {
         return url;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     @Column(name = "created_at")

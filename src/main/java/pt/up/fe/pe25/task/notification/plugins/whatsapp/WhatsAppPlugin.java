@@ -185,6 +185,7 @@ public class WhatsAppPlugin extends PluginDecorator {
         if (response == null) {
             throw new IllegalArgumentException("Failure - Reason : Response is null.");
         }
+        System.out.println(response);
         JSONObject messageJson = response.getJSONObject("message");
         boolean success = messageJson.getBoolean("success");
         if (success) {

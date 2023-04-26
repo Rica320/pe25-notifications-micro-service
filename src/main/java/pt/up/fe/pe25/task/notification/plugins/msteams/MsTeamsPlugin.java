@@ -1,7 +1,5 @@
 package pt.up.fe.pe25.task.notification.plugins.msteams;
 
-import pt.up.fe.pe25.task.notification.plugins.whatsapp.WhatsAppProperties;
-import org.json.JSONArray;
 import pt.up.fe.pe25.task.notification.NotificationData;
 import pt.up.fe.pe25.task.notification.NotificationService;
 
@@ -10,12 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.json.JSONObject;
-
-
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 import pt.up.fe.pe25.task.notification.plugins.PluginDecorator;
@@ -27,6 +20,10 @@ public class MsTeamsPlugin extends PluginDecorator {
 
     public MsTeamsPlugin(NotificationService notificationService) {
         super(notificationService);
+    }
+
+    public MsTeamsPlugin() {
+        super(null);
     }
 
     @PostConstruct
@@ -58,18 +55,18 @@ public class MsTeamsPlugin extends PluginDecorator {
      * @param notificationData Data to send including a list of teams
      */
     public void sendMessages(NotificationData notificationData) {
-        List<Long> erros = new ArrayList<>();
+        List<Long> errors = new ArrayList<>();
         for (Long teamId : notificationData.getTeams()) {
             MsTeam team = MsTeam.findById(teamId);
             if (team == null) {
-                erros.add(teamId);
+                errors.add(teamId);
                 continue;
             }
             sendMessage(team.getUrl(),
                 notificationData.getMessage(),
                 notificationData.getTicketId());
         }
-        if (erros.size() > 0) throw new IllegalArgumentException("Those teams do not exist: " + erros.toString());
+        if (errors.size() > 0) throw new IllegalArgumentException("Those teams do not exist: " + errors.toString());
     }
 
     /**
