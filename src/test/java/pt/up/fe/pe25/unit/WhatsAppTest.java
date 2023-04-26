@@ -40,15 +40,17 @@ public class WhatsAppTest {
         List<String> phoneNumbers = Arrays.asList("111111111", "222222222");
         String expectedUrl = "https://api.maytapi.com/api/test-product-id/test-phone-id/createGroup";
         String expectedRequestBody = "{\"name\": \"" + groupName + "\", \"numbers\": [\"111111111\",\"222222222\"]}";
-        JSONObject expectedResponse = new JSONObject("{\"success\":true,\"data\":{\"id\":\"test-group-id\"}}");
+        JSONObject expectedResponse = new JSONObject("{\"message\": {\"success\":true,\"data\":{\"id\":\"test-group-id\"}}}");
 
         WhatsAppPlugin spyWhatsAppPlugin = spy(whatsappPlugin);
         doReturn(expectedResponse).when(spyWhatsAppPlugin).sendRequest(eq(expectedUrl), eq(expectedRequestBody),
                 eq("POST"), anyMap());
 
-        String groupId = spyWhatsAppPlugin.createGroup(groupName, phoneNumbers);
+        String groupId = "";
+        groupId = spyWhatsAppPlugin.createGroup(groupName, phoneNumbers);
 
-        verify(spyWhatsAppPlugin, times(1)).sendRequest(eq(expectedUrl), eq(expectedRequestBody), eq("POST"), anyMap());
+        verify(spyWhatsAppPlugin, times(1)).sendRequest(eq(expectedUrl), eq(expectedRequestBody),
+                eq("POST"), anyMap());
         assertTrue(groupId.equals("test-group-id"));
     }
 
@@ -56,16 +58,15 @@ public class WhatsAppTest {
     public void testUpdateGroup() {
         String groupId = "test-group-id";
         String phoneNumber = "111111111";
-        boolean isAddOperation = true;
         String expectedUrl = "https://api.maytapi.com/api/test-product-id/test-phone-id/group/add";
         String expectedRequestBody = "{\"conversation_id\": \"" + groupId + "\", \"number\": " + phoneNumber + "}";
-        JSONObject expectedResponse = new JSONObject("{\"success\":true}");
+        JSONObject expectedResponse = new JSONObject("{\"message\": {\"success\": true}}");
 
         WhatsAppPlugin spyWhatsAppPlugin = spy(whatsappPlugin);
         doReturn(expectedResponse).when(spyWhatsAppPlugin).sendRequest(eq(expectedUrl), eq(expectedRequestBody),
                 eq("POST"), anyMap());
 
-        boolean isSuccess = spyWhatsAppPlugin.updateGroup(groupId, phoneNumber, isAddOperation);
+        boolean isSuccess = spyWhatsAppPlugin.updateGroup(groupId, phoneNumber, true);
 
         verify(spyWhatsAppPlugin, times(1)).sendRequest(eq(expectedUrl), eq(expectedRequestBody), eq("POST"), anyMap());
         assertTrue(isSuccess);
@@ -77,7 +78,7 @@ public class WhatsAppTest {
         String receiver = "111111111";
         String expectedUrl = "https://api.maytapi.com/api/test-product-id/test-phone-id/sendMessage";
         String expectedRequestBody = "{\"to_number\": \"" + receiver + "\", \"type\": \"text\", \"message\": \"" + text + "\"}";
-        JSONObject expectedResponse = new JSONObject("{\"success\":true}");
+        JSONObject expectedResponse = new JSONObject("{\"message\": {\"success\": true}}");
 
         WhatsAppPlugin spyWhatsAppPlugin = spy(whatsappPlugin);
         doReturn(expectedResponse).when(spyWhatsAppPlugin).sendRequest(eq(expectedUrl), eq(expectedRequestBody),
@@ -96,7 +97,7 @@ public class WhatsAppTest {
         String receiver = "111111111";
         String expectedUrl = "https://api.maytapi.com/api/test-product-id/test-phone-id/sendMessage";
         String expectedRequestBody = "{\"to_number\": \"" + receiver + "\", \"type\": \"media\", \"message\": \"" + media + "\", \"text\": \"" + caption + "\"}";
-        JSONObject expectedResponse = new JSONObject("{\"success\":true}");
+        JSONObject expectedResponse = new JSONObject("{\"message\": {\"success\": true}}");
 
         WhatsAppPlugin spyWhatsAppPlugin = spy(whatsappPlugin);
         doReturn(expectedResponse).when(spyWhatsAppPlugin).sendRequest(eq(expectedUrl), eq(expectedRequestBody),
@@ -120,7 +121,7 @@ public class WhatsAppTest {
                 "\"text\": \"" + locationText + "\", " +
                 "\"latitude\": \"" + latitude + "\", " +
                 "\"longitude\": \"" + longitude + "\"}";
-        JSONObject expectedResponse = new JSONObject("{\"success\":true}");
+        JSONObject expectedResponse = new JSONObject("{\"message\": {\"success\": true}}");
 
         WhatsAppPlugin spyWhatsAppPlugin = spy(whatsappPlugin);
         doReturn(expectedResponse).when(spyWhatsAppPlugin).sendRequest(eq(expectedUrl), eq(expectedRequestBody),
@@ -139,7 +140,7 @@ public class WhatsAppTest {
         String receiver = "111111111";
         String expectedUrl = "https://api.maytapi.com/api/test-product-id/test-phone-id/sendMessage";
         String expectedRequestBody = "{\"to_number\": \"" + receiver + "\", \"type\": \"link\", \"message\": \"" + link + "\", \"text\": \"" + text + "\"}";
-        JSONObject expectedResponse = new JSONObject("{\"success\":true}");
+        JSONObject expectedResponse = new JSONObject("{\"message\": {\"success\": true}}");
 
         WhatsAppPlugin spyWhatsAppPlugin = spy(whatsappPlugin);
         doReturn(expectedResponse).when(spyWhatsAppPlugin).sendRequest(eq(expectedUrl), eq(expectedRequestBody),

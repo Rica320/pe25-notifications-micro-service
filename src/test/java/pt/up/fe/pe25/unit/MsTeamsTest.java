@@ -9,6 +9,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -28,7 +29,8 @@ public class MsTeamsTest {
         MsTeamsPlugin msTeamsPlugin = new MsTeamsPlugin(null);
 
         msTeamsPlugin.addTeam("test_add");
-        MsTeam team = MsTeam.findById(MsTeam.count());
+        List<MsTeam> teams = MsTeam.listAll();
+        MsTeam team = teams.get(teams.size() - 1);
         assertEquals("test_add", team.getUrl());
     } 
 
@@ -57,7 +59,10 @@ public class MsTeamsTest {
         NotificationData notificationData = new NotificationData();
         notificationData.setMessage("test");
         notificationData.setTicketId("test");
-        notificationData.setTeams(List.of(MsTeam.count()));
+        List<MsTeam> teams = MsTeam.listAll();
+        List<Long> idTeams = new ArrayList<>();
+        teams.forEach(team -> {idTeams.add(team.getId());});
+        notificationData.setTeams(idTeams);
         msTeamsPlugin.sendMessages(notificationData);
 
         verify(msTeamsPlugin, times(1)).sendMessage("test_message", "test", "test");

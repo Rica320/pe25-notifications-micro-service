@@ -52,13 +52,14 @@ public class MsTeamsResourceTest {
             .given()
                 .contentType(ContentType.TEXT)
                 .body(url)
+                .auth().basic("admin", "admin")
             .when()
                 .post("/msteams/add")
             .then()
                 .statusCode(201)
                 .body("url", equalTo(url))
                 .body("id", Matchers.any(Integer.class))
-                .body("id", equalTo(1));
+                .body("id", equalTo(3));
     }
     
     @Test
@@ -68,12 +69,13 @@ public class MsTeamsResourceTest {
             .given()
                 .contentType(ContentType.TEXT)
                 .body(url)
-            .when()
+                .auth().basic("admin", "admin")
+                .when()
                 .post("/msteams/add")
             .then()
                 .statusCode(409)
                 .body("message", equalTo("That team already exists"))
-                .body("id", equalTo(1));
+                .body("id", equalTo(3));
     }
 
     @Test
@@ -89,7 +91,8 @@ public class MsTeamsResourceTest {
             .given()
                 .contentType(ContentType.JSON)
                 .body(jsonAsMap)
-            .when()
+                .auth().basic("admin", "admin")
+                .when()
                 .post("/msteams/message")
             .then()
                 .statusCode(201)
