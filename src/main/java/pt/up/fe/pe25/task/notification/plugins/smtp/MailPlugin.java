@@ -9,10 +9,8 @@ import pt.up.fe.pe25.task.notification.NotificationData;
 import pt.up.fe.pe25.task.notification.NotificationService;
 import pt.up.fe.pe25.task.notification.plugins.PluginDecorator;
 
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
-@RequestScoped
 public class MailPlugin extends PluginDecorator {
 
     ReactiveMailer mailer;
@@ -46,7 +44,7 @@ public class MailPlugin extends PluginDecorator {
 
             x.subscribe().with(
                     item -> System.out.println("Sent"),
-                    failure -> System.out.println("Failed to send email: " + failure.getMessage())
+                    failure -> {throw new IllegalArgumentException("Failed to send email: " + failure.getMessage());}
             );
         } catch (Exception e) {
             return false; // TODO: dps temos de arranjar maneira de devolver isto ao resource para que ele diga quais estão indisponíveis

@@ -5,7 +5,6 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
 import java.util.List;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Embeddable
 public class NotificationData {
@@ -83,6 +82,10 @@ public class NotificationData {
 
     public List<Long> getTeams() {
         return teams;
+    }
+
+    public void setTeams(List<Long> teams) {
+        this.teams = teams;
     }
 
     public String getLink() {

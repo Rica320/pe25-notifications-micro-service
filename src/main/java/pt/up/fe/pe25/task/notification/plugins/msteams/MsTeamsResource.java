@@ -8,12 +8,21 @@ import pt.up.fe.pe25.task.notification.NotificationData;
 import java.net.URL;
 import org.json.JSONObject;
 
+import com.oracle.svm.core.annotate.Inject;
+
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 @Path("/msteams")
 public class MsTeamsResource {
+    @Inject
+    private MsTeamsPlugin msTeamsPlugin = new MsTeamsPlugin();
+
+    public void setMsTeamsPlugin(MsTeamsPlugin msTeamsPlugin) {
+        this.msTeamsPlugin = msTeamsPlugin;
+    }
+
     @POST
     @RolesAllowed({"user"})
     @Consumes(MediaType.TEXT_PLAIN)
@@ -34,7 +43,6 @@ public class MsTeamsResource {
             return Response.status(Response.Status.BAD_REQUEST).entity("The provided URL is not valid").build();
         }
 
-        MsTeamsPlugin msTeamsPlugin = new MsTeamsPlugin(null);
         try {
             MsTeam team = msTeamsPlugin.addTeam(url);
             return Response.status(Response.Status.CREATED).entity(team).build();
@@ -58,13 +66,12 @@ public class MsTeamsResource {
      * @return Response with the sent data.
      */
     public Response sendMessage(NotificationData notificationData) {
-        System.out.print(notificationData);
-        MsTeamsPlugin msTeamsPlugin = new MsTeamsPlugin(null);
         try {
             msTeamsPlugin.sendMessages(notificationData);
             return Response.status(Response.Status.CREATED).entity(notificationData).build();
         }
         catch (IllegalArgumentException e) {
+            //return Response.status(Response.Status.CREATED).build();
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
     }
