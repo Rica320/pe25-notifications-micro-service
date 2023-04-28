@@ -8,11 +8,13 @@ import org.mockito.MockitoAnnotations;
 
 import io.quarkus.test.junit.QuarkusTest;
 import pt.up.fe.pe25.task.notification.NotificationService;
+import pt.up.fe.pe25.task.notification.plugins.whatsapp.WhatsAppGroup;
 import pt.up.fe.pe25.task.notification.plugins.whatsapp.WhatsAppPlugin;
 
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
@@ -46,12 +48,11 @@ public class WhatsAppTest {
         doReturn(expectedResponse).when(spyWhatsAppPlugin).sendRequest(eq(expectedUrl), eq(expectedRequestBody),
                 eq("POST"), anyMap());
 
-        String groupId = "";
-        groupId = spyWhatsAppPlugin.createGroup(groupName, phoneNumbers);
+        WhatsAppGroup wppGroup = spyWhatsAppPlugin.createGroup(groupName, phoneNumbers);
 
         verify(spyWhatsAppPlugin, times(1)).sendRequest(eq(expectedUrl), eq(expectedRequestBody),
                 eq("POST"), anyMap());
-        assertTrue(groupId.equals("test-group-id"));
+        assertEquals("test-group-id", wppGroup.getGroupId());
     }
 
     @Test

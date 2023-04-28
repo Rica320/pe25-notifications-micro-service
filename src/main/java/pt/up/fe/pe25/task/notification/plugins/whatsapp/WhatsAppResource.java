@@ -1,12 +1,16 @@
 package pt.up.fe.pe25.task.notification.plugins.whatsapp;
 import javax.annotation.security.RolesAllowed;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
+import pt.up.fe.pe25.authentication.User;
 import pt.up.fe.pe25.task.notification.NotificationData;
+import pt.up.fe.pe25.task.notification.Notifier;
 
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.SecurityContext;
 import java.util.List;
 
 @Path("/whatsapp")
@@ -35,8 +39,8 @@ public class WhatsAppResource {
         List<String> phoneNumbers = notificationData.getPhoneList();
 
         try {
-            String groupId = whatsappPlugin.createGroup(groupName, phoneNumbers);
-            return Response.status(Response.Status.CREATED).entity(groupId).build();
+            WhatsAppGroup wppGroup = whatsappPlugin.createGroup(groupName, phoneNumbers);
+            return Response.status(Response.Status.CREATED).entity(wppGroup).build();
         }
         catch (IllegalArgumentException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
@@ -204,5 +208,15 @@ public class WhatsAppResource {
         catch (IllegalArgumentException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
+    }
+
+    @Path("/groups")
+    @GET
+    @RolesAllowed({"user"})
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getGroups(@Context SecurityContext securityContext) {
+
+        User user = User.findByUsername(securityContext.getUserPrincipal().getName());
+        return Response.ok(WhatsAppGroup.listAll()).build();
     }
 }

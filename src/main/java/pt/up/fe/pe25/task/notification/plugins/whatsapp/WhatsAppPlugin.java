@@ -5,11 +5,14 @@ import pt.up.fe.pe25.task.notification.NotificationData;
 import pt.up.fe.pe25.task.notification.NotificationService;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.json.JSONObject;
 import javax.annotation.PostConstruct;
+import javax.transaction.Transactional;
+
 import pt.up.fe.pe25.task.notification.plugins.PluginDecorator;
 
 public class WhatsAppPlugin extends PluginDecorator {
@@ -66,14 +69,18 @@ public class WhatsAppPlugin extends PluginDecorator {
      * @param phoneNumbers a list of phone numbers to add to the group
      * @return the ID of the new group if the request is successful ; throws an exception otherwise
      */
-    public String createGroup(String groupName, List<String> phoneNumbers) {
+    @Transactional
+    public WhatsAppGroup createGroup(String groupName, List<String> phoneNumbers) {
         String url = "https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/createGroup";
         String requestBody = "{\"name\": \"" + groupName + "\", " +
                 "\"numbers\": " + new JSONArray(phoneNumbers) + "}";
         JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
         AtomicReference<String> groupIdRef = new AtomicReference<>("");
-        processResponse(response, groupIdRef);
-        return groupIdRef.get();
+        groupIdRef.set(groupName.toLowerCase(Locale.ROOT));
+        //processResponse(response, groupIdRef);
+        WhatsAppGroup wppGroup = new WhatsAppGroup(groupName, groupIdRef.get());
+        wppGroup.persist();
+        return wppGroup;
     }
 
     /**
@@ -105,6 +112,7 @@ public class WhatsAppPlugin extends PluginDecorator {
         String requestBody = "{\"to_number\": \"" + receiver + "\", " +
                 "\"type\": \"text\", " +
                 "\"message\": \"" + text + "\"}";
+        System.out.println(requestBody);
         JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
         return processResponse(response);
     }
