@@ -16,10 +16,7 @@ import java.util.List;
 @Path("/whatsapp")
 public class WhatsAppResource {
 
-    WhatsAppPlugin whatsappPlugin = new WhatsAppPlugin(null).set_PRODUCT_ID("xxxx")
-            .set_PHONE_ID("xxxx")
-            .set_MAYTAPI_KEY("xxxxx");
-
+    WhatsAppPlugin whatsappPlugin = new WhatsAppPlugin(null);
 
     @Path("/group/create")
     @POST
@@ -34,12 +31,8 @@ public class WhatsAppResource {
      **/
     public Response createGroup(NotificationData notificationData) {
 
-        whatsappPlugin.initialize();
-        String groupName = notificationData.getGroupName();
-        List<String> phoneNumbers = notificationData.getPhoneList();
-
         try {
-            WhatsAppGroup wppGroup = whatsappPlugin.createGroup(groupName, phoneNumbers);
+            WhatsAppGroup wppGroup = whatsappPlugin.createGroup(notificationData);
             return Response.status(Response.Status.CREATED).entity(wppGroup).build();
         }
         catch (IllegalArgumentException e) {
@@ -60,12 +53,8 @@ public class WhatsAppResource {
      **/
     public Response addToGroup(NotificationData notificationData) {
 
-            whatsappPlugin.initialize();
-            String groupId = notificationData.getGroupId();
-            String phoneNumber = notificationData.getReceiver();
-
             try {
-                whatsappPlugin.updateGroup(groupId, phoneNumber, true);
+                whatsappPlugin.updateGroup(notificationData, true);
                 return Response.status(Response.Status.CREATED).entity(notificationData).build();
             }
             catch (IllegalArgumentException e) {
@@ -86,12 +75,8 @@ public class WhatsAppResource {
      **/
     public Response removeFromGroup(NotificationData notificationData) {
 
-        whatsappPlugin.initialize();
-        String groupId = notificationData.getGroupId();
-        String phoneNumber = notificationData.getReceiver();
-
         try {
-            whatsappPlugin.updateGroup(groupId, phoneNumber, false);
+            whatsappPlugin.updateGroup(notificationData, false);
             return Response.status(Response.Status.CREATED).entity(notificationData).build();
         }
         catch (IllegalArgumentException e) {
@@ -114,12 +99,12 @@ public class WhatsAppResource {
      **/
     public Response sendTextMessage(NotificationData notificationData) {
 
-        whatsappPlugin.initialize();
         String message = notificationData.getMessage();
-        String receiverPhone = notificationData.getReceiver();
+        String receiverPhone = "23112";
+        String groupName = notificationData.getGroupName();
 
         try {
-            whatsappPlugin.sendTextMessage(message, receiverPhone);
+            whatsappPlugin.sendTextMessage(message, receiverPhone, groupName);
             return Response.status(Response.Status.CREATED).entity(notificationData).build();
         }
         catch (IllegalArgumentException e) {
@@ -140,10 +125,9 @@ public class WhatsAppResource {
      **/
     public Response sendMediaMessage(NotificationData notificationData) {
 
-        whatsappPlugin.initialize();
         String media = notificationData.getMedia();
         String message = notificationData.getMessage();
-        String receiverPhone = notificationData.getReceiver();
+        String receiverPhone = "3213122";
 
         try {
             whatsappPlugin.sendMediaMessage(media, message, receiverPhone);
@@ -167,11 +151,10 @@ public class WhatsAppResource {
      **/
     public Response sendLocationMessage(NotificationData notificationData) {
 
-        whatsappPlugin.initialize();
         String latitude = notificationData.getLatitude();
         String longitude = notificationData.getLongitude();
         String message = notificationData.getMessage();
-        String receiverPhone = notificationData.getReceiver();
+        String receiverPhone = "321121";
 
         try {
             whatsappPlugin.sendLocationMessage(latitude, longitude, message, receiverPhone);
@@ -196,10 +179,9 @@ public class WhatsAppResource {
      **/
     public Response sendLinkMessage(NotificationData notificationData) {
 
-        whatsappPlugin.initialize();
         String link = notificationData.getLink();
         String message = notificationData.getMessage();
-        String receiverPhone = notificationData.getReceiver();
+        String receiverPhone = "12312";
 
         try {
             whatsappPlugin.sendLinkMessage(link, message, receiverPhone);

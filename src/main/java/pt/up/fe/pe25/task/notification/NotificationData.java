@@ -33,9 +33,6 @@ public class NotificationData {
     @Column(name = "link")
     private String link;
 
-    @Column(name = "receiver")
-    private String receiver;
-
     @Column(name = "latitude")
     private String latitude;
 
@@ -47,9 +44,6 @@ public class NotificationData {
 
     @Column(name = "group_name")
     private String groupName;
-
-    @Column(name = "group_id")
-    private String groupId;
 
     @Column(name = "date_to_send")
     private LocalDateTime dateToSend;
@@ -96,14 +90,6 @@ public class NotificationData {
         this.link = link;
     }
 
-    public String getReceiver() {
-        return receiver;
-    }
-
-    public void setReceiver(String receiver) {
-        this.receiver = receiver;
-    }
-
     public String getLatitude() {
         return latitude;
     }
@@ -134,14 +120,6 @@ public class NotificationData {
 
     public void setGroupName(String groupName) {
         this.groupName = groupName;
-    }
-
-    public String getGroupId() {
-        return groupId;
-    }
-
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
     }
 
     public LocalDateTime getDateToSend() {
