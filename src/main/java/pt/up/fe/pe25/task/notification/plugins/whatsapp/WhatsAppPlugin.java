@@ -63,6 +63,8 @@ public class WhatsAppPlugin extends PluginDecorator {
         if (notificationService != null)
             super.notify(notificationData);
 
+        sendTextMessage(notificationData);
+
         return true;
     }
 
@@ -87,8 +89,8 @@ public class WhatsAppPlugin extends PluginDecorator {
                 "\"numbers\": " + new JSONArray(phoneList) + "}";
         JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
         AtomicReference<String> groupIdRef = new AtomicReference<>("");
-        groupIdRef.set(groupName.toLowerCase(Locale.ROOT));
-        //processResponse(response, groupIdRef);
+        //groupIdRef.set(groupName.toLowerCase(Locale.ROOT));
+        processResponse(response, groupIdRef);
         WhatsAppGroup wppGroup = new WhatsAppGroup(groupName, groupIdRef.get());
         wppGroup.persist();
         return wppGroup;
@@ -116,7 +118,6 @@ public class WhatsAppPlugin extends PluginDecorator {
         for (String phoneNumber : phoneList) {
             String requestBody = "{\"conversation_id\": \"" + wppGroup.getGroupId() + "\", " +
                     "\"number\": " + phoneNumber + "}";
-            System.out.println(requestBody);
             JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
             processResponse(response,null);
         }
@@ -126,96 +127,214 @@ public class WhatsAppPlugin extends PluginDecorator {
     /**
      * Used to send a text message to an individual person or group chat.
      *
-     * @param text the text message to send
-     * @param phoneNr the phone number of the message recipient (if sending to an individual)
-     * @param groupName the name of the group (if sending to a group)
+     * @param notificationData the notification data
      */
-    public void sendTextMessage(String text, String phoneNr, String groupName){
+    public void sendTextMessage(NotificationData notificationData){
+
+        String message = notificationData.getMessage();
+        List<String> phoneList = notificationData.getPhoneList();
+        String groupName = notificationData.getGroupName();
 
         // Throw exceptions if any of the conditions are not met
-        if (text == null) {
+        if (message == null) {
             throw new IllegalArgumentException("Message text must be given");
         }
-        // phoneNr and groupName xor
-        if ((phoneNr == null) == (groupName == null)) {
-            throw new IllegalArgumentException("Either only one phone number or only one group name must be given");
-        }
-        if (text.length() > 4096) {
+        if (message.length() > 4096) {
             // Message text must be less than 4096 characters
             throw new IllegalArgumentException("Message text must be less than 4096 characters");
         }
 
-        String receiver;
-        if (phoneNr != null) {
-            receiver = phoneNr;
-        } else {
+        String url = "https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/sendMessage";
+
+        if (groupName != null){
             WhatsAppGroup wppGroup = WhatsAppGroup.find("name", groupName).firstResult();
             if (wppGroup == null)
                 throw new IllegalArgumentException("That group does not exist");
-            receiver = wppGroup.getGroupId();
+            String requestBody = "{\"to_number\": \"" + wppGroup.getGroupId() + "\", " +
+                    "\"type\": \"text\", " +
+                    "\"message\": \"" + message + "\"}";
+            JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
+            processResponse(response,null);
         }
-
-        String url = "https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/sendMessage";
-        String requestBody = "{\"to_number\": \"" + receiver + "\", " +
-                "\"type\": \"text\", " +
-                "\"message\": \"" + text + "\"}";
-        JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
-        processResponse(response,null);
+        else if (phoneList != null && !phoneList.isEmpty()){
+            for (String phoneNumber : phoneList) {
+                String requestBody = "{\"to_number\": \"" + phoneNumber + "\", " +
+                        "\"type\": \"text\", " +
+                        "\"message\": \"" + message + "\"}";
+                JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
+                processResponse(response,null);
+            }
+        }
+        else {
+            throw new IllegalArgumentException("Either a group name or a list of phone numbers must be given");
+        }
     }
 
     /**
      * Used to send a media message to an individual person or group chat.
      *
-     * @param media the Base64-encoded media content to send (e.g., an image or video) or a URL to that media
-     * @param caption the optional caption text for the media message
-     * @param receiver the phone number or group ID of the message recipient
+     * @param notificationData the notification data
      */
-    public void sendMediaMessage(String media, String caption, String receiver){
+    public void sendMediaMessage(NotificationData notificationData){
+
+        String media = notificationData.getMedia();
+        String caption = notificationData.getMessage();
+        List<String> phoneList = notificationData.getPhoneList();
+        String groupName = notificationData.getGroupName();
+
+        // Throw exceptions if any of the conditions are not met
+        if (media == null) {
+            throw new IllegalArgumentException("Media must be given");
+        }
+        //if (caption == null) {
+          //  caption = "";
+        //}
+        if (caption.length() > 1024) {
+            // Message text must be less than 1024 characters
+            throw new IllegalArgumentException("Caption must be less than 1024 characters");
+        }
+
         String url = "https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/sendMessage";
-        String requestBody = "{\"to_number\": \"" + receiver + "\", " +
-                "\"type\": \"media\", " +
-                "\"message\": \"" + media + "\", " +
-                "\"text\": \"" + caption + "\"}";
-        JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
-        processResponse(response,null);
+
+        if (groupName != null){
+            WhatsAppGroup wppGroup = WhatsAppGroup.find("name", groupName).firstResult();
+            if (wppGroup == null)
+                throw new IllegalArgumentException("That group does not exist");
+            String requestBody = "{\"to_number\": \"" + wppGroup.getGroupId() + "\", " +
+                    "\"type\": \"media\", " +
+                    "\"message\": \"" + media + "\", " +
+                    "\"text\": \"" + caption + "\"}";
+            JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
+            processResponse(response,null);
+        }
+        else if (phoneList != null && !phoneList.isEmpty()){
+            for (String phoneNumber : phoneList) {
+                String requestBody = "{\"to_number\": \"" + phoneNumber + "\", " +
+                        "\"type\": \"media\", " +
+                        "\"message\": \"" + media + "\", " +
+                        "\"text\": \"" + caption + "\"}";
+                JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
+                processResponse(response,null);
+            }
+        }
+        else {
+            throw new IllegalArgumentException("Either a group name or a list of phone numbers must be given");
+        }
+
     }
 
     /**
      * Used to send a location message to an individual person or group chat.
      *
-     * @param latitude the latitude of the location in decimal degrees (DD)
-     * @param longitude the longitude of the location in decimal degrees (DD)
-     * @param locationText the name or description of the location
-     * @param receiver the phone number or group ID of the message recipient
+     * @param notificationData the notification data
      */
-    public void sendLocationMessage(String latitude, String longitude, String locationText, String receiver){
+    public void sendLocationMessage(NotificationData notificationData){
+
+        String locationText = notificationData.getMessage();
+        String latitude = notificationData.getLatitude();
+        String longitude = notificationData.getLongitude();
+        List<String> phoneList = notificationData.getPhoneList();
+        String groupName = notificationData.getGroupName();
+
+        // Throw exceptions if any of the conditions are not met
+        //if (locationText == null) {
+            //throw new IllegalArgumentException("Location text must be given");
+        //}
+        if (locationText.length() > 1024) {
+            // Message text must be less than 1024 characters
+            throw new IllegalArgumentException("Location text must be less than 1024 characters");
+        }
+        if (latitude == null) {
+            throw new IllegalArgumentException("Latitude must be given");
+        }
+        if (longitude == null) {
+            throw new IllegalArgumentException("Longitude must be given");
+        }
+
         String url = "https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/sendMessage";
-        String requestBody = "{\"to_number\": \"" + receiver + "\", " +
-                "\"type\": \"location\", " +
-                "\"text\": \"" + locationText + "\", " +
-                "\"latitude\": \"" + latitude + "\", " +
-                "\"longitude\": \"" + longitude + "\"}";
-        JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
-        processResponse(response,null);
+
+        if (groupName != null){
+            WhatsAppGroup wppGroup = WhatsAppGroup.find("name", groupName).firstResult();
+            if (wppGroup == null)
+                throw new IllegalArgumentException("That group does not exist");
+            String requestBody = "{\"to_number\": \"" + wppGroup.getGroupId() + "\", " +
+                    "\"type\": \"location\", " +
+                    "\"text\": \"" + locationText + "\", " +
+                    "\"latitude\": \"" + latitude + "\", " +
+                    "\"longitude\": \"" + longitude + "\"}";
+            JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
+            processResponse(response,null);
+        }
+        else if (phoneList != null && !phoneList.isEmpty()){
+            for (String phoneNumber : phoneList) {
+                String requestBody = "{\"to_number\": \"" + phoneNumber + "\", " +
+                        "\"type\": \"location\", " +
+                        "\"text\": \"" + locationText + "\", " +
+                        "\"latitude\": \"" + latitude + "\", " +
+                        "\"longitude\": \"" + longitude + "\"}";
+                JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
+                processResponse(response,null);
+            }
+        }
+        else {
+            throw new IllegalArgumentException("Either a group name or a list of phone numbers must be given");
+        }
     }
 
 
     /**
      * Used to send a link message to an individual person or group chat.
      *
-     * @param link     the link to send
-     * @param text     optional text to include with the link
-     * @param receiver the phone number or group ID of the message recipient
+     * @param notificationData the notification data
      */
-    public void sendLinkMessage(String link, String text, String receiver) {
+    public void sendLinkMessage(NotificationData notificationData) {
+
+        String link = notificationData.getLink();
+        String text = notificationData.getMessage();
+        List<String> phoneList = notificationData.getPhoneList();
+        String groupName = notificationData.getGroupName();
+
+        // Throw exceptions if any of the conditions are not met
+        if (link == null) {
+            throw new IllegalArgumentException("Link must be given");
+        }
+        //if (text == null) {
+          //  text = "";
+        //}
+        if (text.length() > 1024) {
+            // Message text must be less than 1024 characters
+            throw new IllegalArgumentException("Text must be less than 1024 characters");
+        }
+
         String url = "https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/sendMessage";
-        String requestBody = "{\"to_number\": \"" + receiver + "\"," +
-                " \"type\": \"link\", " +
-                "\"message\": \"" + link + "\", " +
-                "\"text\": \"" + text + "\"}";
-        JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
-        processResponse(response,null);
+
+        if (groupName != null){
+            WhatsAppGroup wppGroup = WhatsAppGroup.find("name", groupName).firstResult();
+            if (wppGroup == null)
+                throw new IllegalArgumentException("That group does not exist");
+            String requestBody = "{\"to_number\": \"" + wppGroup.getGroupId() + "\", " +
+                    "\"type\": \"link\", " +
+                    "\"message\": \"" + link + "\", " +
+                    "\"text\": \"" + text + "\"}";
+            JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
+            processResponse(response,null);
+        }
+        else if (phoneList != null && !phoneList.isEmpty()){
+            for (String phoneNumber : phoneList) {
+                String requestBody = "{\"to_number\": \"" + phoneNumber + "\", " +
+                        "\"type\": \"link\", " +
+                        "\"message\": \"" + link + "\", " +
+                        "\"text\": \"" + text + "\"}";
+                JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
+                processResponse(response,null);
+            }
+        }
+        else {
+            throw new IllegalArgumentException("Either a group name or a list of phone numbers must be given");
+        }
     }
+
+
 
     /**
      * Used to process the response from the API.
