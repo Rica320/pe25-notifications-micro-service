@@ -22,7 +22,7 @@ import pt.up.fe.pe25.authentication.User;
  *     The notifier is created by sending a JSON object with the following structure:
  *     <pre>
  *         {
- *         "notificationServices": ["email"],
+ *         "notificationServices": ["email", ...],
  *         "notificationData": {
  *              "subject": "Notification subject",
  *              "message": "Notification message",

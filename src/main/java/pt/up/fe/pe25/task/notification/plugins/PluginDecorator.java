@@ -11,14 +11,14 @@ import java.net.URL;
 import java.util.Map;
 
 /**
- * A plugin decorator
- * It is used to decorate a notification service with additional functionality
- * It is used in the {@link pt.up.fe.pe25.task.notification.plugins.smtp.MailPlugin} to send notifications by email
- * It is used in the {@link pt.up.fe.pe25.task.notification.plugins.msteams.MsTeamsPlugin} to send notifications by webhook in ms teams
- * It is used in the {@link pt.up.fe.pe25.task.notification.plugins.whatsapp.WhatsAppPlugin} to send notifications by whatsapp
- * It is used in the {@link pt.up.fe.pe25.task.notification.plugins.twilio.sms.TwilioSMSPlugin} to send notifications by sms
- * It is used in the {@link pt.up.fe.pe25.task.notification.plugins.twilio.voice.TwilioCallPlugin} to send notifications by voice
- * It is used in the {@link pt.up.fe.pe25.task.notification.plugins.smpp.SmsPlugin} to send notifications by sms using a smpp server
+ * A plugin decorator <br>
+ * It is used to decorate a notification service with additional functionality <br>
+ * It is used in the {@link pt.up.fe.pe25.task.notification.plugins.smtp.MailPlugin} to send notifications by email<br>
+ * It is used in the {@link pt.up.fe.pe25.task.notification.plugins.msteams.MsTeamsPlugin} to send notifications by webhook in ms teams<br>
+ * It is used in the {@link pt.up.fe.pe25.task.notification.plugins.whatsapp.WhatsAppPlugin} to send notifications by whatsapp<br>
+ * It is used in the {@link pt.up.fe.pe25.task.notification.plugins.twilio.sms.TwilioSMSPlugin} to send notifications by sms<br>
+ * It is used in the {@link pt.up.fe.pe25.task.notification.plugins.twilio.voice.TwilioCallPlugin} to send notifications by voice<br>
+ * It is used in the {@link pt.up.fe.pe25.task.notification.plugins.smpp.SmsPlugin} to send notifications by sms using a smpp server<br>
  *
  * @see NotificationService
  * @see NotificationData

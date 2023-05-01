@@ -52,9 +52,10 @@ task generateJavadoc(type: Javadoc) {
 
     options {
         encoding = 'UTF-8'
-        windowTitle = 'My Project Javadoc'
-        docTitle = 'My Project Javadoc'
-        header = 'My Project Javadoc'
+        windowTitle = 'Pe25 API Documentation'
+        docTitle = 'Pe25 API Documentation'
+        header = 'Pe25 API Documentation'
+        bottom = 'Copyright © Pe25 - 2023'
     }
 
     exclude '**/package-info.java'
