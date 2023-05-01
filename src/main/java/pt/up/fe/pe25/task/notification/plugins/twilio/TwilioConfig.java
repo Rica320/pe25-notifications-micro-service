@@ -5,6 +5,25 @@ import org.eclipse.microprofile.config.Config;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
+/**
+ * The Twilio configuration
+ * <p>
+ *     This class is used to retrieve the Twilio configuration from the configuration file
+ *     and inject it into the Twilio plugins
+ *     <br>
+ *     The configuration file must contain the following properties:
+ *     <ul>
+ *         <li>twilio.accountSid</li>
+ *         <li>twilio.authToken</li>
+ *         <li>twilio.phoneNumber</li>
+ *     </ul>
+ *     <br>
+ *     The configuration file can be a properties file or a yaml file
+ *     <br>
+ *     The configuration file can is located in the resources folder.
+ *     <br>
+ *
+ */
 @ApplicationScoped
 public class TwilioConfig {
     @Inject

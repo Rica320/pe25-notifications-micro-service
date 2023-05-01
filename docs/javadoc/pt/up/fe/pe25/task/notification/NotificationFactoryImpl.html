@@ -84,6 +84,14 @@ loadScripts(document, 'script');</script>
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">NotificationFactoryImpl</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="NotificationFactory.html" title="interface in pt.up.fe.pe25.task.notification">NotificationFactory</a></span></div>
+<div class="block">The notification factory
+ <p>
+     This class is used to create the notification service chain
+     <br>
+     The notification service chain is created based on the types of notifications
+     that are passed as an argument to the create method
+     <br>
+ </p></div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -113,7 +121,9 @@ implements <a href="NotificationFactory.html" title="interface in pt.up.fe.pe25.
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="NotificationService.html" title="interface in pt.up.fe.pe25.task.notification">NotificationService</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#create(java.util.List)" class="member-name-link">create</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;types)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Creates the notification service chain</div>
+</div>
 </div>
 </div>
 </div>
@@ -150,11 +160,16 @@ implements <a href="NotificationFactory.html" title="interface in pt.up.fe.pe25.
 <h3>create</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="NotificationService.html" title="interface in pt.up.fe.pe25.task.notification">NotificationService</a></span>&nbsp;<span class="element-name">create</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;types)</span>
                            throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></span></div>
+<div class="block">Creates the notification service chain</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="NotificationFactory.html#create(java.util.List)">create</a></code>&nbsp;in interface&nbsp;<code><a href="NotificationFactory.html" title="interface in pt.up.fe.pe25.task.notification">NotificationFactory</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>types</code> - the types of notifications to be sent</dd>
+<dt>Returns:</dt>
+<dd>the notification service chained</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the types are not valid</dd>
 </dl>
 </section>
 </li>

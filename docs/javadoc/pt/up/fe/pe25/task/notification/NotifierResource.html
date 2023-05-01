@@ -79,6 +79,43 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="annotations">@Path("/notifier")
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">NotifierResource</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">The notifier resource
+ <p>
+     This class is used to create a new notifier
+     <br>
+     The notifier is created by sending a POST request to the /notifier endpoint
+     <br>
+     The notifier is created by sending a JSON object with the following structure:
+     <pre>
+         {
+         "notificationServices": ["email"],
+         "notificationData": {
+              "subject": "Notification subject",
+              "message": "Notification message",
+              "dateToSend": "2023-04-06T00:32:50",
+              ...
+         }, ...
+        }
+      </pre>
+
+      <br>
+      The notificationServices field is an array of strings that the factory will use to create the notification plugins
+      <br>
+      The notificationData field is an object that contains the data that will be used by the notification plugins
+      <br>
+      The dateToSend field is optional and is used to schedule the notification
+      <br>
+      The notificationData object can contain any field that is required by the notification plugins</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="NotificationFactory.html" title="interface in pt.up.fe.pe25.task.notification"><code>NotificationFactory</code></a></li>
+<li><a href="NotificationScheduler.html" title="class in pt.up.fe.pe25.task.notification"><code>NotificationScheduler</code></a></li>
+<li><a href="NotificationData.html" title="class in pt.up.fe.pe25.task.notification"><code>NotificationData</code></a></li>
+</ul>
+</dd>
+</dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -109,10 +146,16 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>javax.ws.rs.core.Response</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createNotifier(javax.ws.rs.core.SecurityContext,pt.up.fe.pe25.task.notification.Notifier)" class="member-name-link">createNotifier</a><wbr>(javax.ws.rs.core.SecurityContext&nbsp;securityContext,
  <a href="Notifier.html" title="class in pt.up.fe.pe25.task.notification">Notifier</a>&nbsp;notifier)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Creates a new notifier
+ Needs authentication to be called</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>javax.ws.rs.core.Response</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNotifiers(javax.ws.rs.core.SecurityContext)" class="member-name-link">getNotifiers</a><wbr>(javax.ws.rs.core.SecurityContext&nbsp;securityContext)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets all the notifiers of the user
+ Needs authentication to be called</div>
+</div>
 </div>
 </div>
 </div>
@@ -154,6 +197,15 @@ loadScripts(document, 'script');</script>
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">javax.ws.rs.core.Response</span>&nbsp;<span class="element-name">createNotifier</span><wbr><span class="parameters">(@Context
  javax.ws.rs.core.SecurityContext&nbsp;securityContext,
  <a href="Notifier.html" title="class in pt.up.fe.pe25.task.notification">Notifier</a>&nbsp;notifier)</span></div>
+<div class="block">Creates a new notifier
+ Needs authentication to be called</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>securityContext</code> - the security context</dd>
+<dd><code>notifier</code> - the notifier</dd>
+<dt>Returns:</dt>
+<dd>Response to the request</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -164,6 +216,14 @@ loadScripts(document, 'script');</script>
 @Produces("application/json")
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">javax.ws.rs.core.Response</span>&nbsp;<span class="element-name">getNotifiers</span><wbr><span class="parameters">(@Context
  javax.ws.rs.core.SecurityContext&nbsp;securityContext)</span></div>
+<div class="block">Gets all the notifiers of the user
+ Needs authentication to be called</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>securityContext</code> - the security context</dd>
+<dt>Returns:</dt>
+<dd>Response to the request</dd>
+</dl>
 </section>
 </li>
 </ul>

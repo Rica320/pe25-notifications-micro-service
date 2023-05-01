@@ -15,21 +15,51 @@ import pt.up.fe.pe25.task.notification.plugins.twilio.voice.TwilioCallPlugin;
 import pt.up.fe.pe25.task.notification.plugins.whatsapp.WhatsAppPlugin;
 import pt.up.fe.pe25.task.notification.plugins.whatsapp.WhatsAppProperties;
 
+/**
+ * The notification factory
+ * <p>
+ *     This class is used to create the notification service chain
+ *     <br>
+ *     The notification service chain is created based on the types of notifications
+ *     that are passed as an argument to the create method
+ *     <br>
+ * </p>
+ *
+ */
 @ApplicationScoped
 public class NotificationFactoryImpl implements NotificationFactory{
 
+    /**
+     * The mailer instance to be injected into the mail plugin
+     */
     @Inject
     ReactiveMailer mailer;
 
+    /**
+     * The template instance to be injected into the mail plugin
+     */
     @Inject
     Template template;
 
+    /**
+     * The twilio configuration to be injected into the twilio plugins
+     */
     @Inject
     TwilioConfig twilioConfig;
 
+    /**
+     * The whatsapp configuration to be injected into the whatsapp plugin
+     */
     @Inject
     WhatsAppProperties whatsAppProperties;
 
+
+    /**
+     * Creates the notification service chain
+     * @param types the types of notifications to be sent
+     * @return the notification service chained
+     * @throws IllegalArgumentException if the types are not valid
+     */
     @Override
     public NotificationService create(List<String> types) throws IllegalArgumentException{
 

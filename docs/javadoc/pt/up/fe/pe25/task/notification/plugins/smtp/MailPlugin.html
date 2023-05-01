@@ -84,6 +84,22 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">MailPlugin</span>
 <span class="extends-implements">extends <a href="../PluginDecorator.html" title="class in pt.up.fe.pe25.task.notification.plugins">PluginDecorator</a></span></div>
+<div class="block">A plugin that sends notifications by email
+ You can configure the SMTP server in application.properties
+ The email can contain a message, a subject and a list of receivers</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../NotificationService.html" title="interface in pt.up.fe.pe25.task.notification"><code>NotificationService</code></a></li>
+<li><a href="../PluginDecorator.html" title="class in pt.up.fe.pe25.task.notification.plugins"><code>PluginDecorator</code></a></li>
+<li><code>Mail</code></li>
+<li><code>ReactiveMailer</code></li>
+<li><code>Template</code></li>
+<li><a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification"><code>NotificationData</code></a></li>
+</ul>
+</dd>
+</dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -109,7 +125,9 @@ loadScripts(document, 'script');</script>
 <div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(pt.up.fe.pe25.task.notification.NotificationService,io.quarkus.mailer.reactive.ReactiveMailer,io.quarkus.qute.Template)" class="member-name-link">MailPlugin</a><wbr>(<a href="../../NotificationService.html" title="interface in pt.up.fe.pe25.task.notification">NotificationService</a>&nbsp;notificationService,
  io.quarkus.mailer.reactive.ReactiveMailer&nbsp;mailer,
  io.quarkus.qute.Template&nbsp;template)</code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Creates a new MailPlugin</div>
+</div>
 </div>
 </section>
 </li>
@@ -126,7 +144,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#notify(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">notify</a><wbr>(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sends a notification by email ... calling the wrapped notification service before</div>
+</div>
 </div>
 </div>
 </div>
@@ -154,6 +174,13 @@ loadScripts(document, 'script');</script>
 </span><span class="modifiers">public</span>&nbsp;<span class="element-name">MailPlugin</span><wbr><span class="parameters">(<a href="../../NotificationService.html" title="interface in pt.up.fe.pe25.task.notification">NotificationService</a>&nbsp;notificationService,
  io.quarkus.mailer.reactive.ReactiveMailer&nbsp;mailer,
  io.quarkus.qute.Template&nbsp;template)</span></div>
+<div class="block">Creates a new MailPlugin</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>notificationService</code> - the notification service</dd>
+<dd><code>mailer</code> - the mailer</dd>
+<dd><code>template</code> - the template</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -174,11 +201,16 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="notify(pt.up.fe.pe25.task.notification.NotificationData)">
 <h3>notify</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">notify</span><wbr><span class="parameters">(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</span></div>
+<div class="block">Sends a notification by email ... calling the wrapped notification service before</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../NotificationService.html#notify(pt.up.fe.pe25.task.notification.NotificationData)">notify</a></code>&nbsp;in interface&nbsp;<code><a href="../../NotificationService.html" title="interface in pt.up.fe.pe25.task.notification">NotificationService</a></code></dd>
 <dt>Overrides:</dt>
 <dd><code><a href="../PluginDecorator.html#notify(pt.up.fe.pe25.task.notification.NotificationData)">notify</a></code>&nbsp;in class&nbsp;<code><a href="../PluginDecorator.html" title="class in pt.up.fe.pe25.task.notification.plugins">PluginDecorator</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>notificationData</code> - the notification data</dd>
+<dt>Returns:</dt>
+<dd>true if the notification was sent successfully, false otherwise</dd>
 </dl>
 </section>
 </li>

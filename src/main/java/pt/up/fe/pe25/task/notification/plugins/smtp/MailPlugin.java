@@ -11,12 +11,36 @@ import pt.up.fe.pe25.task.notification.plugins.PluginDecorator;
 
 import javax.inject.Inject;
 
+/**
+ * A plugin that sends notifications by email<br>
+ * You can configure the SMTP server in application.properties<br>
+ * The email can contain a message, a subject and a list of receivers<br>
+ *
+ * @see NotificationService
+ * @see PluginDecorator
+ * @see Mail
+ * @see ReactiveMailer
+ * @see Template
+ * @see NotificationData
+ */
 public class MailPlugin extends PluginDecorator {
 
+    /**
+     * The mailer
+     */
     ReactiveMailer mailer;
 
+    /**
+     * The template to be used in the email
+     */
     Template template;
 
+    /**
+     * Creates a new MailPlugin
+     * @param notificationService the notification service
+     * @param mailer the mailer
+     * @param template the template
+     */
     @Inject
     public MailPlugin(NotificationService notificationService, ReactiveMailer mailer, Template template) {
         super(notificationService);
@@ -28,6 +52,11 @@ public class MailPlugin extends PluginDecorator {
         super(null);
     }
 
+    /**
+     * Sends a notification by email ... calling the wrapped notification service before
+     * @param notificationData the notification data
+     * @return true if the notification was sent successfully, false otherwise
+     */
     @Override
     public boolean notify(NotificationData notificationData) {
         if (notificationService != null)
@@ -47,11 +76,8 @@ public class MailPlugin extends PluginDecorator {
                     failure -> {throw new IllegalArgumentException("Failed to send email: " + failure.getMessage());}
             );
         } catch (Exception e) {
-            return false; // TODO: dps temos de arranjar maneira de devolver isto ao resource para que ele diga quais estão indisponíveis
+            return false;
         }
-
-
-
         return true;
     }
 }

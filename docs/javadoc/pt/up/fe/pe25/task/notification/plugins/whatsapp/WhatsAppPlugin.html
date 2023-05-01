@@ -131,7 +131,9 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#notify(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">notify</a><wbr>(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sends a notification ... calling the wrapped notification service</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sendLinkMessage(java.lang.String,java.lang.String,java.lang.String)" class="member-name-link">sendLinkMessage</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;link,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;text,
@@ -239,11 +241,17 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="notify(pt.up.fe.pe25.task.notification.NotificationData)">
 <h3>notify</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">notify</span><wbr><span class="parameters">(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="../PluginDecorator.html#notify(pt.up.fe.pe25.task.notification.NotificationData)">PluginDecorator</a></code></span></div>
+<div class="block">Sends a notification ... calling the wrapped notification service</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../NotificationService.html#notify(pt.up.fe.pe25.task.notification.NotificationData)">notify</a></code>&nbsp;in interface&nbsp;<code><a href="../../NotificationService.html" title="interface in pt.up.fe.pe25.task.notification">NotificationService</a></code></dd>
 <dt>Overrides:</dt>
 <dd><code><a href="../PluginDecorator.html#notify(pt.up.fe.pe25.task.notification.NotificationData)">notify</a></code>&nbsp;in class&nbsp;<code><a href="../PluginDecorator.html" title="class in pt.up.fe.pe25.task.notification.plugins">PluginDecorator</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>notificationData</code> - the notification data</dd>
+<dt>Returns:</dt>
+<dd>true if the notification was sent successfully, false otherwise</dd>
 </dl>
 </section>
 </li>

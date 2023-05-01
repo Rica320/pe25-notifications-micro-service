@@ -85,6 +85,20 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="annotations">@Singleton
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">TwilioCallPlugin</span>
 <span class="extends-implements">extends <a href="../../PluginDecorator.html" title="class in pt.up.fe.pe25.task.notification.plugins">PluginDecorator</a></span></div>
+<div class="block">A plugin that phones a list of numbers using Twilio <br>
+ You can configure the Twilio account in application.properties
+ The call can contain a message and a list of receivers</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../NotificationService.html" title="interface in pt.up.fe.pe25.task.notification"><code>NotificationService</code></a></li>
+<li><a href="../../PluginDecorator.html" title="class in pt.up.fe.pe25.task.notification.plugins"><code>PluginDecorator</code></a></li>
+<li><a href="../../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification"><code>NotificationData</code></a></li>
+<li><a href="../TwilioConfig.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio"><code>TwilioConfig</code></a></li>
+</ul>
+</dd>
+</dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -109,7 +123,9 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(pt.up.fe.pe25.task.notification.NotificationService,pt.up.fe.pe25.task.notification.plugins.twilio.TwilioConfig)" class="member-name-link">TwilioCallPlugin</a><wbr>(<a href="../../../NotificationService.html" title="interface in pt.up.fe.pe25.task.notification">NotificationService</a>&nbsp;notificationService,
  <a href="../TwilioConfig.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio">TwilioConfig</a>&nbsp;twilioConfig)</code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Creates a new TwilioCallPlugin</div>
+</div>
 </div>
 </section>
 </li>
@@ -126,7 +142,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#notify(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">notify</a><wbr>(<a href="../../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sends a notification by SMS ... calling the wrapped notification service before</div>
+</div>
 </div>
 </div>
 </div>
@@ -158,6 +176,12 @@ loadScripts(document, 'script');</script>
 <h3>TwilioCallPlugin</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">TwilioCallPlugin</span><wbr><span class="parameters">(<a href="../../../NotificationService.html" title="interface in pt.up.fe.pe25.task.notification">NotificationService</a>&nbsp;notificationService,
  <a href="../TwilioConfig.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio">TwilioConfig</a>&nbsp;twilioConfig)</span></div>
+<div class="block">Creates a new TwilioCallPlugin</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>notificationService</code> - the notification service to be wrapped</dd>
+<dd><code>twilioConfig</code> - the Twilio configuration</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -172,11 +196,16 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="notify(pt.up.fe.pe25.task.notification.NotificationData)">
 <h3>notify</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">notify</span><wbr><span class="parameters">(<a href="../../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</span></div>
+<div class="block">Sends a notification by SMS ... calling the wrapped notification service before</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../../NotificationService.html#notify(pt.up.fe.pe25.task.notification.NotificationData)">notify</a></code>&nbsp;in interface&nbsp;<code><a href="../../../NotificationService.html" title="interface in pt.up.fe.pe25.task.notification">NotificationService</a></code></dd>
 <dt>Overrides:</dt>
 <dd><code><a href="../../PluginDecorator.html#notify(pt.up.fe.pe25.task.notification.NotificationData)">notify</a></code>&nbsp;in class&nbsp;<code><a href="../../PluginDecorator.html" title="class in pt.up.fe.pe25.task.notification.plugins">PluginDecorator</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>notificationData</code> - the notification data</dd>
+<dt>Returns:</dt>
+<dd>true if the notification was sent successfully, false otherwise</dd>
 </dl>
 </section>
 </li>

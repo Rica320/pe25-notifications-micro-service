@@ -87,6 +87,23 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">PluginDecorator</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="../NotificationService.html" title="interface in pt.up.fe.pe25.task.notification">NotificationService</a></span></div>
+<div class="block">A plugin decorator
+ It is used to decorate a notification service with additional functionality
+ It is used in the <a href="smtp/MailPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.smtp"><code>MailPlugin</code></a> to send notifications by email
+ It is used in the <a href="msteams/MsTeamsPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.msteams"><code>MsTeamsPlugin</code></a> to send notifications by webhook in ms teams
+ It is used in the <a href="whatsapp/WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp"><code>WhatsAppPlugin</code></a> to send notifications by whatsapp
+ It is used in the <a href="twilio/sms/TwilioSMSPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio.sms"><code>TwilioSMSPlugin</code></a> to send notifications by sms
+ It is used in the <a href="twilio/voice/TwilioCallPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio.voice"><code>TwilioCallPlugin</code></a> to send notifications by voice
+ It is used in the <a href="smpp/SmsPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.smpp"><code>SmsPlugin</code></a> to send notifications by sms using a smpp server</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../NotificationService.html" title="interface in pt.up.fe.pe25.task.notification"><code>NotificationService</code></a></li>
+<li><a href="../NotificationData.html" title="class in pt.up.fe.pe25.task.notification"><code>NotificationData</code></a></li>
+</ul>
+</dd>
+</dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -101,7 +118,9 @@ implements <a href="../NotificationService.html" title="interface in pt.up.fe.pe
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>protected final <a href="../NotificationService.html" title="interface in pt.up.fe.pe25.task.notification">NotificationService</a></code></div>
 <div class="col-second even-row-color"><code><a href="#notificationService" class="member-name-link">notificationService</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">The wrapped notification service</div>
+</div>
 </div>
 </section>
 </li>
@@ -114,7 +133,9 @@ implements <a href="../NotificationService.html" title="interface in pt.up.fe.pe
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(pt.up.fe.pe25.task.notification.NotificationService)" class="member-name-link">PluginDecorator</a><wbr>(<a href="../NotificationService.html" title="interface in pt.up.fe.pe25.task.notification">NotificationService</a>&nbsp;notificationService)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Creates a new PluginDecorator</div>
+</div>
 </div>
 </section>
 </li>
@@ -131,7 +152,9 @@ implements <a href="../NotificationService.html" title="interface in pt.up.fe.pe
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#notify(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">notify</a><wbr>(<a href="../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sends a notification ... calling the wrapped notification service</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.json.JSONObject</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sendRequest(java.lang.String,java.lang.String,java.lang.String,java.util.Map)" class="member-name-link">sendRequest</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;urlString,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;requestBody,
@@ -161,6 +184,16 @@ implements <a href="../NotificationService.html" title="interface in pt.up.fe.pe
 <section class="detail" id="notificationService">
 <h3>notificationService</h3>
 <div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type"><a href="../NotificationService.html" title="interface in pt.up.fe.pe25.task.notification">NotificationService</a></span>&nbsp;<span class="element-name">notificationService</span></div>
+<div class="block">The wrapped notification service</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../NotificationService.html" title="interface in pt.up.fe.pe25.task.notification"><code>NotificationService</code></a></li>
+<li><a href="../NotificationData.html" title="class in pt.up.fe.pe25.task.notification"><code>NotificationData</code></a></li>
+</ul>
+</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -175,6 +208,11 @@ implements <a href="../NotificationService.html" title="interface in pt.up.fe.pe
 <section class="detail" id="&lt;init&gt;(pt.up.fe.pe25.task.notification.NotificationService)">
 <h3>PluginDecorator</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PluginDecorator</span><wbr><span class="parameters">(<a href="../NotificationService.html" title="interface in pt.up.fe.pe25.task.notification">NotificationService</a>&nbsp;notificationService)</span></div>
+<div class="block">Creates a new PluginDecorator</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>notificationService</code> - the notification service to be wrapped</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -189,9 +227,14 @@ implements <a href="../NotificationService.html" title="interface in pt.up.fe.pe
 <section class="detail" id="notify(pt.up.fe.pe25.task.notification.NotificationData)">
 <h3>notify</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">notify</span><wbr><span class="parameters">(<a href="../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</span></div>
+<div class="block">Sends a notification ... calling the wrapped notification service</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../NotificationService.html#notify(pt.up.fe.pe25.task.notification.NotificationData)">notify</a></code>&nbsp;in interface&nbsp;<code><a href="../NotificationService.html" title="interface in pt.up.fe.pe25.task.notification">NotificationService</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>notificationData</code> - the notification data</dd>
+<dt>Returns:</dt>
+<dd>true if the notification was sent successfully, false otherwise</dd>
 </dl>
 </section>
 </li>

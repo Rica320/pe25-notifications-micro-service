@@ -79,6 +79,16 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="annotations">@Path("/twilio/call/")
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">TwilioCallResource</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">A separated resource that sends notifications by SMS and stores the notification in the database</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="TwilioCallPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio.voice"><code>TwilioCallPlugin</code></a></li>
+<li><a href="../../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification"><code>NotificationData</code></a></li>
+</ul>
+</dd>
+</dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -108,7 +118,10 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>javax.ws.rs.core.Response</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sendMessage(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendMessage</a><wbr>(<a href="../../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sends a notification by SMS
+ Needs authentication to be called</div>
+</div>
 </div>
 </div>
 </div>
@@ -149,6 +162,14 @@ loadScripts(document, 'script');</script>
 @Produces("application/json")
 @RolesAllowed("user")
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">javax.ws.rs.core.Response</span>&nbsp;<span class="element-name">sendMessage</span><wbr><span class="parameters">(<a href="../../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</span></div>
+<div class="block">Sends a notification by SMS
+ Needs authentication to be called</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>notificationData</code> - the notification data</dd>
+<dt>Returns:</dt>
+<dd>true if the notification was sent successfully, false otherwise</dd>
+</dl>
 </section>
 </li>
 </ul>

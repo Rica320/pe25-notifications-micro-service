@@ -16,15 +16,35 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+/**
+ * A separated resource that sends notifications by email and stores the notification in the database
+ *
+ * @see MailPlugin
+ * @see NotificationData
+ * @see Notifier
+ */
 @Path("/email")
 public class MailResource {
 
+    /**
+     * The mailer
+     */
     @Inject
     ReactiveMailer mailer;
 
+    /**
+     * The template to be used in the email
+     */
     @Inject
     Template template;
 
+    /**
+     * Sends a notification by email<br>
+     * Needs authentication to be called<br>
+     *
+     * @param notificationData the notification data
+     * @return true if the notification was sent successfully, false otherwise
+     */
     @Path("/message")
     @POST
     @RolesAllowed({"user"})

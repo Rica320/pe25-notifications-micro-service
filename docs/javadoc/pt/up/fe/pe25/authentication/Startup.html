@@ -108,7 +108,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#loadUsers(io.quarkus.runtime.StartupEvent)" class="member-name-link">loadUsers</a><wbr>(io.quarkus.runtime.StartupEvent&nbsp;evt)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Loads the users into the database, for development purposes.</div>
+</div>
 </div>
 </div>
 </div>
@@ -145,6 +147,11 @@ loadScripts(document, 'script');</script>
 <h3>loadUsers</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">loadUsers</span><wbr><span class="parameters">(@Observes
  io.quarkus.runtime.StartupEvent&nbsp;evt)</span></div>
+<div class="block">Loads the users into the database, for development purposes. Not recommended for production.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>evt</code> - the startup event</dd>
+</dl>
 </section>
 </li>
 </ul>

@@ -10,12 +10,28 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+/**
+ * A separated resource that sends notifications by SMS and stores the notification in the database
+ *
+ * @see TwilioSMSPlugin
+ * @see NotificationData
+ */
 @Path("/twilio/sms/")
 public class TwilioSMSResource {
 
+    /**
+     * The Twilio configuration
+     */
     @Inject
     TwilioConfig twilioConfig;
 
+    /**
+     * Sends a notification by SMS<br>
+     * Needs authentication to be called<br>
+     *
+     * @param notificationData the notification data
+     * @return true if the notification was sent successfully, false otherwise
+     */
     @Path("/send")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

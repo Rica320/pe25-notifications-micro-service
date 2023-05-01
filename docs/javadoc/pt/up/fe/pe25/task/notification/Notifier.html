@@ -83,6 +83,19 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="annotations">@Entity
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">Notifier</span>
 <span class="extends-implements">extends io.quarkus.hibernate.orm.panache.PanacheEntity</span></div>
+<div class="block">The notifier entity
+ This entity is used to store the notification data for each user</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="NotificationData.html" title="class in pt.up.fe.pe25.task.notification"><code>NotificationData</code></a></li>
+<li><a href="NotificationService.html" title="interface in pt.up.fe.pe25.task.notification"><code>NotificationService</code></a></li>
+<li><a href="NotificationFactory.html" title="interface in pt.up.fe.pe25.task.notification"><code>NotificationFactory</code></a></li>
+<li><a href="NotificationScheduler.html" title="class in pt.up.fe.pe25.task.notification"><code>NotificationScheduler</code></a></li>
+</ul>
+</dd>
+</dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -97,13 +110,19 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code><a href="NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></code></div>
 <div class="col-second even-row-color"><code><a href="#notificationData" class="member-name-link">notificationData</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">The notification data</div>
+</div>
 <div class="col-first odd-row-color"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
 <div class="col-second odd-row-color"><code><a href="#notificationServices" class="member-name-link">notificationServices</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">The notification services</div>
+</div>
 <div class="col-first even-row-color"><code><a href="../../authentication/User.html" title="class in pt.up.fe.pe25.authentication">User</a></code></div>
 <div class="col-second even-row-color"><code><a href="#user" class="member-name-link">user</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">The user that owns this notifier</div>
+</div>
 </div>
 <div class="inherited-list">
 <h3 id="fields-inherited-from-class-io.quarkus.hibernate.orm.panache.PanacheEntity">Fields inherited from class&nbsp;io.quarkus.hibernate.orm.panache.PanacheEntity</h3>
@@ -179,18 +198,21 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="notificationServices">
 <h3>notificationServices</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name">notificationServices</span></div>
+<div class="block">The notification services</div>
 </section>
 </li>
 <li>
 <section class="detail" id="notificationData">
 <h3>notificationData</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></span>&nbsp;<span class="element-name">notificationData</span></div>
+<div class="block">The notification data</div>
 </section>
 </li>
 <li>
 <section class="detail" id="user">
 <h3>user</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../authentication/User.html" title="class in pt.up.fe.pe25.authentication">User</a></span>&nbsp;<span class="element-name">user</span></div>
+<div class="block">The user that owns this notifier</div>
 </section>
 </li>
 </ul>

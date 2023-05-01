@@ -61,9 +61,15 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Class</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="pt/up/fe/pe25/task/notification/plugins/smtp/MailPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.smtp">MailPlugin</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">A plugin that sends notifications by email
+ You can configure the SMTP server in application.properties
+ The email can contain a message, a subject and a list of receivers</div>
+</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="pt/up/fe/pe25/task/notification/plugins/smtp/MailResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.smtp">MailResource</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">A separated resource that sends notifications by email and stores the notification in the database</div>
+</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeam.html" title="class in pt.up.fe.pe25.task.notification.plugins.msteams">MsTeam</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.msteams">MsTeamsPlugin</a></div>
@@ -73,25 +79,52 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="pt/up/fe/pe25/task/notification/NotificationFactory.html" title="interface in pt.up.fe.pe25.task.notification">NotificationFactory</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab1">&nbsp;</div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
+<div class="block">The notification factory interface</div>
+</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="pt/up/fe/pe25/task/notification/NotificationFactoryImpl.html" title="class in pt.up.fe.pe25.task.notification">NotificationFactoryImpl</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">The notification factory</div>
+</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="pt/up/fe/pe25/task/notification/providers/NotificationRateLimitingFilter.html" title="class in pt.up.fe.pe25.task.notification.providers">NotificationRateLimitingFilter</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">A filter that limits the number of requests per minute</div>
+</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="pt/up/fe/pe25/task/notification/NotificationScheduler.html" title="class in pt.up.fe.pe25.task.notification">NotificationScheduler</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">The Notification Scheduler</div>
+</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="pt/up/fe/pe25/task/notification/NotificationScheduler.NotificationJob.html" title="class in pt.up.fe.pe25.task.notification">NotificationScheduler.NotificationJob</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">The notification job
+ Executes the notification service after the notification is triggered</div>
+</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="pt/up/fe/pe25/task/notification/NotificationService.html" title="interface in pt.up.fe.pe25.task.notification">NotificationService</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">&nbsp;</div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
+<div class="block">The notification service interface</div>
+</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="pt/up/fe/pe25/task/notification/Notifier.html" title="class in pt.up.fe.pe25.task.notification">Notifier</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">The notifier entity
+ This entity is used to store the notification data for each user</div>
+</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="pt/up/fe/pe25/task/notification/NotifierResource.html" title="class in pt.up.fe.pe25.task.notification">NotifierResource</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">The notifier resource</div>
+</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="pt/up/fe/pe25/view/NotifierView.html" title="class in pt.up.fe.pe25.view">NotifierView</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="pt/up/fe/pe25/task/notification/plugins/PluginDecorator.html" title="class in pt.up.fe.pe25.task.notification.plugins">PluginDecorator</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">A plugin decorator
+ It is used to decorate a notification service with additional functionality
+ It is used in the <a href="pt/up/fe/pe25/task/notification/plugins/smtp/MailPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.smtp"><code>MailPlugin</code></a> to send notifications by email
+ It is used in the <a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.msteams"><code>MsTeamsPlugin</code></a> to send notifications by webhook in ms teams
+ It is used in the <a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp"><code>WhatsAppPlugin</code></a> to send notifications by whatsapp
+ It is used in the <a href="pt/up/fe/pe25/task/notification/plugins/twilio/sms/TwilioSMSPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio.sms"><code>TwilioSMSPlugin</code></a> to send notifications by sms
+ It is used in the <a href="pt/up/fe/pe25/task/notification/plugins/twilio/voice/TwilioCallPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio.voice"><code>TwilioCallPlugin</code></a> to send notifications by voice
+ It is used in the <a href="pt/up/fe/pe25/task/notification/plugins/smpp/SmsPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.smpp"><code>SmsPlugin</code></a> to send notifications by sms using a smpp server</div>
+</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="pt/up/fe/pe25/task/notification/plugins/smpp/SmsPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.smpp">SmsPlugin</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="pt/up/fe/pe25/task/notification/plugins/smpp/SmsResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.smpp">SmsResource</a></div>
@@ -99,15 +132,29 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="pt/up/fe/pe25/authentication/Startup.html" title="class in pt.up.fe.pe25.authentication">Startup</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="pt/up/fe/pe25/task/notification/plugins/twilio/voice/TwilioCallPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio.voice">TwilioCallPlugin</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">A plugin that phones a list of numbers using Twilio <br>
+ You can configure the Twilio account in application.properties
+ The call can contain a message and a list of receivers</div>
+</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="pt/up/fe/pe25/task/notification/plugins/twilio/voice/TwilioCallResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio.voice">TwilioCallResource</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">A separated resource that sends notifications by SMS and stores the notification in the database</div>
+</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="pt/up/fe/pe25/task/notification/plugins/twilio/TwilioConfig.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio">TwilioConfig</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">The Twilio configuration</div>
+</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="pt/up/fe/pe25/task/notification/plugins/twilio/sms/TwilioSMSPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio.sms">TwilioSMSPlugin</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">A plugin that sends notifications by SMS using Twilio
+ You can configure the Twilio account in application.properties
+ The SMS can contain a message and a list of receivers</div>
+</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="pt/up/fe/pe25/task/notification/plugins/twilio/sms/TwilioSMSResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio.sms">TwilioSMSResource</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">A separated resource that sends notifications by SMS and stores the notification in the database</div>
+</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="pt/up/fe/pe25/authentication/User.html" title="class in pt.up.fe.pe25.authentication">User</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppPlugin</a></div>

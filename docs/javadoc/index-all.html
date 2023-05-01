@@ -67,7 +67,9 @@ loadScripts(document, 'script');</script>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationFactory.html#create(java.util.List)" class="member-name-link">create(List&lt;String&gt;)</a> - Method in interface pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationFactory.html" title="interface in pt.up.fe.pe25.task.notification">NotificationFactory</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationFactoryImpl.html#create(java.util.List)" class="member-name-link">create(List&lt;String&gt;)</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationFactoryImpl.html" title="class in pt.up.fe.pe25.task.notification">NotificationFactoryImpl</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates the notification service chain</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html#createGroup(java.lang.String,java.util.List)" class="member-name-link">createGroup(String, List&lt;String&gt;)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppPlugin</a></dt>
 <dd>
 <div class="block">Creates a new WhatsApp group with the given name and phone numbers.</div>
@@ -75,25 +77,36 @@ loadScripts(document, 'script');</script>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html#createGroup(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">createGroup(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppResource</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotifierResource.html#createNotifier(javax.ws.rs.core.SecurityContext,pt.up.fe.pe25.task.notification.Notifier)" class="member-name-link">createNotifier(SecurityContext, Notifier)</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotifierResource.html" title="class in pt.up.fe.pe25.task.notification">NotifierResource</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates a new notifier
+ Needs authentication to be called</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsResource.html#createTeam(java.lang.String)" class="member-name-link">createTeam(String)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.msteams.<a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.msteams">MsTeamsResource</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:E">E</h2>
 <dl class="index">
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationScheduler.NotificationJob.html#execute(org.quartz.JobExecutionContext)" class="member-name-link">execute(JobExecutionContext)</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationScheduler.NotificationJob.html" title="class in pt.up.fe.pe25.task.notification">NotificationScheduler.NotificationJob</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Executes the notification service</div>
+</dd>
 </dl>
 <h2 class="title" id="I:F">F</h2>
 <dl class="index">
 <dt><a href="pt/up/fe/pe25/task/notification/providers/NotificationRateLimitingFilter.html#filter(javax.ws.rs.container.ContainerRequestContext)" class="member-name-link">filter(ContainerRequestContext)</a> - Method in class pt.up.fe.pe25.task.notification.providers.<a href="pt/up/fe/pe25/task/notification/providers/NotificationRateLimitingFilter.html" title="class in pt.up.fe.pe25.task.notification.providers">NotificationRateLimitingFilter</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Filters the request to check if the number of requests per minute is exceeded</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/authentication/User.html#findByRole(java.lang.String)" class="member-name-link">findByRole(String)</a> - Static method in class pt.up.fe.pe25.authentication.<a href="pt/up/fe/pe25/authentication/User.html" title="class in pt.up.fe.pe25.authentication">User</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Finds a user by role</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/Notifier.html#findByUser(pt.up.fe.pe25.authentication.User)" class="member-name-link">findByUser(User)</a> - Static method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/Notifier.html" title="class in pt.up.fe.pe25.task.notification">Notifier</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/authentication/User.html#findByUsername(java.lang.String)" class="member-name-link">findByUsername(String)</a> - Static method in class pt.up.fe.pe25.authentication.<a href="pt/up/fe/pe25/authentication/User.html" title="class in pt.up.fe.pe25.authentication">User</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Finds a user by username</div>
+</dd>
 </dl>
 <h2 class="title" id="I:G">G</h2>
 <dl class="index">
@@ -134,7 +147,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="pt/up/fe/pe25/task/notification/Notifier.html#getNotificationServices()" class="member-name-link">getNotificationServices()</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/Notifier.html" title="class in pt.up.fe.pe25.task.notification">Notifier</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotifierResource.html#getNotifiers(javax.ws.rs.core.SecurityContext)" class="member-name-link">getNotifiers(SecurityContext)</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotifierResource.html" title="class in pt.up.fe.pe25.task.notification">NotifierResource</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Gets all the notifiers of the user
+ Needs authentication to be called</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#getPhoneList()" class="member-name-link">getPhoneList()</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/twilio/TwilioConfig.html#getPhoneNumber()" class="member-name-link">getPhoneNumber()</a> - Method in class pt.up.fe.pe25.task.notification.plugins.twilio.<a href="pt/up/fe/pe25/task/notification/plugins/twilio/TwilioConfig.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio">TwilioConfig</a></dt>
@@ -162,18 +178,28 @@ loadScripts(document, 'script');</script>
 <h2 class="title" id="I:L">L</h2>
 <dl class="index">
 <dt><a href="pt/up/fe/pe25/authentication/Startup.html#loadUsers(io.quarkus.runtime.StartupEvent)" class="member-name-link">loadUsers(StartupEvent)</a> - Method in class pt.up.fe.pe25.authentication.<a href="pt/up/fe/pe25/authentication/Startup.html" title="class in pt.up.fe.pe25.authentication">Startup</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Loads the users into the database, for development purposes.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:M">M</h2>
 <dl class="index">
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/smtp/MailPlugin.html" class="type-name-link" title="class in pt.up.fe.pe25.task.notification.plugins.smtp">MailPlugin</a> - Class in <a href="pt/up/fe/pe25/task/notification/plugins/smtp/package-summary.html">pt.up.fe.pe25.task.notification.plugins.smtp</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">A plugin that sends notifications by email
+ You can configure the SMTP server in application.properties
+ The email can contain a message, a subject and a list of receivers</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/smtp/MailPlugin.html#%3Cinit%3E()" class="member-name-link">MailPlugin()</a> - Constructor for class pt.up.fe.pe25.task.notification.plugins.smtp.<a href="pt/up/fe/pe25/task/notification/plugins/smtp/MailPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.smtp">MailPlugin</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/smtp/MailPlugin.html#%3Cinit%3E(pt.up.fe.pe25.task.notification.NotificationService,io.quarkus.mailer.reactive.ReactiveMailer,io.quarkus.qute.Template)" class="member-name-link">MailPlugin(NotificationService, ReactiveMailer, Template)</a> - Constructor for class pt.up.fe.pe25.task.notification.plugins.smtp.<a href="pt/up/fe/pe25/task/notification/plugins/smtp/MailPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.smtp">MailPlugin</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates a new MailPlugin</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/smtp/MailResource.html" class="type-name-link" title="class in pt.up.fe.pe25.task.notification.plugins.smtp">MailResource</a> - Class in <a href="pt/up/fe/pe25/task/notification/plugins/smtp/package-summary.html">pt.up.fe.pe25.task.notification.plugins.smtp</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">A separated resource that sends notifications by email and stores the notification in the database</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/smtp/MailResource.html#%3Cinit%3E()" class="member-name-link">MailResource()</a> - Constructor for class pt.up.fe.pe25.task.notification.plugins.smtp.<a href="pt/up/fe/pe25/task/notification/plugins/smtp/MailResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.smtp">MailResource</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeam.html" class="type-name-link" title="class in pt.up.fe.pe25.task.notification.plugins.msteams">MsTeam</a> - Class in <a href="pt/up/fe/pe25/task/notification/plugins/msteams/package-summary.html">pt.up.fe.pe25.task.notification.plugins.msteams</a></dt>
@@ -194,43 +220,69 @@ loadScripts(document, 'script');</script>
 <h2 class="title" id="I:N">N</h2>
 <dl class="index">
 <dt><a href="pt/up/fe/pe25/task/notification/Notifier.html#notificationData" class="member-name-link">notificationData</a> - Variable in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/Notifier.html" title="class in pt.up.fe.pe25.task.notification">Notifier</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">The notification data</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html" class="type-name-link" title="class in pt.up.fe.pe25.task.notification">NotificationData</a> - Class in <a href="pt/up/fe/pe25/task/notification/package-summary.html">pt.up.fe.pe25.task.notification</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#%3Cinit%3E()" class="member-name-link">NotificationData()</a> - Constructor for class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationFactory.html" class="type-name-link" title="interface in pt.up.fe.pe25.task.notification">NotificationFactory</a> - Interface in <a href="pt/up/fe/pe25/task/notification/package-summary.html">pt.up.fe.pe25.task.notification</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">The notification factory interface</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationFactoryImpl.html" class="type-name-link" title="class in pt.up.fe.pe25.task.notification">NotificationFactoryImpl</a> - Class in <a href="pt/up/fe/pe25/task/notification/package-summary.html">pt.up.fe.pe25.task.notification</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">The notification factory</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationFactoryImpl.html#%3Cinit%3E()" class="member-name-link">NotificationFactoryImpl()</a> - Constructor for class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationFactoryImpl.html" title="class in pt.up.fe.pe25.task.notification">NotificationFactoryImpl</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationScheduler.NotificationJob.html#%3Cinit%3E()" class="member-name-link">NotificationJob()</a> - Constructor for class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationScheduler.NotificationJob.html" title="class in pt.up.fe.pe25.task.notification">NotificationScheduler.NotificationJob</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">The default constructor</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/providers/NotificationRateLimitingFilter.html" class="type-name-link" title="class in pt.up.fe.pe25.task.notification.providers">NotificationRateLimitingFilter</a> - Class in <a href="pt/up/fe/pe25/task/notification/providers/package-summary.html">pt.up.fe.pe25.task.notification.providers</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">A filter that limits the number of requests per minute</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/providers/NotificationRateLimitingFilter.html#%3Cinit%3E()" class="member-name-link">NotificationRateLimitingFilter()</a> - Constructor for class pt.up.fe.pe25.task.notification.providers.<a href="pt/up/fe/pe25/task/notification/providers/NotificationRateLimitingFilter.html" title="class in pt.up.fe.pe25.task.notification.providers">NotificationRateLimitingFilter</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationScheduler.html" class="type-name-link" title="class in pt.up.fe.pe25.task.notification">NotificationScheduler</a> - Class in <a href="pt/up/fe/pe25/task/notification/package-summary.html">pt.up.fe.pe25.task.notification</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">The Notification Scheduler</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationScheduler.html#%3Cinit%3E()" class="member-name-link">NotificationScheduler()</a> - Constructor for class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationScheduler.html" title="class in pt.up.fe.pe25.task.notification">NotificationScheduler</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationScheduler.NotificationJob.html" class="type-name-link" title="class in pt.up.fe.pe25.task.notification">NotificationScheduler.NotificationJob</a> - Class in <a href="pt/up/fe/pe25/task/notification/package-summary.html">pt.up.fe.pe25.task.notification</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">The notification job
+ Executes the notification service after the notification is triggered</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/PluginDecorator.html#notificationService" class="member-name-link">notificationService</a> - Variable in class pt.up.fe.pe25.task.notification.plugins.<a href="pt/up/fe/pe25/task/notification/plugins/PluginDecorator.html" title="class in pt.up.fe.pe25.task.notification.plugins">PluginDecorator</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">The wrapped notification service</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationService.html" class="type-name-link" title="interface in pt.up.fe.pe25.task.notification">NotificationService</a> - Interface in <a href="pt/up/fe/pe25/task/notification/package-summary.html">pt.up.fe.pe25.task.notification</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">The notification service interface</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/Notifier.html#notificationServices" class="member-name-link">notificationServices</a> - Variable in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/Notifier.html" title="class in pt.up.fe.pe25.task.notification">Notifier</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">The notification services</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/view/NotifierView.html#notifier()" class="member-name-link">notifier()</a> - Method in class pt.up.fe.pe25.view.<a href="pt/up/fe/pe25/view/NotifierView.html" title="class in pt.up.fe.pe25.view">NotifierView</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/Notifier.html" class="type-name-link" title="class in pt.up.fe.pe25.task.notification">Notifier</a> - Class in <a href="pt/up/fe/pe25/task/notification/package-summary.html">pt.up.fe.pe25.task.notification</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">The notifier entity
+ This entity is used to store the notification data for each user</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/Notifier.html#%3Cinit%3E()" class="member-name-link">Notifier()</a> - Constructor for class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/Notifier.html" title="class in pt.up.fe.pe25.task.notification">Notifier</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotifierResource.html" class="type-name-link" title="class in pt.up.fe.pe25.task.notification">NotifierResource</a> - Class in <a href="pt/up/fe/pe25/task/notification/package-summary.html">pt.up.fe.pe25.task.notification</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">The notifier resource</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotifierResource.html#%3Cinit%3E()" class="member-name-link">NotifierResource()</a> - Constructor for class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotifierResource.html" title="class in pt.up.fe.pe25.task.notification">NotifierResource</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/view/NotifierView.html" class="type-name-link" title="class in pt.up.fe.pe25.view">NotifierView</a> - Class in <a href="pt/up/fe/pe25/view/package-summary.html">pt.up.fe.pe25.view</a></dt>
@@ -242,17 +294,28 @@ loadScripts(document, 'script');</script>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsPlugin.html#notify(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">notify(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.msteams.<a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.msteams">MsTeamsPlugin</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/PluginDecorator.html#notify(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">notify(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.<a href="pt/up/fe/pe25/task/notification/plugins/PluginDecorator.html" title="class in pt.up.fe.pe25.task.notification.plugins">PluginDecorator</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Sends a notification ... calling the wrapped notification service</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/smpp/SmsPlugin.html#notify(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">notify(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.smpp.<a href="pt/up/fe/pe25/task/notification/plugins/smpp/SmsPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.smpp">SmsPlugin</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/smtp/MailPlugin.html#notify(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">notify(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.smtp.<a href="pt/up/fe/pe25/task/notification/plugins/smtp/MailPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.smtp">MailPlugin</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Sends a notification by email ... calling the wrapped notification service before</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/smtp/MailResource.html#notify(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">notify(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.smtp.<a href="pt/up/fe/pe25/task/notification/plugins/smtp/MailResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.smtp">MailResource</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Sends a notification by email
+ Needs authentication to be called</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/twilio/sms/TwilioSMSPlugin.html#notify(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">notify(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.twilio.sms.<a href="pt/up/fe/pe25/task/notification/plugins/twilio/sms/TwilioSMSPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio.sms">TwilioSMSPlugin</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Sends a notification by SMS ... calling the wrapped notification service before</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/twilio/voice/TwilioCallPlugin.html#notify(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">notify(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.twilio.voice.<a href="pt/up/fe/pe25/task/notification/plugins/twilio/voice/TwilioCallPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio.voice">TwilioCallPlugin</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Sends a notification by SMS ... calling the wrapped notification service before</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html#notify(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">notify(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppPlugin</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -261,9 +324,20 @@ loadScripts(document, 'script');</script>
 <dt><a href="pt/up/fe/pe25/authentication/User.html#password" class="member-name-link">password</a> - Variable in class pt.up.fe.pe25.authentication.<a href="pt/up/fe/pe25/authentication/User.html" title="class in pt.up.fe.pe25.authentication">User</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/PluginDecorator.html" class="type-name-link" title="class in pt.up.fe.pe25.task.notification.plugins">PluginDecorator</a> - Class in <a href="pt/up/fe/pe25/task/notification/plugins/package-summary.html">pt.up.fe.pe25.task.notification.plugins</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">A plugin decorator
+ It is used to decorate a notification service with additional functionality
+ It is used in the <a href="pt/up/fe/pe25/task/notification/plugins/smtp/MailPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.smtp"><code>MailPlugin</code></a> to send notifications by email
+ It is used in the <a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.msteams"><code>MsTeamsPlugin</code></a> to send notifications by webhook in ms teams
+ It is used in the <a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp"><code>WhatsAppPlugin</code></a> to send notifications by whatsapp
+ It is used in the <a href="pt/up/fe/pe25/task/notification/plugins/twilio/sms/TwilioSMSPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio.sms"><code>TwilioSMSPlugin</code></a> to send notifications by sms
+ It is used in the <a href="pt/up/fe/pe25/task/notification/plugins/twilio/voice/TwilioCallPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio.voice"><code>TwilioCallPlugin</code></a> to send notifications by voice
+ It is used in the <a href="pt/up/fe/pe25/task/notification/plugins/smpp/SmsPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.smpp"><code>SmsPlugin</code></a> to send notifications by sms using a smpp server</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/PluginDecorator.html#%3Cinit%3E(pt.up.fe.pe25.task.notification.NotificationService)" class="member-name-link">PluginDecorator(NotificationService)</a> - Constructor for class pt.up.fe.pe25.task.notification.plugins.<a href="pt/up/fe/pe25/task/notification/plugins/PluginDecorator.html" title="class in pt.up.fe.pe25.task.notification.plugins">PluginDecorator</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates a new PluginDecorator</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/authentication/package-summary.html">pt.up.fe.pe25.authentication</a> - package pt.up.fe.pe25.authentication</dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/package-summary.html">pt.up.fe.pe25.task.notification</a> - package pt.up.fe.pe25.task.notification</dt>
@@ -299,7 +373,9 @@ loadScripts(document, 'script');</script>
 <h2 class="title" id="I:S">S</h2>
 <dl class="index">
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationScheduler.html#scheduleNotification(pt.up.fe.pe25.task.notification.NotificationData,pt.up.fe.pe25.task.notification.NotificationService)" class="member-name-link">scheduleNotification(NotificationData, NotificationService)</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationScheduler.html" title="class in pt.up.fe.pe25.task.notification">NotificationScheduler</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Schedules a notification</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html#sendLinkMessage(java.lang.String,java.lang.String,java.lang.String)" class="member-name-link">sendLinkMessage(String, String, String)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppPlugin</a></dt>
 <dd>
 <div class="block">Used to send a link message to an individual person or group chat.</div>
@@ -329,9 +405,15 @@ loadScripts(document, 'script');</script>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/smpp/SmsResource.html#sendMessage(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendMessage(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.smpp.<a href="pt/up/fe/pe25/task/notification/plugins/smpp/SmsResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.smpp">SmsResource</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/twilio/sms/TwilioSMSResource.html#sendMessage(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendMessage(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.twilio.sms.<a href="pt/up/fe/pe25/task/notification/plugins/twilio/sms/TwilioSMSResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio.sms">TwilioSMSResource</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Sends a notification by SMS
+ Needs authentication to be called</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/twilio/voice/TwilioCallResource.html#sendMessage(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendMessage(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.twilio.voice.<a href="pt/up/fe/pe25/task/notification/plugins/twilio/voice/TwilioCallResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio.voice">TwilioCallResource</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Sends a notification by SMS
+ Needs authentication to be called</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsPlugin.html#sendMessages(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendMessages(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.msteams.<a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.msteams">MsTeamsPlugin</a></dt>
 <dd>
 <div class="block">Send a message to all teams.</div>
@@ -375,7 +457,9 @@ loadScripts(document, 'script');</script>
 <dt><a href="pt/up/fe/pe25/task/notification/Notifier.html#setNotificationServices(java.util.List)" class="member-name-link">setNotificationServices(List&lt;String&gt;)</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/Notifier.html" title="class in pt.up.fe.pe25.task.notification">Notifier</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/authentication/User.html#setPassword(java.lang.String)" class="member-name-link">setPassword(String)</a> - Method in class pt.up.fe.pe25.authentication.<a href="pt/up/fe/pe25/authentication/User.html" title="class in pt.up.fe.pe25.authentication">User</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">sets User's password</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#setPhoneList(java.util.List)" class="member-name-link">setPhoneList(List&lt;String&gt;)</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#setReceiver(java.lang.String)" class="member-name-link">setReceiver(String)</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
@@ -383,7 +467,9 @@ loadScripts(document, 'script');</script>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#setReceiverEmails(java.util.List)" class="member-name-link">setReceiverEmails(List&lt;String&gt;)</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/authentication/User.html#setRole(java.util.List)" class="member-name-link">setRole(List&lt;String&gt;)</a> - Method in class pt.up.fe.pe25.authentication.<a href="pt/up/fe/pe25/authentication/User.html" title="class in pt.up.fe.pe25.authentication">User</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">sets User's roles</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#setSubject(java.lang.String)" class="member-name-link">setSubject(String)</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#setTeams(java.util.List)" class="member-name-link">setTeams(List&lt;Long&gt;)</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
@@ -408,27 +494,45 @@ loadScripts(document, 'script');</script>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#teams" class="member-name-link">teams</a> - Variable in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/twilio/voice/TwilioCallPlugin.html" class="type-name-link" title="class in pt.up.fe.pe25.task.notification.plugins.twilio.voice">TwilioCallPlugin</a> - Class in <a href="pt/up/fe/pe25/task/notification/plugins/twilio/voice/package-summary.html">pt.up.fe.pe25.task.notification.plugins.twilio.voice</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">A plugin that phones a list of numbers using Twilio <br>
+ You can configure the Twilio account in application.properties
+ The call can contain a message and a list of receivers</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/twilio/voice/TwilioCallPlugin.html#%3Cinit%3E(pt.up.fe.pe25.task.notification.NotificationService)" class="member-name-link">TwilioCallPlugin(NotificationService)</a> - Constructor for class pt.up.fe.pe25.task.notification.plugins.twilio.voice.<a href="pt/up/fe/pe25/task/notification/plugins/twilio/voice/TwilioCallPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio.voice">TwilioCallPlugin</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/twilio/voice/TwilioCallPlugin.html#%3Cinit%3E(pt.up.fe.pe25.task.notification.NotificationService,pt.up.fe.pe25.task.notification.plugins.twilio.TwilioConfig)" class="member-name-link">TwilioCallPlugin(NotificationService, TwilioConfig)</a> - Constructor for class pt.up.fe.pe25.task.notification.plugins.twilio.voice.<a href="pt/up/fe/pe25/task/notification/plugins/twilio/voice/TwilioCallPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio.voice">TwilioCallPlugin</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates a new TwilioCallPlugin</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/twilio/voice/TwilioCallResource.html" class="type-name-link" title="class in pt.up.fe.pe25.task.notification.plugins.twilio.voice">TwilioCallResource</a> - Class in <a href="pt/up/fe/pe25/task/notification/plugins/twilio/voice/package-summary.html">pt.up.fe.pe25.task.notification.plugins.twilio.voice</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">A separated resource that sends notifications by SMS and stores the notification in the database</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/twilio/voice/TwilioCallResource.html#%3Cinit%3E()" class="member-name-link">TwilioCallResource()</a> - Constructor for class pt.up.fe.pe25.task.notification.plugins.twilio.voice.<a href="pt/up/fe/pe25/task/notification/plugins/twilio/voice/TwilioCallResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio.voice">TwilioCallResource</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/twilio/TwilioConfig.html" class="type-name-link" title="class in pt.up.fe.pe25.task.notification.plugins.twilio">TwilioConfig</a> - Class in <a href="pt/up/fe/pe25/task/notification/plugins/twilio/package-summary.html">pt.up.fe.pe25.task.notification.plugins.twilio</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">The Twilio configuration</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/twilio/TwilioConfig.html#%3Cinit%3E()" class="member-name-link">TwilioConfig()</a> - Constructor for class pt.up.fe.pe25.task.notification.plugins.twilio.<a href="pt/up/fe/pe25/task/notification/plugins/twilio/TwilioConfig.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio">TwilioConfig</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/twilio/sms/TwilioSMSPlugin.html" class="type-name-link" title="class in pt.up.fe.pe25.task.notification.plugins.twilio.sms">TwilioSMSPlugin</a> - Class in <a href="pt/up/fe/pe25/task/notification/plugins/twilio/sms/package-summary.html">pt.up.fe.pe25.task.notification.plugins.twilio.sms</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">A plugin that sends notifications by SMS using Twilio
+ You can configure the Twilio account in application.properties
+ The SMS can contain a message and a list of receivers</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/twilio/sms/TwilioSMSPlugin.html#%3Cinit%3E(pt.up.fe.pe25.task.notification.NotificationService)" class="member-name-link">TwilioSMSPlugin(NotificationService)</a> - Constructor for class pt.up.fe.pe25.task.notification.plugins.twilio.sms.<a href="pt/up/fe/pe25/task/notification/plugins/twilio/sms/TwilioSMSPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio.sms">TwilioSMSPlugin</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/twilio/sms/TwilioSMSPlugin.html#%3Cinit%3E(pt.up.fe.pe25.task.notification.NotificationService,pt.up.fe.pe25.task.notification.plugins.twilio.TwilioConfig)" class="member-name-link">TwilioSMSPlugin(NotificationService, TwilioConfig)</a> - Constructor for class pt.up.fe.pe25.task.notification.plugins.twilio.sms.<a href="pt/up/fe/pe25/task/notification/plugins/twilio/sms/TwilioSMSPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio.sms">TwilioSMSPlugin</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates a new TwilioSMSPlugin</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/twilio/sms/TwilioSMSResource.html" class="type-name-link" title="class in pt.up.fe.pe25.task.notification.plugins.twilio.sms">TwilioSMSResource</a> - Class in <a href="pt/up/fe/pe25/task/notification/plugins/twilio/sms/package-summary.html">pt.up.fe.pe25.task.notification.plugins.twilio.sms</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">A separated resource that sends notifications by SMS and stores the notification in the database</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/twilio/sms/TwilioSMSResource.html#%3Cinit%3E()" class="member-name-link">TwilioSMSResource()</a> - Constructor for class pt.up.fe.pe25.task.notification.plugins.twilio.sms.<a href="pt/up/fe/pe25/task/notification/plugins/twilio/sms/TwilioSMSResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio.sms">TwilioSMSResource</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -439,7 +543,9 @@ loadScripts(document, 'script');</script>
 <div class="block">Adds or removes a phone number from a WhatsApp group.</div>
 </dd>
 <dt><a href="pt/up/fe/pe25/task/notification/Notifier.html#user" class="member-name-link">user</a> - Variable in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/Notifier.html" title="class in pt.up.fe.pe25.task.notification">Notifier</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">The user that owns this notifier</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/authentication/User.html" class="type-name-link" title="class in pt.up.fe.pe25.authentication">User</a> - Class in <a href="pt/up/fe/pe25/authentication/package-summary.html">pt.up.fe.pe25.authentication</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/authentication/User.html#%3Cinit%3E()" class="member-name-link">User()</a> - Constructor for class pt.up.fe.pe25.authentication.<a href="pt/up/fe/pe25/authentication/User.html" title="class in pt.up.fe.pe25.authentication">User</a></dt>
