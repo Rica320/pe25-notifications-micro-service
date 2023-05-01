@@ -39,7 +39,7 @@ public class NotificationData {
     @Column(name = "longitude")
     private String longitude;
 
-    @Column(name = "media")
+    @Column(name = "media", columnDefinition = "TEXT")
     private String media;
 
     @Column(name = "group_name")
