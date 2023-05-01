@@ -8,7 +8,14 @@ repositories {
     mavenLocal()
 }
 
+configurations {
+    implementation.canBeResolved = true
+}
+
+
+
 dependencies {
+    implementation 'com.google.guava:guava:31.0.1-jre'
     implementation 'io.quarkus:quarkus-smallrye-openapi'
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
     implementation 'io.quarkus:quarkus-hibernate-validator'
@@ -38,6 +45,22 @@ dependencies {
     testImplementation 'org.mockito:mockito-junit-jupiter:3.12.4'
 
 }
+
+task generateJavadoc(type: Javadoc) {
+    source = sourceSets.main.allJava
+    classpath += configurations.runtimeClasspath
+
+    options {
+        encoding = 'UTF-8'
+        windowTitle = 'My Project Javadoc'
+        docTitle = 'My Project Javadoc'
+        header = 'My Project Javadoc'
+    }
+
+    exclude '**/package-info.java'
+    destinationDir = file("docs/javadoc")
+}
+
 
 group 'pt.up.fe.pe25'
 version '1.0.0-SNAPSHOT'

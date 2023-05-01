@@ -1,0 +1,12 @@
+pt.up.fe.pe25.authentication
+pt.up.fe.pe25.task.notification
+pt.up.fe.pe25.task.notification.plugins
+pt.up.fe.pe25.task.notification.plugins.msteams
+pt.up.fe.pe25.task.notification.plugins.smpp
+pt.up.fe.pe25.task.notification.plugins.smtp
+pt.up.fe.pe25.task.notification.plugins.twilio
+pt.up.fe.pe25.task.notification.plugins.twilio.sms
+pt.up.fe.pe25.task.notification.plugins.twilio.voice
+pt.up.fe.pe25.task.notification.plugins.whatsapp
+pt.up.fe.pe25.task.notification.providers
+pt.up.fe.pe25.view
