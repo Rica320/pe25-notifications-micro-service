@@ -23,6 +23,7 @@ public class NotifierView {
         notificationServices.add("email");
         notificationServices.add("sms");
         notificationServices.add("whatsapp");
+        notificationServices.add("tCall");
         view.data("service", notificationServices);
 
         TemplateInstance instance = view.instance();

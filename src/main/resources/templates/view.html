@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Send Notification</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -143,6 +147,28 @@
         margin-top: 5px;
     }
 
+    #warning {
+        padding-left: 1em;
+        padding-right: 1em;
+        padding-top: 0.5em;
+
+        border: 1px solid black;
+        position: fixed;
+        bottom: 10px;
+        right: 3em;
+        margin-right: 2em;
+        display: none;
+    }
+
+
+    #notifier-form *{
+        margin: 0;
+    }
+    #notifier-form>div>label{
+        margin-bottom: 0.5em;
+        margin-top: 1em;
+    }
+
 </style>
 <form method="POST" action="/notifier" id="notifier-form">
     <div>
@@ -151,6 +177,7 @@
             <option value="email">Email</option>
             <option value="sms">SMS</option>
             <option value="whatsapp">WhatsApp</option>
+            <option value="tCall">Call</option>
         </select>
     </div>
     <div>
@@ -158,8 +185,8 @@
         <textarea id="receiverEmails" name="receiverEmails" required></textarea>
     </div>
     <div>
-        <label for="receiverPhone">Receiver Phone:</label>
-        <input id="receiverPhone" type="text" name="receiverPhones"/>
+        <label for="phoneList">Receiver Phone:</label>
+        <input id="phoneList" type="text" name="phoneList"/>
     </div>
     <div>
         <label for="message">Message:</label>
@@ -167,6 +194,14 @@
     </div>
     <input type="submit" value="Send"/>
 </form>
+
+<div class="alert alert-warning alert-dismissible fade show" role="alert" id="warning">
+    Your message goes here.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
 
 <script>
     const form = document.querySelector('#notifier-form');
@@ -176,12 +211,12 @@
 
         const notificationServices = Array.from(form.service.selectedOptions).map(option => option.value);
         const notificationData = {
-            ticketId: "UMGrupo",
             receiverEmails: form.receiverEmails.value.split(',').map(email => email.trim()),
             dateToSend: "2023-03-19T15:47:00",
-            receiverPhone: form.receiverPhone.value,
+            phoneList: [form.phoneList.value],
             message: form.message.value
         };
+        console.log(notificationServices, notificationData)
 
         fetch('/notifier', {
             method: 'POST',
@@ -195,8 +230,29 @@
             })
         })
             .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error(error));
+            .then(data => {
+                const warning = document.getElementById('warning');
+                warning.style.display = 'block';
+                warning.classList.remove("alert-warning")
+                warning.classList.add("alert-success")
+                warning.textContent = "Message sent successfully."
+                console.log(data)
+                setTimeout(() => {
+                    warning.style.display = 'none';
+                }, 3000);
+            })
+            .catch(error => {
+                const warning = document.getElementById('warning');
+                warning.style.display = 'block';
+                warning.classList.remove("alert-success")
+                warning.classList.add("alert-warning")
+                warning.textContent = "Something went wrong. Please try again later."
+
+                setTimeout(() => {
+                    warning.style.display = 'none';
+                }, 3000);
+
+            });
     });
 </script>
 
