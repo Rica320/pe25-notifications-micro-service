@@ -85,6 +85,10 @@ public class NotificationData {
         return teams;
     }
 
+    public void setTeams(List<Long> teams) {
+        this.teams = teams;
+    }
+
     public String getLink() {
         return link;
     }

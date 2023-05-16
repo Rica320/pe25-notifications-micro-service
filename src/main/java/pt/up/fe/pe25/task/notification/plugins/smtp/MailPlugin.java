@@ -13,7 +13,6 @@ import pt.up.fe.pe25.task.notification.NotificationData;
 import pt.up.fe.pe25.task.notification.NotificationService;
 import pt.up.fe.pe25.task.notification.plugins.PluginDecorator;
 
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.sql.DataSource;
 import java.io.*;
@@ -21,7 +20,6 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
-@RequestScoped
 public class MailPlugin extends PluginDecorator {
 
     ReactiveMailer mailer;
@@ -54,8 +52,8 @@ public class MailPlugin extends PluginDecorator {
         for (String base64 : base64s) {
             try {
                 attachments.add(getAttachment(base64));
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (IOException ignored) {
+
             }
         }
     }
@@ -66,7 +64,7 @@ public class MailPlugin extends PluginDecorator {
             super.notify(notificationData);
 
         List<Attachment> attachments = new ArrayList<>();
-        System.out.println(notificationData.getAttachments());
+
         if (notificationData.getAttachments() != null)
             addAttachments(attachments, notificationData.getAttachments());
 

@@ -1,6 +1,15 @@
 plugins {
     id 'java'
     id 'io.quarkus'
+    id "org.sonarqube" version "3.5.0.2730"
+}
+
+sonarqube {
+  properties {
+    property "sonar.projectKey", "Rica320_pe25-notifications-micro-service"
+    property "sonar.organization", "rica320"
+    property "sonar.host.url", "https://sonarcloud.io"
+  }
 }
 
 repositories {
@@ -34,6 +43,8 @@ dependencies {
     implementation 'io.github.cdimascio:dotenv-java:2.3.2'
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
+    testImplementation 'org.mockito:mockito-core:3.12.4'
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.12.4'
 
 }
 
