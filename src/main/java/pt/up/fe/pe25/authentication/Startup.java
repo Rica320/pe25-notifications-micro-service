@@ -12,6 +12,10 @@ import java.util.List;
 
 @Singleton
 public class Startup {
+    /**
+     * Loads the users into the database, for development purposes. Not recommended for production.
+     * @param evt the startup event
+     */
     @Transactional
     public void loadUsers(@Observes StartupEvent evt) {
         User.deleteAll();

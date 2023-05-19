@@ -7,6 +7,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.time.LocalDateTime;
 
+/**
+ * A entity that represents a Whatsapp Group
+ *
+ * @see PanacheEntity
+ */
 @Entity
 public class WhatsAppGroup extends PanacheEntity {
     WhatsAppGroup() {}

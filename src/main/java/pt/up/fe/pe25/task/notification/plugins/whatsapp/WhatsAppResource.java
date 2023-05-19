@@ -13,6 +13,14 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
 import java.util.List;
 
+/**
+ * A separated resource that sends notifications by WhatsApp and stores the notification in the database
+ *
+ * @see WhatsAppPlugin
+ * @see NotificationData
+ * @see Notifier
+ * @see Whatsapp
+ */
 @Path("/whatsapp")
 public class WhatsAppResource {
 

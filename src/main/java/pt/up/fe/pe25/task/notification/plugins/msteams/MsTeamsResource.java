@@ -14,6 +14,12 @@ import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
+/**
+ * A separated resource that sends notifications by MS Teams and stores the notification in the database
+ *
+ * @see MsTeamsPlugin
+ * @see NotificationData
+ */
 @Path("/msteams")
 public class MsTeamsResource {
     @Inject

@@ -11,6 +11,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+/**
+ * A separated resource that sends notifications by SMS (SMPP) and stores the notification in the database
+ */
 @Path("/sms")
 public class SmsResource {
     @Path("/message")

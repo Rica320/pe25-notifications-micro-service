@@ -14,7 +14,7 @@ import io.quarkus.security.jpa.Username;
 import java.util.List;
 
 @Entity
-@Table(name = "test_user")
+@Table(name = "user")
 @UserDefinition
 public class User extends PanacheEntity {
     @Username
@@ -39,18 +39,36 @@ public class User extends PanacheEntity {
         user.persist();
     }
 
+    /**
+     * Finds a user by username
+     * @param username the username
+     * @return the user
+     */
     public static User findByUsername(String username) {
         return find("username", username).firstResult();
     }
 
+    /**
+     * Finds a user by role
+     * @param role the role
+     * @return a list of users
+     */
     public static List<User> findByRole(String role) {
         return find("role", role).list();
     }
 
+    /**
+     * sets User's password
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     * sets User's roles
+     * @param role
+     */
     public void setRole(List<String> role) {
         this.role = role;
     }

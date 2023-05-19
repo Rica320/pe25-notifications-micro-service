@@ -10,18 +10,46 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
 
+/**
+ * A plugin decorator <br>
+ * It is used to decorate a notification service with additional functionality <br>
+ * It is used in the {@link pt.up.fe.pe25.task.notification.plugins.smtp.MailPlugin} to send notifications by email<br>
+ * It is used in the {@link pt.up.fe.pe25.task.notification.plugins.msteams.MsTeamsPlugin} to send notifications by webhook in ms teams<br>
+ * It is used in the {@link pt.up.fe.pe25.task.notification.plugins.whatsapp.WhatsAppPlugin} to send notifications by whatsapp<br>
+ * It is used in the {@link pt.up.fe.pe25.task.notification.plugins.twilio.sms.TwilioSMSPlugin} to send notifications by sms<br>
+ * It is used in the {@link pt.up.fe.pe25.task.notification.plugins.twilio.voice.TwilioCallPlugin} to send notifications by voice<br>
+ * It is used in the {@link pt.up.fe.pe25.task.notification.plugins.smpp.SmsPlugin} to send notifications by sms using a smpp server<br>
+ *
+ * @see NotificationService
+ * @see NotificationData
+ */
 public abstract class PluginDecorator implements NotificationService {
 
-        protected final NotificationService notificationService;
+    /**
+     * The wrapped notification service
+     *
+     * @see NotificationService
+     * @see NotificationData
+     */
+    protected final NotificationService notificationService;
 
-        public PluginDecorator(NotificationService notificationService) {
-            this.notificationService = notificationService;
-        }
+    /**
+     * Creates a new PluginDecorator
+     * @param notificationService the notification service to be wrapped
+     */
+    public PluginDecorator(NotificationService notificationService) {
+        this.notificationService = notificationService;
+    }
 
-        @Override
-        public boolean notify(NotificationData notificationData) {
-            return notificationService.notify(notificationData);
-        }
+    /**
+     * Sends a notification ... calling the wrapped notification service
+     * @param notificationData the notification data
+     * @return true if the notification was sent successfully, false otherwise
+     */
+    @Override
+    public boolean notify(NotificationData notificationData) {
+        return notificationService.notify(notificationData);
+    }
 
     /**
      * Sends an HTTP request to the specified URL with the given request body, HTTP method, and headers.

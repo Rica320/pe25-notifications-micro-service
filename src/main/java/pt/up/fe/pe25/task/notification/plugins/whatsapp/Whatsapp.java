@@ -10,6 +10,14 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * A entity that represents a Whatsapp notification
+ *
+ * @see NotificationData
+ * @see User
+ * @see PanacheEntity
+ * @see Entity
+ */
 @Entity
 public class Whatsapp extends PanacheEntity{
 
