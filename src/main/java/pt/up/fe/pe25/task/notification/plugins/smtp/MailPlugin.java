@@ -71,7 +71,8 @@ public class MailPlugin extends PluginDecorator {
 
         boolean valid = true;
         for (String email : notificationData.getReceiverEmails()) {
-            if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+
+            if (!email.matches("^[a-z0-9]+@[a-z]+\\.[a-z]{2,3}")) {
                 valid = false;
                 continue;
             }
