@@ -61,7 +61,7 @@ public abstract class PluginDecorator implements NotificationService {
                 }
                 br.close();
 
-                System.out.println("Response body: " + response);
+                //System.out.println("Response body: " + response);
 
                 return new JSONObject("{message:" + response.toString() + "}");
             } else {
