@@ -17,6 +17,15 @@ import pt.up.fe.pe25.task.notification.plugins.PluginDecorator;
 
 import java.io.IOException;
 
+/**
+ * A plugin that sends notifications by sms (SMPP)<br>
+ * You can configure the SMPP server in application.properties<br>
+ *
+ * @see NotificationService
+ * @see PluginDecorator
+ * @see SMPPSession
+ * @see SubmitSmResult
+ */
 public class SmsPlugin extends PluginDecorator {
     private static final TimeFormatter TIME_FORMATTER = new AbsoluteTimeFormatter();
     private String host;
@@ -34,16 +43,25 @@ public class SmsPlugin extends PluginDecorator {
         this.sender = ConfigProvider.getConfig().getValue("pt.fe.up.pe25.smpp.sender", String.class);
     }
 
+    /**
+     * Sends a notification by sms using the SMPP protocol
+     * @param notificationData the notification data
+     * @return true if the notification was sent successfully
+     */
     @Override
     public boolean notify(NotificationData notificationData){
         if (notificationService != null)
             super.notify(notificationData);
 
-        sendMessage(notificationData);
-        return false;
+        return sendMessage(notificationData);
     }
 
-    public void sendMessage(NotificationData notificationData) {
+    /**
+     * Sends a message to a list of phone numbers
+     * @param notificationData
+     * @return success or failure on sending the message
+     */
+    public boolean sendMessage(NotificationData notificationData) {
 
         SMPPSession session = new SMPPSession();
         try {
@@ -72,7 +90,8 @@ public class SmsPlugin extends PluginDecorator {
 
         } catch (IOException e) {
             // Failed connect and bind to host
-            throw new IllegalArgumentException(e);
+            return false;
         }
+        return true;
     }
 }

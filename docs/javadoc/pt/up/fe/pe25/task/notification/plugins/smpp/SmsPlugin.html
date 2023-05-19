@@ -84,6 +84,19 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">SmsPlugin</span>
 <span class="extends-implements">extends <a href="../PluginDecorator.html" title="class in pt.up.fe.pe25.task.notification.plugins">PluginDecorator</a></span></div>
+<div class="block">A plugin that sends notifications by sms (SMPP)<br>
+ You can configure the SMPP server in application.properties<br></div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../NotificationService.html" title="interface in pt.up.fe.pe25.task.notification"><code>NotificationService</code></a></li>
+<li><a href="../PluginDecorator.html" title="class in pt.up.fe.pe25.task.notification.plugins"><code>PluginDecorator</code></a></li>
+<li><code>SMPPSession</code></li>
+<li><code>SubmitSmResult</code></li>
+</ul>
+</dd>
+</dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -123,11 +136,13 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#notify(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">notify</a><wbr>(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Sends a notification ... calling the wrapped notification service</div>
+<div class="block">Sends a notification by sms using the SMPP protocol</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sendMessage(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendMessage</a><wbr>(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sends a message to a list of phone numbers</div>
+</div>
 </div>
 </div>
 </div>
@@ -166,8 +181,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="notify(pt.up.fe.pe25.task.notification.NotificationData)">
 <h3>notify</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">notify</span><wbr><span class="parameters">(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</span></div>
-<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="../PluginDecorator.html#notify(pt.up.fe.pe25.task.notification.NotificationData)">PluginDecorator</a></code></span></div>
-<div class="block">Sends a notification ... calling the wrapped notification service</div>
+<div class="block">Sends a notification by sms using the SMPP protocol</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../NotificationService.html#notify(pt.up.fe.pe25.task.notification.NotificationData)">notify</a></code>&nbsp;in interface&nbsp;<code><a href="../../NotificationService.html" title="interface in pt.up.fe.pe25.task.notification">NotificationService</a></code></dd>
@@ -176,14 +190,21 @@ loadScripts(document, 'script');</script>
 <dt>Parameters:</dt>
 <dd><code>notificationData</code> - the notification data</dd>
 <dt>Returns:</dt>
-<dd>true if the notification was sent successfully, false otherwise</dd>
+<dd>true if the notification was sent successfully</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="sendMessage(pt.up.fe.pe25.task.notification.NotificationData)">
 <h3>sendMessage</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">sendMessage</span><wbr><span class="parameters">(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">sendMessage</span><wbr><span class="parameters">(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</span></div>
+<div class="block">Sends a message to a list of phone numbers</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>notificationData</code> - </dd>
+<dt>Returns:</dt>
+<dd>success or failure on sending the message</dd>
+</dl>
 </section>
 </li>
 </ul>

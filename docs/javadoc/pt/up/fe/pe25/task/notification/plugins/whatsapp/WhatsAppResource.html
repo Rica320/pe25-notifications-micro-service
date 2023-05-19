@@ -79,6 +79,18 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="annotations">@Path("/whatsapp")
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">WhatsAppResource</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">A separated resource that sends notifications by WhatsApp and stores the notification in the database</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp"><code>WhatsAppPlugin</code></a></li>
+<li><a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification"><code>NotificationData</code></a></li>
+<li><a href="../../Notifier.html" title="class in pt.up.fe.pe25.task.notification"><code>Notifier</code></a></li>
+<li><a href="Whatsapp.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp"><code>Whatsapp</code></a></li>
+</ul>
+</dd>
+</dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -107,25 +119,38 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>javax.ws.rs.core.Response</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addToGroup(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">addToGroup</a><wbr>(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addToGroup(javax.ws.rs.core.SecurityContext,pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">addToGroup</a><wbr>(javax.ws.rs.core.SecurityContext&nbsp;securityContext,
+ <a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>javax.ws.rs.core.Response</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createGroup(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">createGroup</a><wbr>(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createGroup(javax.ws.rs.core.SecurityContext,pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">createGroup</a><wbr>(javax.ws.rs.core.SecurityContext&nbsp;securityContext,
+ <a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>javax.ws.rs.core.Response</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeFromGroup(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">removeFromGroup</a><wbr>(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGroups(javax.ws.rs.core.SecurityContext)" class="member-name-link">getGroups</a><wbr>(javax.ws.rs.core.SecurityContext&nbsp;securityContext)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>javax.ws.rs.core.Response</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sendLinkMessage(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendLinkMessage</a><wbr>(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getWhatsapps(javax.ws.rs.core.SecurityContext)" class="member-name-link">getWhatsapps</a><wbr>(javax.ws.rs.core.SecurityContext&nbsp;securityContext)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>javax.ws.rs.core.Response</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sendLocationMessage(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendLocationMessage</a><wbr>(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeFromGroup(javax.ws.rs.core.SecurityContext,pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">removeFromGroup</a><wbr>(javax.ws.rs.core.SecurityContext&nbsp;securityContext,
+ <a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>javax.ws.rs.core.Response</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sendMediaMessage(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendMediaMessage</a><wbr>(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sendLinkMessage(javax.ws.rs.core.SecurityContext,pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendLinkMessage</a><wbr>(javax.ws.rs.core.SecurityContext&nbsp;securityContext,
+ <a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>javax.ws.rs.core.Response</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sendTextMessage(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendTextMessage</a><wbr>(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sendLocationMessage(javax.ws.rs.core.SecurityContext,pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendLocationMessage</a><wbr>(javax.ws.rs.core.SecurityContext&nbsp;securityContext,
+ <a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>javax.ws.rs.core.Response</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sendMediaMessage(javax.ws.rs.core.SecurityContext,pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendMediaMessage</a><wbr>(javax.ws.rs.core.SecurityContext&nbsp;securityContext,
+ <a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>javax.ws.rs.core.Response</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sendTextMessage(javax.ws.rs.core.SecurityContext,pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendTextMessage</a><wbr>(javax.ws.rs.core.SecurityContext&nbsp;securityContext,
+ <a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
@@ -159,80 +184,115 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="createGroup(pt.up.fe.pe25.task.notification.NotificationData)">
+<section class="detail" id="createGroup(javax.ws.rs.core.SecurityContext,pt.up.fe.pe25.task.notification.NotificationData)">
 <h3>createGroup</h3>
 <div class="member-signature"><span class="annotations">@Path("/group/create")
 @POST
 @RolesAllowed("user")
 @Consumes("application/json")
 @Produces("application/json")
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">javax.ws.rs.core.Response</span>&nbsp;<span class="element-name">createGroup</span><wbr><span class="parameters">(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</span></div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">javax.ws.rs.core.Response</span>&nbsp;<span class="element-name">createGroup</span><wbr><span class="parameters">(@Context
+ javax.ws.rs.core.SecurityContext&nbsp;securityContext,
+ <a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</span></div>
 </section>
 </li>
 <li>
-<section class="detail" id="addToGroup(pt.up.fe.pe25.task.notification.NotificationData)">
+<section class="detail" id="addToGroup(javax.ws.rs.core.SecurityContext,pt.up.fe.pe25.task.notification.NotificationData)">
 <h3>addToGroup</h3>
 <div class="member-signature"><span class="annotations">@Path("/group/add")
 @POST
 @RolesAllowed("user")
 @Consumes("application/json")
 @Produces("application/json")
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">javax.ws.rs.core.Response</span>&nbsp;<span class="element-name">addToGroup</span><wbr><span class="parameters">(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</span></div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">javax.ws.rs.core.Response</span>&nbsp;<span class="element-name">addToGroup</span><wbr><span class="parameters">(@Context
+ javax.ws.rs.core.SecurityContext&nbsp;securityContext,
+ <a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</span></div>
 </section>
 </li>
 <li>
-<section class="detail" id="removeFromGroup(pt.up.fe.pe25.task.notification.NotificationData)">
+<section class="detail" id="removeFromGroup(javax.ws.rs.core.SecurityContext,pt.up.fe.pe25.task.notification.NotificationData)">
 <h3>removeFromGroup</h3>
 <div class="member-signature"><span class="annotations">@Path("/group/remove")
 @POST
 @RolesAllowed("user")
 @Consumes("application/json")
 @Produces("application/json")
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">javax.ws.rs.core.Response</span>&nbsp;<span class="element-name">removeFromGroup</span><wbr><span class="parameters">(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</span></div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">javax.ws.rs.core.Response</span>&nbsp;<span class="element-name">removeFromGroup</span><wbr><span class="parameters">(@Context
+ javax.ws.rs.core.SecurityContext&nbsp;securityContext,
+ <a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</span></div>
 </section>
 </li>
 <li>
-<section class="detail" id="sendTextMessage(pt.up.fe.pe25.task.notification.NotificationData)">
+<section class="detail" id="sendTextMessage(javax.ws.rs.core.SecurityContext,pt.up.fe.pe25.task.notification.NotificationData)">
 <h3>sendTextMessage</h3>
 <div class="member-signature"><span class="annotations">@Path("/message/text")
 @POST
 @RolesAllowed("user")
 @Consumes("application/json")
 @Produces("application/json")
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">javax.ws.rs.core.Response</span>&nbsp;<span class="element-name">sendTextMessage</span><wbr><span class="parameters">(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</span></div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">javax.ws.rs.core.Response</span>&nbsp;<span class="element-name">sendTextMessage</span><wbr><span class="parameters">(@Context
+ javax.ws.rs.core.SecurityContext&nbsp;securityContext,
+ <a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</span></div>
 </section>
 </li>
 <li>
-<section class="detail" id="sendMediaMessage(pt.up.fe.pe25.task.notification.NotificationData)">
+<section class="detail" id="sendMediaMessage(javax.ws.rs.core.SecurityContext,pt.up.fe.pe25.task.notification.NotificationData)">
 <h3>sendMediaMessage</h3>
 <div class="member-signature"><span class="annotations">@Path("/message/media")
 @POST
 @RolesAllowed("user")
 @Consumes("application/json")
 @Produces("application/json")
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">javax.ws.rs.core.Response</span>&nbsp;<span class="element-name">sendMediaMessage</span><wbr><span class="parameters">(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</span></div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">javax.ws.rs.core.Response</span>&nbsp;<span class="element-name">sendMediaMessage</span><wbr><span class="parameters">(@Context
+ javax.ws.rs.core.SecurityContext&nbsp;securityContext,
+ <a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</span></div>
 </section>
 </li>
 <li>
-<section class="detail" id="sendLocationMessage(pt.up.fe.pe25.task.notification.NotificationData)">
+<section class="detail" id="sendLocationMessage(javax.ws.rs.core.SecurityContext,pt.up.fe.pe25.task.notification.NotificationData)">
 <h3>sendLocationMessage</h3>
 <div class="member-signature"><span class="annotations">@Path("/message/location")
 @POST
 @RolesAllowed("user")
 @Consumes("application/json")
 @Produces("application/json")
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">javax.ws.rs.core.Response</span>&nbsp;<span class="element-name">sendLocationMessage</span><wbr><span class="parameters">(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</span></div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">javax.ws.rs.core.Response</span>&nbsp;<span class="element-name">sendLocationMessage</span><wbr><span class="parameters">(@Context
+ javax.ws.rs.core.SecurityContext&nbsp;securityContext,
+ <a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</span></div>
 </section>
 </li>
 <li>
-<section class="detail" id="sendLinkMessage(pt.up.fe.pe25.task.notification.NotificationData)">
+<section class="detail" id="sendLinkMessage(javax.ws.rs.core.SecurityContext,pt.up.fe.pe25.task.notification.NotificationData)">
 <h3>sendLinkMessage</h3>
 <div class="member-signature"><span class="annotations">@Path("/message/link")
 @POST
 @RolesAllowed("user")
 @Consumes("application/json")
 @Produces("application/json")
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">javax.ws.rs.core.Response</span>&nbsp;<span class="element-name">sendLinkMessage</span><wbr><span class="parameters">(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</span></div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">javax.ws.rs.core.Response</span>&nbsp;<span class="element-name">sendLinkMessage</span><wbr><span class="parameters">(@Context
+ javax.ws.rs.core.SecurityContext&nbsp;securityContext,
+ <a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="getGroups(javax.ws.rs.core.SecurityContext)">
+<h3>getGroups</h3>
+<div class="member-signature"><span class="annotations">@Path("/groups")
+@GET
+@RolesAllowed("user")
+@Produces("application/json")
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">javax.ws.rs.core.Response</span>&nbsp;<span class="element-name">getGroups</span><wbr><span class="parameters">(@Context
+ javax.ws.rs.core.SecurityContext&nbsp;securityContext)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="getWhatsapps(javax.ws.rs.core.SecurityContext)">
+<h3>getWhatsapps</h3>
+<div class="member-signature"><span class="annotations">@GET
+@RolesAllowed("user")
+@Produces("application/json")
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">javax.ws.rs.core.Response</span>&nbsp;<span class="element-name">getWhatsapps</span><wbr><span class="parameters">(@Context
+ javax.ws.rs.core.SecurityContext&nbsp;securityContext)</span></div>
 </section>
 </li>
 </ul>

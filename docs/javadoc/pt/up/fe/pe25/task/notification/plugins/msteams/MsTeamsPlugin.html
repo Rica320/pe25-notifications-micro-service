@@ -84,6 +84,20 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">MsTeamsPlugin</span>
 <span class="extends-implements">extends <a href="../PluginDecorator.html" title="class in pt.up.fe.pe25.task.notification.plugins">PluginDecorator</a></span></div>
+<div class="block">A plugin that sends notifications to Microsoft Teams.<br>
+ It uses a webhook to send messages to a team.<br>
+ You can add a team to the database and then use it to send messages.<br></div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../NotificationService.html" title="interface in pt.up.fe.pe25.task.notification"><code>NotificationService</code></a></li>
+<li><a href="../PluginDecorator.html" title="class in pt.up.fe.pe25.task.notification.plugins"><code>PluginDecorator</code></a></li>
+<li><a href="MsTeam.html" title="class in pt.up.fe.pe25.task.notification.plugins.msteams"><code>MsTeam</code></a></li>
+<li><a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification"><code>NotificationData</code></a></li>
+</ul>
+</dd>
+</dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -124,14 +138,16 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="MsTeam.html" title="class in pt.up.fe.pe25.task.notification.plugins.msteams">MsTeam</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addTeam(java.lang.String)" class="member-name-link">addTeam</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;url)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Creates a new team and adds it to the database.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#initialize()" class="member-name-link">initialize</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#notify(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">notify</a><wbr>(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Sends a notification ... calling the wrapped notification service</div>
+<div class="block">Sends a message to a list of teams</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sendMessage(java.lang.String,java.lang.String,java.lang.String)" class="member-name-link">sendMessage</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;url,
@@ -143,7 +159,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sendMessages(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendMessages</a><wbr>(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Send a message to all teams.</div>
+<div class="block">Send a message to all teams, specified in the notification data.</div>
 </div>
 </div>
 </div>
@@ -196,8 +212,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="notify(pt.up.fe.pe25.task.notification.NotificationData)">
 <h3>notify</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">notify</span><wbr><span class="parameters">(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</span></div>
-<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="../PluginDecorator.html#notify(pt.up.fe.pe25.task.notification.NotificationData)">PluginDecorator</a></code></span></div>
-<div class="block">Sends a notification ... calling the wrapped notification service</div>
+<div class="block">Sends a message to a list of teams</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../NotificationService.html#notify(pt.up.fe.pe25.task.notification.NotificationData)">notify</a></code>&nbsp;in interface&nbsp;<code><a href="../../NotificationService.html" title="interface in pt.up.fe.pe25.task.notification">NotificationService</a></code></dd>
@@ -206,7 +221,7 @@ loadScripts(document, 'script');</script>
 <dt>Parameters:</dt>
 <dd><code>notificationData</code> - the notification data</dd>
 <dt>Returns:</dt>
-<dd>true if the notification was sent successfully, false otherwise</dd>
+<dd>success or failure on sending the message</dd>
 </dl>
 </section>
 </li>
@@ -214,13 +229,20 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="addTeam(java.lang.String)">
 <h3>addTeam</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="MsTeam.html" title="class in pt.up.fe.pe25.task.notification.plugins.msteams">MsTeam</a></span>&nbsp;<span class="element-name">addTeam</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;url)</span></div>
+<div class="block">Creates a new team and adds it to the database.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>url</code> - The webhook url</dd>
+<dt>Returns:</dt>
+<dd>The team</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="sendMessages(pt.up.fe.pe25.task.notification.NotificationData)">
 <h3>sendMessages</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">sendMessages</span><wbr><span class="parameters">(<a href="../../NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a>&nbsp;notificationData)</span></div>
-<div class="block">Send a message to all teams.</div>
+<div class="block">Send a message to all teams, specified in the notification data.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>notificationData</code> - Data to send including a list of teams</dd>

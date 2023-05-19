@@ -11,6 +11,14 @@ import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A simple frontend view for the notification service
+ * You can view the template in the resources/templates/view.html file
+ * This is a simple view used to demonstrate the notification service
+ *
+ * @see Template
+ * @see TemplateInstance
+ */
 @Path("/view")
 public class NotifierView {
     @Inject

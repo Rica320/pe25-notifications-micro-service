@@ -58,8 +58,10 @@ loadScripts(document, 'script');</script>
 <div class="block">Adds a new user to the database</div>
 </dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsPlugin.html#addTeam(java.lang.String)" class="member-name-link">addTeam(String)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.msteams.<a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.msteams">MsTeamsPlugin</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html#addToGroup(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">addToGroup(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppResource</a></dt>
+<dd>
+<div class="block">Creates a new team and adds it to the database.</div>
+</dd>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html#addToGroup(javax.ws.rs.core.SecurityContext,pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">addToGroup(SecurityContext, NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppResource</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:C">C</h2>
@@ -70,12 +72,12 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Creates the notification service chain</div>
 </dd>
-<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html#createGroup(java.lang.String,java.util.List)" class="member-name-link">createGroup(String, List&lt;String&gt;)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppPlugin</a></dt>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html#createGroup(javax.ws.rs.core.SecurityContext,pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">createGroup(SecurityContext, NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppResource</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html#createGroup(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">createGroup(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppPlugin</a></dt>
 <dd>
 <div class="block">Creates a new WhatsApp group with the given name and phone numbers.</div>
 </dd>
-<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html#createGroup(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">createGroup(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppResource</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotifierResource.html#createNotifier(javax.ws.rs.core.SecurityContext,pt.up.fe.pe25.task.notification.Notifier)" class="member-name-link">createNotifier(SecurityContext, Notifier)</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotifierResource.html" title="class in pt.up.fe.pe25.task.notification">NotifierResource</a></dt>
 <dd>
 <div class="block">Creates a new notifier
@@ -103,6 +105,8 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="pt/up/fe/pe25/task/notification/Notifier.html#findByUser(pt.up.fe.pe25.authentication.User)" class="member-name-link">findByUser(User)</a> - Static method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/Notifier.html" title="class in pt.up.fe.pe25.task.notification">Notifier</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/Whatsapp.html#findByUser(pt.up.fe.pe25.authentication.User)" class="member-name-link">findByUser(User)</a> - Static method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/Whatsapp.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">Whatsapp</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/authentication/User.html#findByUsername(java.lang.String)" class="member-name-link">findByUsername(String)</a> - Static method in class pt.up.fe.pe25.authentication.<a href="pt/up/fe/pe25/authentication/User.html" title="class in pt.up.fe.pe25.authentication">User</a></dt>
 <dd>
 <div class="block">Finds a user by username</div>
@@ -110,13 +114,9 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:G">G</h2>
 <dl class="index">
-<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppProperties.html#get_MAYTAPI_KEY()" class="member-name-link">get_MAYTAPI_KEY()</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppProperties.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppProperties</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppProperties.html#get_PHONE_ID()" class="member-name-link">get_PHONE_ID()</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppProperties.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppProperties</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppProperties.html#get_PRODUCT_ID()" class="member-name-link">get_PRODUCT_ID()</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppProperties.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppProperties</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/twilio/TwilioConfig.html#getAccountSid()" class="member-name-link">getAccountSid()</a> - Method in class pt.up.fe.pe25.task.notification.plugins.twilio.<a href="pt/up/fe/pe25/task/notification/plugins/twilio/TwilioConfig.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio">TwilioConfig</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#getAttachments()" class="member-name-link">getAttachments()</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/twilio/TwilioConfig.html#getAuthToken()" class="member-name-link">getAuthToken()</a> - Method in class pt.up.fe.pe25.task.notification.plugins.twilio.<a href="pt/up/fe/pe25/task/notification/plugins/twilio/TwilioConfig.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio">TwilioConfig</a></dt>
 <dd>&nbsp;</dd>
@@ -124,13 +124,21 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeam.html#getCreatedAt()" class="member-name-link">getCreatedAt()</a> - Method in class pt.up.fe.pe25.task.notification.plugins.msteams.<a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeam.html" title="class in pt.up.fe.pe25.task.notification.plugins.msteams">MsTeam</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/Whatsapp.html#getCreatedAt()" class="member-name-link">getCreatedAt()</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/Whatsapp.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">Whatsapp</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppGroup.html#getCreatedAt()" class="member-name-link">getCreatedAt()</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppGroup.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppGroup</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#getDateToSend()" class="member-name-link">getDateToSend()</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#getGroupId()" class="member-name-link">getGroupId()</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppGroup.html#getGroupId()" class="member-name-link">getGroupId()</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppGroup.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppGroup</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#getGroupName()" class="member-name-link">getGroupName()</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html#getGroups(javax.ws.rs.core.SecurityContext)" class="member-name-link">getGroups(SecurityContext)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppResource</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeam.html#getId()" class="member-name-link">getId()</a> - Method in class pt.up.fe.pe25.task.notification.plugins.msteams.<a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeam.html" title="class in pt.up.fe.pe25.task.notification.plugins.msteams">MsTeam</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppGroup.html#getId()" class="member-name-link">getId()</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppGroup.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppGroup</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#getLatitude()" class="member-name-link">getLatitude()</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
 <dd>&nbsp;</dd>
@@ -138,11 +146,17 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#getLongitude()" class="member-name-link">getLongitude()</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html#getMAYTAPI_KEY()" class="member-name-link">getMAYTAPI_KEY()</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppPlugin</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#getMedia()" class="member-name-link">getMedia()</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#getMessage()" class="member-name-link">getMessage()</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppGroup.html#getName()" class="member-name-link">getName()</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppGroup.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppGroup</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/Notifier.html#getNotificationData()" class="member-name-link">getNotificationData()</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/Notifier.html" title="class in pt.up.fe.pe25.task.notification">Notifier</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/Whatsapp.html#getNotificationData()" class="member-name-link">getNotificationData()</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/Whatsapp.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">Whatsapp</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/Notifier.html#getNotificationServices()" class="member-name-link">getNotificationServices()</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/Notifier.html" title="class in pt.up.fe.pe25.task.notification">Notifier</a></dt>
 <dd>&nbsp;</dd>
@@ -151,11 +165,13 @@ loadScripts(document, 'script');</script>
 <div class="block">Gets all the notifiers of the user
  Needs authentication to be called</div>
 </dd>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html#getPHONE_ID()" class="member-name-link">getPHONE_ID()</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppPlugin</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#getPhoneList()" class="member-name-link">getPhoneList()</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/twilio/TwilioConfig.html#getPhoneNumber()" class="member-name-link">getPhoneNumber()</a> - Method in class pt.up.fe.pe25.task.notification.plugins.twilio.<a href="pt/up/fe/pe25/task/notification/plugins/twilio/TwilioConfig.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio">TwilioConfig</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#getReceiver()" class="member-name-link">getReceiver()</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html#getPRODUCT_ID()" class="member-name-link">getPRODUCT_ID()</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppPlugin</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#getReceiverEmails()" class="member-name-link">getReceiverEmails()</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
 <dd>&nbsp;</dd>
@@ -167,12 +183,12 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeam.html#getUrl()" class="member-name-link">getUrl()</a> - Method in class pt.up.fe.pe25.task.notification.plugins.msteams.<a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeam.html" title="class in pt.up.fe.pe25.task.notification.plugins.msteams">MsTeam</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html#getWhatsapps(javax.ws.rs.core.SecurityContext)" class="member-name-link">getWhatsapps(SecurityContext)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppResource</a></dt>
+<dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:I">I</h2>
 <dl class="index">
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsPlugin.html#initialize()" class="member-name-link">initialize()</a> - Method in class pt.up.fe.pe25.task.notification.plugins.msteams.<a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.msteams">MsTeamsPlugin</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html#initialize()" class="member-name-link">initialize()</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppPlugin</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:L">L</h2>
@@ -207,13 +223,19 @@ loadScripts(document, 'script');</script>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeam.html#%3Cinit%3E(java.lang.String)" class="member-name-link">MsTeam(String)</a> - Constructor for class pt.up.fe.pe25.task.notification.plugins.msteams.<a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeam.html" title="class in pt.up.fe.pe25.task.notification.plugins.msteams">MsTeam</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsPlugin.html" class="type-name-link" title="class in pt.up.fe.pe25.task.notification.plugins.msteams">MsTeamsPlugin</a> - Class in <a href="pt/up/fe/pe25/task/notification/plugins/msteams/package-summary.html">pt.up.fe.pe25.task.notification.plugins.msteams</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">A plugin that sends notifications to Microsoft Teams.<br>
+ It uses a webhook to send messages to a team.<br>
+ You can add a team to the database and then use it to send messages.<br></div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsPlugin.html#%3Cinit%3E()" class="member-name-link">MsTeamsPlugin()</a> - Constructor for class pt.up.fe.pe25.task.notification.plugins.msteams.<a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.msteams">MsTeamsPlugin</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsPlugin.html#%3Cinit%3E(pt.up.fe.pe25.task.notification.NotificationService)" class="member-name-link">MsTeamsPlugin(NotificationService)</a> - Constructor for class pt.up.fe.pe25.task.notification.plugins.msteams.<a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.msteams">MsTeamsPlugin</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsResource.html" class="type-name-link" title="class in pt.up.fe.pe25.task.notification.plugins.msteams">MsTeamsResource</a> - Class in <a href="pt/up/fe/pe25/task/notification/plugins/msteams/package-summary.html">pt.up.fe.pe25.task.notification.plugins.msteams</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">A separated resource that sends notifications by MS Teams and stores the notification in the database</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsResource.html#%3Cinit%3E()" class="member-name-link">MsTeamsResource()</a> - Constructor for class pt.up.fe.pe25.task.notification.plugins.msteams.<a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.msteams">MsTeamsResource</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -223,6 +245,8 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">The notification data</div>
 </dd>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/Whatsapp.html#notificationData" class="member-name-link">notificationData</a> - Variable in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/Whatsapp.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">Whatsapp</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html" class="type-name-link" title="class in pt.up.fe.pe25.task.notification">NotificationData</a> - Class in <a href="pt/up/fe/pe25/task/notification/package-summary.html">pt.up.fe.pe25.task.notification</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#%3Cinit%3E()" class="member-name-link">NotificationData()</a> - Constructor for class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
@@ -286,19 +310,27 @@ loadScripts(document, 'script');</script>
 <dt><a href="pt/up/fe/pe25/task/notification/NotifierResource.html#%3Cinit%3E()" class="member-name-link">NotifierResource()</a> - Constructor for class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotifierResource.html" title="class in pt.up.fe.pe25.task.notification">NotifierResource</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/view/NotifierView.html" class="type-name-link" title="class in pt.up.fe.pe25.view">NotifierView</a> - Class in <a href="pt/up/fe/pe25/view/package-summary.html">pt.up.fe.pe25.view</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">A simple frontend view for the notification service
+ You can view the template in the resources/templates/view.html file
+ This is a simple view used to demonstrate the notification service</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/view/NotifierView.html#%3Cinit%3E()" class="member-name-link">NotifierView()</a> - Constructor for class pt.up.fe.pe25.view.<a href="pt/up/fe/pe25/view/NotifierView.html" title="class in pt.up.fe.pe25.view">NotifierView</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationService.html#notify(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">notify(NotificationData)</a> - Method in interface pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationService.html" title="interface in pt.up.fe.pe25.task.notification">NotificationService</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsPlugin.html#notify(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">notify(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.msteams.<a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.msteams">MsTeamsPlugin</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Sends a message to a list of teams</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/PluginDecorator.html#notify(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">notify(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.<a href="pt/up/fe/pe25/task/notification/plugins/PluginDecorator.html" title="class in pt.up.fe.pe25.task.notification.plugins">PluginDecorator</a></dt>
 <dd>
 <div class="block">Sends a notification ... calling the wrapped notification service</div>
 </dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/smpp/SmsPlugin.html#notify(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">notify(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.smpp.<a href="pt/up/fe/pe25/task/notification/plugins/smpp/SmsPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.smpp">SmsPlugin</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Sends a notification by sms using the SMPP protocol</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/smtp/MailPlugin.html#notify(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">notify(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.smtp.<a href="pt/up/fe/pe25/task/notification/plugins/smtp/MailPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.smtp">MailPlugin</a></dt>
 <dd>
 <div class="block">Sends a notification by email ... calling the wrapped notification service before</div>
@@ -365,7 +397,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:R">R</h2>
 <dl class="index">
-<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html#removeFromGroup(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">removeFromGroup(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppResource</a></dt>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html#removeFromGroup(javax.ws.rs.core.SecurityContext,pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">removeFromGroup(SecurityContext, NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppResource</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/authentication/User.html#role" class="member-name-link">role</a> - Variable in class pt.up.fe.pe25.authentication.<a href="pt/up/fe/pe25/authentication/User.html" title="class in pt.up.fe.pe25.authentication">User</a></dt>
 <dd>&nbsp;</dd>
@@ -376,24 +408,24 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Schedules a notification</div>
 </dd>
-<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html#sendLinkMessage(java.lang.String,java.lang.String,java.lang.String)" class="member-name-link">sendLinkMessage(String, String, String)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppPlugin</a></dt>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html#sendLinkMessage(javax.ws.rs.core.SecurityContext,pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendLinkMessage(SecurityContext, NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppResource</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html#sendLinkMessage(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendLinkMessage(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppPlugin</a></dt>
 <dd>
 <div class="block">Used to send a link message to an individual person or group chat.</div>
 </dd>
-<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html#sendLinkMessage(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendLinkMessage(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppResource</a></dt>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html#sendLocationMessage(javax.ws.rs.core.SecurityContext,pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendLocationMessage(SecurityContext, NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppResource</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html#sendLocationMessage(java.lang.String,java.lang.String,java.lang.String,java.lang.String)" class="member-name-link">sendLocationMessage(String, String, String, String)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppPlugin</a></dt>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html#sendLocationMessage(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendLocationMessage(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppPlugin</a></dt>
 <dd>
 <div class="block">Used to send a location message to an individual person or group chat.</div>
 </dd>
-<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html#sendLocationMessage(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendLocationMessage(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppResource</a></dt>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html#sendMediaMessage(javax.ws.rs.core.SecurityContext,pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendMediaMessage(SecurityContext, NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppResource</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html#sendMediaMessage(java.lang.String,java.lang.String,java.lang.String)" class="member-name-link">sendMediaMessage(String, String, String)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppPlugin</a></dt>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html#sendMediaMessage(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendMediaMessage(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppPlugin</a></dt>
 <dd>
 <div class="block">Used to send a media message to an individual person or group chat.</div>
 </dd>
-<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html#sendMediaMessage(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendMediaMessage(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppResource</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsPlugin.html#sendMessage(java.lang.String,java.lang.String,java.lang.String)" class="member-name-link">sendMessage(String, String, String)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.msteams.<a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.msteams">MsTeamsPlugin</a></dt>
 <dd>
 <div class="block">Send a message to a ms teams webhook.</div>
@@ -401,7 +433,9 @@ loadScripts(document, 'script');</script>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsResource.html#sendMessage(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendMessage(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.msteams.<a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.msteams">MsTeamsResource</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/smpp/SmsPlugin.html#sendMessage(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendMessage(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.smpp.<a href="pt/up/fe/pe25/task/notification/plugins/smpp/SmsPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.smpp">SmsPlugin</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Sends a message to a list of phone numbers</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/smpp/SmsResource.html#sendMessage(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendMessage(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.smpp.<a href="pt/up/fe/pe25/task/notification/plugins/smpp/SmsResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.smpp">SmsResource</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/twilio/sms/TwilioSMSResource.html#sendMessage(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendMessage(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.twilio.sms.<a href="pt/up/fe/pe25/task/notification/plugins/twilio/sms/TwilioSMSResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.twilio.sms">TwilioSMSResource</a></dt>
@@ -416,17 +450,19 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsPlugin.html#sendMessages(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendMessages(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.msteams.<a href="pt/up/fe/pe25/task/notification/plugins/msteams/MsTeamsPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.msteams">MsTeamsPlugin</a></dt>
 <dd>
-<div class="block">Send a message to all teams.</div>
+<div class="block">Send a message to all teams, specified in the notification data.</div>
 </dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/PluginDecorator.html#sendRequest(java.lang.String,java.lang.String,java.lang.String,java.util.Map)" class="member-name-link">sendRequest(String, String, String, Map&lt;String, String&gt;)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.<a href="pt/up/fe/pe25/task/notification/plugins/PluginDecorator.html" title="class in pt.up.fe.pe25.task.notification.plugins">PluginDecorator</a></dt>
 <dd>
 <div class="block">Sends an HTTP request to the specified URL with the given request body, HTTP method, and headers.</div>
 </dd>
-<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html#sendTextMessage(java.lang.String,java.lang.String)" class="member-name-link">sendTextMessage(String, String)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppPlugin</a></dt>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html#sendTextMessage(javax.ws.rs.core.SecurityContext,pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendTextMessage(SecurityContext, NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppResource</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html#sendTextMessage(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendTextMessage(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppPlugin</a></dt>
 <dd>
 <div class="block">Used to send a text message to an individual person or group chat.</div>
 </dd>
-<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html#sendTextMessage(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">sendTextMessage(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppResource</a></dt>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/Whatsapp.html#service" class="member-name-link">service</a> - Variable in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/Whatsapp.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">Whatsapp</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html#set_MAYTAPI_KEY(java.lang.String)" class="member-name-link">set_MAYTAPI_KEY(String)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppPlugin</a></dt>
 <dd>&nbsp;</dd>
@@ -434,9 +470,9 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html#set_PRODUCT_ID(java.lang.String)" class="member-name-link">set_PRODUCT_ID(String)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppPlugin</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#setDateToSend(java.time.LocalDateTime)" class="member-name-link">setDateToSend(LocalDateTime)</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
+<dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#setAttachments(java.util.List)" class="member-name-link">setAttachments(List&lt;String&gt;)</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#setGroupId(java.lang.String)" class="member-name-link">setGroupId(String)</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
+<dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#setDateToSend(java.time.LocalDateTime)" class="member-name-link">setDateToSend(LocalDateTime)</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#setGroupName(java.lang.String)" class="member-name-link">setGroupName(String)</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
 <dd>&nbsp;</dd>
@@ -454,6 +490,8 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/Notifier.html#setNotificationData(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">setNotificationData(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/Notifier.html" title="class in pt.up.fe.pe25.task.notification">Notifier</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/Whatsapp.html#setNotificationData(pt.up.fe.pe25.task.notification.NotificationData)" class="member-name-link">setNotificationData(NotificationData)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/Whatsapp.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">Whatsapp</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/Notifier.html#setNotificationServices(java.util.List)" class="member-name-link">setNotificationServices(List&lt;String&gt;)</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/Notifier.html" title="class in pt.up.fe.pe25.task.notification">Notifier</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/authentication/User.html#setPassword(java.lang.String)" class="member-name-link">setPassword(String)</a> - Method in class pt.up.fe.pe25.authentication.<a href="pt/up/fe/pe25/authentication/User.html" title="class in pt.up.fe.pe25.authentication">User</a></dt>
@@ -462,14 +500,14 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#setPhoneList(java.util.List)" class="member-name-link">setPhoneList(List&lt;String&gt;)</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#setReceiver(java.lang.String)" class="member-name-link">setReceiver(String)</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#setReceiverEmails(java.util.List)" class="member-name-link">setReceiverEmails(List&lt;String&gt;)</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/authentication/User.html#setRole(java.util.List)" class="member-name-link">setRole(List&lt;String&gt;)</a> - Method in class pt.up.fe.pe25.authentication.<a href="pt/up/fe/pe25/authentication/User.html" title="class in pt.up.fe.pe25.authentication">User</a></dt>
 <dd>
 <div class="block">sets User's roles</div>
 </dd>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/Whatsapp.html#setService(java.lang.String)" class="member-name-link">setService(String)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/Whatsapp.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">Whatsapp</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#setSubject(java.lang.String)" class="member-name-link">setSubject(String)</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#setTeams(java.util.List)" class="member-name-link">setTeams(List&lt;Long&gt;)</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
@@ -477,11 +515,16 @@ loadScripts(document, 'script');</script>
 <dt><a href="pt/up/fe/pe25/task/notification/NotificationData.html#setTicketId(java.lang.String)" class="member-name-link">setTicketId(String)</a> - Method in class pt.up.fe.pe25.task.notification.<a href="pt/up/fe/pe25/task/notification/NotificationData.html" title="class in pt.up.fe.pe25.task.notification">NotificationData</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/smpp/SmsPlugin.html" class="type-name-link" title="class in pt.up.fe.pe25.task.notification.plugins.smpp">SmsPlugin</a> - Class in <a href="pt/up/fe/pe25/task/notification/plugins/smpp/package-summary.html">pt.up.fe.pe25.task.notification.plugins.smpp</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">A plugin that sends notifications by sms (SMPP)<br>
+ You can configure the SMPP server in application.properties<br></div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/smpp/SmsPlugin.html#%3Cinit%3E(pt.up.fe.pe25.task.notification.NotificationService)" class="member-name-link">SmsPlugin(NotificationService)</a> - Constructor for class pt.up.fe.pe25.task.notification.plugins.smpp.<a href="pt/up/fe/pe25/task/notification/plugins/smpp/SmsPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.smpp">SmsPlugin</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/smpp/SmsResource.html" class="type-name-link" title="class in pt.up.fe.pe25.task.notification.plugins.smpp">SmsResource</a> - Class in <a href="pt/up/fe/pe25/task/notification/plugins/smpp/package-summary.html">pt.up.fe.pe25.task.notification.plugins.smpp</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">A separated resource that sends notifications by SMS (SMPP) and stores the notification in the database</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/smpp/SmsResource.html#%3Cinit%3E()" class="member-name-link">SmsResource()</a> - Constructor for class pt.up.fe.pe25.task.notification.plugins.smpp.<a href="pt/up/fe/pe25/task/notification/plugins/smpp/SmsResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.smpp">SmsResource</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/authentication/Startup.html" class="type-name-link" title="class in pt.up.fe.pe25.authentication">Startup</a> - Class in <a href="pt/up/fe/pe25/authentication/package-summary.html">pt.up.fe.pe25.authentication</a></dt>
@@ -536,7 +579,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:U">U</h2>
 <dl class="index">
-<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html#updateGroup(java.lang.String,java.lang.String,boolean)" class="member-name-link">updateGroup(String, String, boolean)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppPlugin</a></dt>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html#updateGroup(pt.up.fe.pe25.task.notification.NotificationData,boolean)" class="member-name-link">updateGroup(NotificationData, boolean)</a> - Method in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppPlugin</a></dt>
 <dd>
 <div class="block">Adds or removes a phone number from a WhatsApp group.</div>
 </dd>
@@ -544,6 +587,8 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">The user that owns this notifier</div>
 </dd>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/Whatsapp.html#user" class="member-name-link">user</a> - Variable in class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/Whatsapp.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">Whatsapp</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/authentication/User.html" class="type-name-link" title="class in pt.up.fe.pe25.authentication">User</a> - Class in <a href="pt/up/fe/pe25/authentication/package-summary.html">pt.up.fe.pe25.authentication</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/authentication/User.html#%3Cinit%3E()" class="member-name-link">User()</a> - Constructor for class pt.up.fe.pe25.authentication.<a href="pt/up/fe/pe25/authentication/User.html" title="class in pt.up.fe.pe25.authentication">User</a></dt>
@@ -553,16 +598,26 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:W">W</h2>
 <dl class="index">
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/Whatsapp.html" class="type-name-link" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">Whatsapp</a> - Class in <a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/package-summary.html">pt.up.fe.pe25.task.notification.plugins.whatsapp</a></dt>
+<dd>
+<div class="block">A entity that represents a Whatsapp notification</div>
+</dd>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/Whatsapp.html#%3Cinit%3E()" class="member-name-link">Whatsapp()</a> - Constructor for class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/Whatsapp.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">Whatsapp</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppGroup.html" class="type-name-link" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppGroup</a> - Class in <a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/package-summary.html">pt.up.fe.pe25.task.notification.plugins.whatsapp</a></dt>
+<dd>
+<div class="block">A entity that represents a Whatsapp Group</div>
+</dd>
+<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppGroup.html#%3Cinit%3E(java.lang.String,java.lang.String)" class="member-name-link">WhatsAppGroup(String, String)</a> - Constructor for class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppGroup.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppGroup</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html" class="type-name-link" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppPlugin</a> - Class in <a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/package-summary.html">pt.up.fe.pe25.task.notification.plugins.whatsapp</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html#%3Cinit%3E(pt.up.fe.pe25.task.notification.NotificationService)" class="member-name-link">WhatsAppPlugin(NotificationService)</a> - Constructor for class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppPlugin.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppPlugin</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppProperties.html" class="type-name-link" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppProperties</a> - Class in <a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/package-summary.html">pt.up.fe.pe25.task.notification.plugins.whatsapp</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppProperties.html#%3Cinit%3E()" class="member-name-link">WhatsAppProperties()</a> - Constructor for class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppProperties.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppProperties</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html" class="type-name-link" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppResource</a> - Class in <a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/package-summary.html">pt.up.fe.pe25.task.notification.plugins.whatsapp</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">A separated resource that sends notifications by WhatsApp and stores the notification in the database</div>
+</dd>
 <dt><a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html#%3Cinit%3E()" class="member-name-link">WhatsAppResource()</a> - Constructor for class pt.up.fe.pe25.task.notification.plugins.whatsapp.<a href="pt/up/fe/pe25/task/notification/plugins/whatsapp/WhatsAppResource.html" title="class in pt.up.fe.pe25.task.notification.plugins.whatsapp">WhatsAppResource</a></dt>
 <dd>&nbsp;</dd>
 </dl>
