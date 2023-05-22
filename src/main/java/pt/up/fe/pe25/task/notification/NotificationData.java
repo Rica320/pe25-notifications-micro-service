@@ -1,49 +1,66 @@
 package pt.up.fe.pe25.task.notification;
 
-import javax.persistence.*;
-import java.util.List;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embeddable;
+import javax.persistence.Transient;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Embeddable
 public class NotificationData {
 
     @Column(name = "ticket_id")
+    @Schema(example = "#1")
     private String ticketId;
 
     @ElementCollection
     @Column(name = "phone_list")
+    @Schema(example = "[\"+351 967 325 360\", \"+351 924 017 794\", \"+351 967 108 975\", \"+351 910 384 072\"]")
     private List<String> phoneList;
 
     @ElementCollection
     @Column(name = "receiver_emails")
+    @Schema(example = "[\"up202007962@edu.fe.up.pt\", \"up202004926@edu.fe.up.pt\", \"up202008462@edu.fe.up.pt\", \"up202005108@edu.fe.up.pt\"]")
     private List<String> receiverEmails;
 
     @Transient
+    @Schema(example = "")
     private List<String> attachments;
 
     @Column(name = "subject")
+    @Schema(example = "Ticket #1")
     private String subject;
 
     @Column(name = "message")
+    @Schema(example = "A new ticket #1 has been assigned to you")
     private String message;
 
     @ElementCollection
     @Column(name = "teams")
+    @Schema(example = "[0, 1]")
     public List<Long> teams;
 
     @Column(name = "link")
+    @Schema(example = "https://www.alticelabs.com/")
     private String link;
 
     @Column(name = "latitude")
+    @Schema(example = "41.1780")
     private String latitude;
 
     @Column(name = "longitude")
+    @Schema(example = "-8.5980")
     private String longitude;
 
     @Column(name = "media", columnDefinition = "TEXT")
+    @Schema(example = "")
     private String media;
 
     @Column(name = "group_name")
+    @Schema(example = "Grupo Altice Labs")
     private String groupName;
 
     @Column(name = "date_to_send")

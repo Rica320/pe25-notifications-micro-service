@@ -68,21 +68,22 @@ public class SmsPlugin extends PluginDecorator {
             session.connectAndBind(host, port, new BindParameter(BindType.BIND_TX,
                     systemId, password, null, TypeOfNumber.UNKNOWN, NumberingPlanIndicator.UNKNOWN,
                     null));
-            try {
-                for (String destPhone: notificationData.getPhoneList()) {
+
+            for (String destPhone: notificationData.getPhoneList()) {
+                try {
                     SubmitSmResult submitSmResult = session.submitShortMessage("CMT",
                             TypeOfNumber.ALPHANUMERIC, NumberingPlanIndicator.UNKNOWN, sender,
                             TypeOfNumber.INTERNATIONAL, NumberingPlanIndicator.ISDN, destPhone,
                             new ESMClass(), (byte) 0, (byte) 1, null, null,
                             new RegisteredDelivery(SMSCDeliveryReceipt.DEFAULT), (byte) 0,
                             new GeneralDataCoding(Alphabet.ALPHA_DEFAULT, MessageClass.CLASS1, false),
-                            (byte) 0, (notificationData.getTicketId() + "\n" + notificationData.getMessage()).getBytes());
+                            (byte) 0, (notificationData.getMessage()).getBytes());
                     String messageId = submitSmResult.getMessageId();
-                    System.out.println("Message successfully submitted (message_id = " + messageId + ")");
-                }
 
-            } catch (PDUException | ResponseTimeoutException | InvalidResponseException | NegativeResponseException | IOException e) {
-                throw new IllegalArgumentException(e);
+                } catch (PDUException | ResponseTimeoutException | InvalidResponseException |
+                         NegativeResponseException | IOException e) {
+                    throw new IllegalArgumentException(e);
+                }
             }
 
 
