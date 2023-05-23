@@ -35,7 +35,7 @@ public class SmsResource {
         content = @Content(mediaType = MediaType.APPLICATION_JSON,
         schema = @Schema(implementation = NotificationData.class,
                 example = "{\"ticketId\": \"#1\"," +
-                        " \"phoneList\": [\"+351 910 384 072\"]," +
+                        " \"phoneList\": [\"+351910384072\"]," +
                         " \"message\": \"A new ticket #1 has been assigned to you\"" +
                         "}"
             )

@@ -18,7 +18,7 @@ public class NotificationData {
 
     @ElementCollection
     @Column(name = "phone_list")
-    @Schema(example = "[\"+351 967 325 360\", \"+351 924 017 794\", \"+351 967 108 975\", \"+351 910 384 072\"]")
+    @Schema(example = "[\"+351967325360\", \"+351924017794\", \"+351967108975\", \"+351910384072\"]")
     private List<String> phoneList;
 
     @ElementCollection

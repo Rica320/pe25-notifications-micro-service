@@ -78,7 +78,6 @@ public class SmsPlugin extends PluginDecorator {
                             new RegisteredDelivery(SMSCDeliveryReceipt.DEFAULT), (byte) 0,
                             new GeneralDataCoding(Alphabet.ALPHA_DEFAULT, MessageClass.CLASS1, false),
                             (byte) 0, (notificationData.getMessage()).getBytes());
-                    String messageId = submitSmResult.getMessageId();
 
                 } catch (PDUException | ResponseTimeoutException | InvalidResponseException |
                          NegativeResponseException | IOException e) {

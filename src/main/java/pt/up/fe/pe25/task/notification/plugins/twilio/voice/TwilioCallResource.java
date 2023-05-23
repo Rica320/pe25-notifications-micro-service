@@ -48,7 +48,7 @@ public class TwilioCallResource {
             content = @Content(mediaType = MediaType.APPLICATION_JSON,
                     schema = @Schema(implementation = NotificationData.class,
                             example = "{\"ticketId\": \"#1\"," +
-                                    " \"phoneList\": [\"+351 967 325 360\", \"+351 924 017 794\", \"+351 967 108 975\", \"+351 910 384 072\"]," +
+                                    " \"phoneList\": [\"+351967325360\", \"+351924017794\", \"+351967108975\", \"+351910384072\"]," +
                                     " \"message\": \"A new ticket #1 has been assigned to you\"" +
                                     "}"
                     )
