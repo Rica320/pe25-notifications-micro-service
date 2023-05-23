@@ -9,18 +9,22 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
 
+import org.eclipse.microprofile.metrics.annotation.Counted;
+import org.eclipse.microprofile.metrics.annotation.Timed;
+import org.eclipse.microprofile.metrics.MetricUnits;
+
 import org.quartz.SchedulerException;
 import pt.up.fe.pe25.authentication.User;
 
 /**
  * The notifier resource
  * <p>
- *     This class is used to create a new notifier
- *     <br>
- *     The notifier is created by sending a POST request to the /notifier endpoint
- *     <br>
- *     The notifier is created by sending a JSON object with the following structure:
- *     <pre>
+ * This class is used to create a new notifier
+ * <br>
+ * The notifier is created by sending a POST request to the /notifier endpoint
+ * <br>
+ * The notifier is created by sending a JSON object with the following structure:
+ * <pre>
  *         {
  *         "notificationServices": ["email", ...],
  *         "notificationData": {
@@ -32,15 +36,14 @@ import pt.up.fe.pe25.authentication.User;
  *        }
  *      </pre>
  *
- *      <br>
- *      The notificationServices field is an array of strings that the factory will use to create the notification plugins
- *      <br>
- *      The notificationData field is an object that contains the data that will be used by the notification plugins
- *      <br>
- *      The dateToSend field is optional and is used to schedule the notification
- *      <br>
- *      The notificationData object can contain any field that is required by the notification plugins
- *
+ * <br>
+ * The notificationServices field is an array of strings that the factory will use to create the notification plugins
+ * <br>
+ * The notificationData field is an object that contains the data that will be used by the notification plugins
+ * <br>
+ * The dateToSend field is optional and is used to schedule the notification
+ * <br>
+ * The notificationData object can contain any field that is required by the notification plugins
  *
  * @see NotificationFactory
  * @see NotificationScheduler
@@ -66,7 +69,7 @@ public class NotifierResource {
      * Needs authentication to be called
      *
      * @param securityContext the security context
-     * @param notifier the notifier
+     * @param notifier        the notifier
      * @return Response to the request
      */
     @POST
@@ -74,6 +77,9 @@ public class NotifierResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
+    @Counted(name = "notificationCount", description = "How many notifications have been created.")
+    @Timed(name = "notificationTimer", description = "A measure of how long it takes to send all notifications",
+            unit = MetricUnits.MILLISECONDS)
     public Response createNotifier(@Context SecurityContext securityContext, Notifier notifier) {
 
         notifier.user = User.findByUsername(securityContext.getUserPrincipal().getName());
@@ -89,8 +95,7 @@ public class NotifierResource {
                 notificationScheduler.scheduleNotification(notifier.getNotificationData(),
                         notificationFactory.create(notifier.getNotificationServices()));
 
-        }
-        catch (IllegalArgumentException | SchedulerException e) {
+        } catch (IllegalArgumentException | SchedulerException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
 
