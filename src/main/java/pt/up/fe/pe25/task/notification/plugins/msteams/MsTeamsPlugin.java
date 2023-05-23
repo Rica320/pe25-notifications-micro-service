@@ -1,7 +1,5 @@
 package pt.up.fe.pe25.task.notification.plugins.msteams;
 
-import pt.up.fe.pe25.task.notification.plugins.whatsapp.WhatsAppProperties;
-import org.json.JSONArray;
 import pt.up.fe.pe25.task.notification.NotificationData;
 import pt.up.fe.pe25.task.notification.NotificationService;
 
@@ -10,17 +8,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.json.JSONObject;
-
-
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 import pt.up.fe.pe25.task.notification.plugins.PluginDecorator;
 
-
+/**
+ * A plugin that sends notifications to Microsoft Teams.<br>
+ * It uses a webhook to send messages to a team.<br>
+ * You can add a team to the database and then use it to send messages.<br>
+ *
+ * @see NotificationService
+ * @see PluginDecorator
+ * @see MsTeam
+ * @see NotificationData
+ */
 public class MsTeamsPlugin extends PluginDecorator {
 
     private Map<String, String> headers = new HashMap<>();
@@ -29,21 +31,35 @@ public class MsTeamsPlugin extends PluginDecorator {
         super(notificationService);
     }
 
+    public MsTeamsPlugin() {
+        super(null);
+    }
+
     @PostConstruct
     public void initialize() {
         headers = new HashMap<>();
         headers.put("Content-Type", "text/plain");
     }
 
+    /**
+     * Sends a message to a list of teams
+     * @param notificationData the notification data
+     * @return success or failure on sending the message
+     */
     @Override
     public boolean notify(NotificationData notificationData){
         if (notificationService != null)
             super.notify(notificationData);
 
         sendMessages(notificationData);
-        return false;
+        return true;
     }
 
+    /**
+     * Creates a new team and adds it to the database.
+     * @param url The webhook url
+     * @return The team
+     */
     @Transactional
     public MsTeam addTeam(String url) {
         if (MsTeam.count("url", url) > 0)
@@ -54,22 +70,22 @@ public class MsTeamsPlugin extends PluginDecorator {
     }
 
     /**
-     * Send a message to all teams.
+     * Send a message to all teams, specified in the notification data.
      * @param notificationData Data to send including a list of teams
      */
     public void sendMessages(NotificationData notificationData) {
-        List<Long> erros = new ArrayList<>();
+        List<Long> errors = new ArrayList<>();
         for (Long teamId : notificationData.getTeams()) {
             MsTeam team = MsTeam.findById(teamId);
             if (team == null) {
-                erros.add(teamId);
+                errors.add(teamId);
                 continue;
             }
             sendMessage(team.getUrl(),
                 notificationData.getMessage(),
                 notificationData.getTicketId());
         }
-        if (erros.size() > 0) throw new IllegalArgumentException("Those teams do not exist: " + erros.toString());
+        if (errors.size() > 0) throw new IllegalArgumentException("Those teams do not exist: " + errors.toString());
     }
 
     /**

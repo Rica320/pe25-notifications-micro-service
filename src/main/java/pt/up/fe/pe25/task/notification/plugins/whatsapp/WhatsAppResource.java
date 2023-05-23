@@ -1,18 +1,34 @@
 package pt.up.fe.pe25.task.notification.plugins.whatsapp;
+import javax.annotation.security.RolesAllowed;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
+import pt.up.fe.pe25.authentication.User;
 import pt.up.fe.pe25.task.notification.NotificationData;
+import pt.up.fe.pe25.task.notification.Notifier;
 
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.SecurityContext;
 import java.util.List;
 
+/**
+ * A separated resource that sends notifications by WhatsApp and stores the notification in the database
+ *
+ * @see WhatsAppPlugin
+ * @see NotificationData
+ * @see Notifier
+ * @see Whatsapp
+ */
 @Path("/whatsapp")
 public class WhatsAppResource {
 
+    WhatsAppPlugin whatsappPlugin = new WhatsAppPlugin(null);
+
     @Path("/group/create")
     @POST
+    @RolesAllowed({"user"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -21,16 +37,17 @@ public class WhatsAppResource {
      * @param groupData Data to create the group
      * @return Response with the data sent.
      **/
-    public Response createGroup(NotificationData notificationData) {
+    public Response createGroup(@Context SecurityContext securityContext,NotificationData notificationData) {
 
-        String groupName = notificationData.getGroupName();
-        List<String> phoneNumbers = notificationData.getPhoneList();
-
-        WhatsAppPlugin whatsappPlugin = new WhatsAppPlugin(null);
+        Whatsapp whatsapp = new Whatsapp();
+        whatsapp.notificationData = notificationData;
+        whatsapp.user = User.findByUsername(securityContext.getUserPrincipal().getName());
+        whatsapp.service = "createGroup";
+        whatsapp.persist();
 
         try {
-            String groupId = whatsappPlugin.createGroup(groupName, phoneNumbers);
-            return Response.status(Response.Status.CREATED).entity(groupId).build();
+            WhatsAppGroup wppGroup = whatsappPlugin.createGroup(notificationData);
+            return Response.status(Response.Status.CREATED).entity(wppGroup).build();
         }
         catch (IllegalArgumentException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
@@ -39,6 +56,7 @@ public class WhatsAppResource {
 
     @Path("/group/add")
     @POST
+    @RolesAllowed({"user"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -47,24 +65,26 @@ public class WhatsAppResource {
      * @param notificationData Data to update the group
      * @return Response with the data sent.
      **/
-    public Response addToGroup(NotificationData notificationData) {
+    public Response addToGroup(@Context SecurityContext securityContext,NotificationData notificationData) {
 
-            String groupId = notificationData.getGroupId();
-            String phoneNumber = notificationData.getReceiver();
+        Whatsapp whatsapp = new Whatsapp();
+        whatsapp.notificationData = notificationData;
+        whatsapp.user = User.findByUsername(securityContext.getUserPrincipal().getName());
+        whatsapp.service = "addToGroup";
+        whatsapp.persist();
 
-            WhatsAppPlugin whatsappPlugin = new WhatsAppPlugin(null);
-
-            try {
-                whatsappPlugin.updateGroup(groupId, phoneNumber, true);
-                return Response.status(Response.Status.CREATED).entity(notificationData).build();
-            }
-            catch (IllegalArgumentException e) {
-                return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
-            }
+        try {
+            whatsappPlugin.updateGroup(notificationData, true);
+            return Response.status(Response.Status.CREATED).entity(notificationData).build();
+        }
+        catch (IllegalArgumentException e) {
+            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+        }
     }
 
     @Path("/group/remove")
     @POST
+    @RolesAllowed({"user"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -73,15 +93,16 @@ public class WhatsAppResource {
      * @param notificationData Data to update the group
      * @return Response with the data sent.
      **/
-    public Response removeFromGroup(NotificationData notificationData) {
+    public Response removeFromGroup(@Context SecurityContext securityContext,NotificationData notificationData) {
 
-        String groupId = notificationData.getGroupId();
-        String phoneNumber = notificationData.getReceiver();
-
-        WhatsAppPlugin whatsappPlugin = new WhatsAppPlugin(null);
+        Whatsapp whatsapp = new Whatsapp();
+        whatsapp.notificationData = notificationData;
+        whatsapp.user = User.findByUsername(securityContext.getUserPrincipal().getName());
+        whatsapp.service = "createGroup";
+        whatsapp.persist();
 
         try {
-            whatsappPlugin.updateGroup(groupId, phoneNumber, false);
+            whatsappPlugin.updateGroup(notificationData, false);
             return Response.status(Response.Status.CREATED).entity(notificationData).build();
         }
         catch (IllegalArgumentException e) {
@@ -93,6 +114,7 @@ public class WhatsAppResource {
 
     @Path("/message/text")
     @POST
+    @RolesAllowed({"user"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -101,15 +123,16 @@ public class WhatsAppResource {
      * @param notificationData Data to send
      * @return Response with the data sent.
      **/
-    public Response sendTextMessage(NotificationData notificationData) {
+    public Response sendTextMessage(@Context SecurityContext securityContext,NotificationData notificationData) {
 
-        String message = notificationData.getMessage();
-        String receiverPhone = notificationData.getReceiver();
-
-        WhatsAppPlugin whatsappPlugin = new WhatsAppPlugin(null);
+        Whatsapp whatsapp = new Whatsapp();
+        whatsapp.notificationData = notificationData;
+        whatsapp.user = User.findByUsername(securityContext.getUserPrincipal().getName());
+        whatsapp.service = "sendTextMessage";
+        whatsapp.persist();
 
         try {
-            whatsappPlugin.sendTextMessage(message, receiverPhone);
+            whatsappPlugin.sendTextMessage(notificationData);
             return Response.status(Response.Status.CREATED).entity(notificationData).build();
         }
         catch (IllegalArgumentException e) {
@@ -119,6 +142,7 @@ public class WhatsAppResource {
 
     @Path("/message/media")
     @POST
+    @RolesAllowed({"user"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -127,16 +151,16 @@ public class WhatsAppResource {
      * @param notificationData Data to send
      * @return Response with the data sent.
      **/
-    public Response sendMediaMessage(NotificationData notificationData) {
+    public Response sendMediaMessage(@Context SecurityContext securityContext,NotificationData notificationData) {
 
-        String media = notificationData.getMedia();
-        String message = notificationData.getMessage();
-        String receiverPhone = notificationData.getReceiver();
-
-        WhatsAppPlugin whatsappPlugin = new WhatsAppPlugin(null);
+        Whatsapp whatsapp = new Whatsapp();
+        whatsapp.notificationData = notificationData;
+        whatsapp.user = User.findByUsername(securityContext.getUserPrincipal().getName());
+        whatsapp.service = "sendMediaMessage";
+        whatsapp.persist();
 
         try {
-            whatsappPlugin.sendMediaMessage(media, message, receiverPhone);
+            whatsappPlugin.sendMediaMessage(notificationData);
             return Response.status(Response.Status.CREATED).entity(notificationData).build();
         }
         catch (IllegalArgumentException e) {
@@ -146,6 +170,7 @@ public class WhatsAppResource {
 
     @Path ("/message/location")
     @POST
+    @RolesAllowed({"user"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -154,17 +179,16 @@ public class WhatsAppResource {
      * @param notificationData Data to send
      * @return Response with the data sent.
      **/
-    public Response sendLocationMessage(NotificationData notificationData) {
+    public Response sendLocationMessage(@Context SecurityContext securityContext,NotificationData notificationData) {
 
-        String latitude = notificationData.getLatitude();
-        String longitude = notificationData.getLongitude();
-        String message = notificationData.getMessage();
-        String receiverPhone = notificationData.getReceiver();
-
-        WhatsAppPlugin whatsappPlugin = new WhatsAppPlugin(null);
+        Whatsapp whatsapp = new Whatsapp();
+        whatsapp.notificationData = notificationData;
+        whatsapp.user = User.findByUsername(securityContext.getUserPrincipal().getName());
+        whatsapp.service = "sendLocationMessage";
+        whatsapp.persist();
 
         try {
-            whatsappPlugin.sendLocationMessage(latitude, longitude, message, receiverPhone);
+            whatsappPlugin.sendLocationMessage(notificationData);
             return Response.status(Response.Status.CREATED).entity(notificationData).build();
         }
         catch (IllegalArgumentException e) {
@@ -175,6 +199,7 @@ public class WhatsAppResource {
 
     @Path("/message/link")
     @POST
+    @RolesAllowed({"user"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -183,20 +208,38 @@ public class WhatsAppResource {
      * @param notificationData Data to send
      * @return Response with the data sent.
      **/
-    public Response sendLinkMessage(NotificationData notificationData) {
+    public Response sendLinkMessage(@Context SecurityContext securityContext,NotificationData notificationData) {
 
-        String link = notificationData.getLink();
-        String message = notificationData.getMessage();
-        String receiverPhone = notificationData.getReceiver();
-
-        WhatsAppPlugin whatsappPlugin = new WhatsAppPlugin(null);
+        Whatsapp whatsapp = new Whatsapp();
+        whatsapp.notificationData = notificationData;
+        whatsapp.user = User.findByUsername(securityContext.getUserPrincipal().getName());
+        whatsapp.service = "sendLinkMessage";
+        whatsapp.persist();
 
         try {
-            whatsappPlugin.sendLinkMessage(link, message, receiverPhone);
+            whatsappPlugin.sendLinkMessage(notificationData);
             return Response.status(Response.Status.CREATED).entity(notificationData).build();
         }
         catch (IllegalArgumentException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
+    }
+
+    @Path("/groups")
+    @GET
+    @RolesAllowed({"user"})
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getGroups(@Context SecurityContext securityContext) {
+
+        User user = User.findByUsername(securityContext.getUserPrincipal().getName());
+        return Response.ok(WhatsAppGroup.listAll()).build();
+    }
+
+    @GET
+    @RolesAllowed({"user"})
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getWhatsapps(@Context SecurityContext securityContext) {
+        User user = User.findByUsername(securityContext.getUserPrincipal().getName());
+        return Response.ok(Whatsapp.findByUser(user)).build();
     }
 }

@@ -11,13 +11,13 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 @Entity
 /**
- * This class represents a Microsoft Teams team.
- * To communicate with a team, first get a webhook and then use it to send messages.
+ * This class represents a Microsoft Teams team.<br>
+ * To communicate with a team, first get a webhook and then use it to send messages.<br>
  */
 public class MsTeam extends PanacheEntity {
     MsTeam() {}
 
-    MsTeam(String url) {
+    public MsTeam(String url) {
         this.url = url;
     }
 
@@ -25,6 +25,10 @@ public class MsTeam extends PanacheEntity {
 
     public String getUrl() {
         return url;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     @Column(name = "created_at")

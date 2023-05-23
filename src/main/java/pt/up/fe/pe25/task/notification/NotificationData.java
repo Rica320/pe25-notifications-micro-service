@@ -1,11 +1,8 @@
 package pt.up.fe.pe25.task.notification;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 import java.util.List;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Embeddable
 public class NotificationData {
@@ -21,6 +18,9 @@ public class NotificationData {
     @Column(name = "receiver_emails")
     private List<String> receiverEmails;
 
+    @Transient
+    private List<String> attachments;
+
     @Column(name = "subject")
     private String subject;
 
@@ -34,23 +34,17 @@ public class NotificationData {
     @Column(name = "link")
     private String link;
 
-    @Column(name = "receiver")
-    private String receiver;
-
     @Column(name = "latitude")
     private String latitude;
 
     @Column(name = "longitude")
     private String longitude;
 
-    @Column(name = "media")
+    @Column(name = "media", columnDefinition = "TEXT")
     private String media;
 
     @Column(name = "group_name")
     private String groupName;
-
-    @Column(name = "group_id")
-    private String groupId;
 
     @Column(name = "date_to_send")
     private LocalDateTime dateToSend;
@@ -85,20 +79,16 @@ public class NotificationData {
         return teams;
     }
 
+    public void setTeams(List<Long> teams) {
+        this.teams = teams;
+    }
+
     public String getLink() {
         return link;
     }
 
     public void setLink(String link) {
         this.link = link;
-    }
-
-    public String getReceiver() {
-        return receiver;
-    }
-
-    public void setReceiver(String receiver) {
-        this.receiver = receiver;
     }
 
     public String getLatitude() {
@@ -133,14 +123,6 @@ public class NotificationData {
         this.groupName = groupName;
     }
 
-    public String getGroupId() {
-        return groupId;
-    }
-
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
-    }
-
     public LocalDateTime getDateToSend() {
         return dateToSend;
     }
@@ -164,4 +146,14 @@ public class NotificationData {
     public void setSubject(String subject) {
         this.subject = subject;
     }
+
+    public void setAttachments(List<String> attachments) {
+        this.attachments = attachments;
+    }
+
+    public List<String> getAttachments() {
+        return attachments;
+    }
+
+
 }

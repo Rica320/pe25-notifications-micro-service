@@ -1,6 +1,15 @@
 plugins {
     id 'java'
     id 'io.quarkus'
+    id "org.sonarqube" version "3.5.0.2730"
+}
+
+sonarqube {
+  properties {
+    property "sonar.projectKey", "Rica320_pe25-notifications-micro-service"
+    property "sonar.organization", "rica320"
+    property "sonar.host.url", "https://sonarcloud.io"
+  }
 }
 
 repositories {
@@ -8,7 +17,14 @@ repositories {
     mavenLocal()
 }
 
+configurations {
+    implementation.canBeResolved = true
+}
+
+
+
 dependencies {
+    implementation 'com.google.guava:guava:31.0.1-jre'
     implementation 'io.quarkus:quarkus-smallrye-openapi'
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
     implementation 'io.quarkus:quarkus-hibernate-validator'
@@ -16,13 +32,18 @@ dependencies {
     implementation 'io.quarkus:quarkus-mailer'
     implementation 'io.quarkus:quarkus-qute'
     implementation 'io.quarkus:quarkus-resteasy-reactive-jackson'
+    implementation group: 'org.jsmpp', name: 'jsmpp', version: '3.0.0'
     implementation 'io.quarkus:quarkus-hibernate-orm'
     implementation 'io.quarkus:quarkus-jdbc-postgresql'
     implementation 'org.postgresql:postgresql'
+    implementation 'com.twilio.sdk:twilio:9.4.0'
+    implementation 'org.projectlombok:lombok:1.18.26'
     implementation 'io.quarkus:quarkus-hibernate-orm-panache'
     implementation 'io.quarkus:quarkus-arc'
     implementation 'io.quarkus:quarkus-quartz'
     implementation 'io.quarkus:quarkus-scheduler'
+    implementation 'io.quarkus:quarkus-security-jpa'
+    implementation 'io.quarkus:quarkus-qute'
     implementation group: 'org.json', name: 'json', version: '20230227'
     implementation 'io.github.cdimascio:dotenv-java:2.3.2'
     implementation 'io.quarkus:quarkus-kubernetes-config'
@@ -32,8 +53,27 @@ dependencies {
     implementation 'io.quarkus:quarkus-minikube'
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
+    testImplementation 'org.mockito:mockito-core:3.12.4'
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.12.4'
 
 }
+
+task generateJavadoc(type: Javadoc) {
+    source = sourceSets.main.allJava
+    classpath += configurations.runtimeClasspath
+
+    options {
+        encoding = 'UTF-8'
+        windowTitle = 'Pe25 API Documentation'
+        docTitle = 'Pe25 API Documentation'
+        header = 'Pe25 API Documentation'
+        bottom = 'Copyright © Pe25 - 2023'
+    }
+
+    exclude '**/package-info.java'
+    destinationDir = file("docs/javadoc")
+}
+
 
 group 'pt.up.fe.pe25'
 version '1.0.0-SNAPSHOT'

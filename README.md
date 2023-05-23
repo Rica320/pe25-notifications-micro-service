@@ -8,6 +8,9 @@ If you want to learn more about Quarkus, please visit its website: https://quark
 
 This section outlines the list of plugins that we have implemented along with their features. The following is a list of plugins and their respective features and corresponding endpoint:
 
+### Authentication
+- [x] JPA identity provider with Basic authentication
+
 ### Notifier
 
 - [x] Send messages through multiple plugins.

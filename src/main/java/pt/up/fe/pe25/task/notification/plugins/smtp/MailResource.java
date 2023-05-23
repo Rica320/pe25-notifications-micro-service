@@ -5,6 +5,7 @@ import io.quarkus.qute.Template;
 import pt.up.fe.pe25.task.notification.NotificationData;
 import pt.up.fe.pe25.task.notification.Notifier;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
@@ -15,22 +16,42 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+/**
+ * A separated resource that sends notifications by email and stores the notification in the database
+ *
+ * @see MailPlugin
+ * @see NotificationData
+ * @see Notifier
+ */
 @Path("/email")
 public class MailResource {
 
+    /**
+     * The mailer
+     */
     @Inject
     ReactiveMailer mailer;
 
+    /**
+     * The template to be used in the email
+     */
     @Inject
     Template template;
 
+    /**
+     * Sends a notification by email<br>
+     * Needs authentication to be called<br>
+     *
+     * @param notificationData the notification data
+     * @return true if the notification was sent successfully, false otherwise
+     */
     @Path("/message")
     @POST
+    @RolesAllowed({"user"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public Response notify(NotificationData notificationData) {
-        System.out.println("Email");
         Notifier notifier = new Notifier();
         notifier.setNotificationData(notificationData);
         notifier.setNotificationServices(List.of("email"));
