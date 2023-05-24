@@ -4,8 +4,12 @@ import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.core.Response;
 
 import pt.up.fe.pe25.task.notification.NotificationData;
+import org.eclipse.microprofile.metrics.annotation.Counted;
+import org.eclipse.microprofile.metrics.annotation.Timed;
+import org.eclipse.microprofile.metrics.MetricUnits;
 
 import java.net.URL;
+
 import org.json.JSONObject;
 
 import com.oracle.svm.core.annotate.Inject;
@@ -44,28 +48,29 @@ public class MsTeamsResource {
     public Response createTeam(String url) {
         try {
             new URL(url).toURI();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return Response.status(Response.Status.BAD_REQUEST).entity("The provided URL is not valid").build();
         }
 
         try {
             MsTeam team = msTeamsPlugin.addTeam(url);
             return Response.status(Response.Status.CREATED).entity(team).build();
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             MsTeam previous = MsTeam.find("url", url).firstResult();
             JSONObject response = new JSONObject("{\"message\": \"That team already exists\", \"id\": " + previous.id + "}");
             return Response.status(Response.Status.CONFLICT).entity(response.toString()).build();
         }
     }
 
-    @Path("/message") 
+    @Path("/message")
     @POST
     @RolesAllowed({"user"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
+    @Counted(name = "msTeamsNotificationsCount", description = "How many ms team notifications have been created with this resource.")
+    @Timed(name = "msTeamsNotificationTimer", description = "A measure of how long it takes to send a ms teams notification",
+            unit = MetricUnits.MILLISECONDS)
     /**
      * Sends a message to the specified team.
      * @param notificationData Data to send including a list of teams
@@ -75,8 +80,7 @@ public class MsTeamsResource {
         try {
             msTeamsPlugin.sendMessages(notificationData);
             return Response.status(Response.Status.CREATED).entity(notificationData).build();
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             //return Response.status(Response.Status.CREATED).build();
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }

@@ -4,6 +4,9 @@ import io.quarkus.mailer.reactive.ReactiveMailer;
 import io.quarkus.qute.Template;
 import pt.up.fe.pe25.task.notification.NotificationData;
 import pt.up.fe.pe25.task.notification.Notifier;
+import org.eclipse.microprofile.metrics.annotation.Counted;
+import org.eclipse.microprofile.metrics.annotation.Timed;
+import org.eclipse.microprofile.metrics.MetricUnits;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -51,6 +54,9 @@ public class MailResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
+    @Counted(name = "emailNotifications", description = "How many email notifications have been sent.")
+    @Timed(name = "emailNotificationsTimer", description = "A measure of how long it takes to send an email notification.",
+            unit = MetricUnits.MILLISECONDS)
     public Response notify(NotificationData notificationData) {
         Notifier notifier = new Notifier();
         notifier.setNotificationData(notificationData);

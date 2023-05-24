@@ -1,4 +1,5 @@
 package pt.up.fe.pe25.task.notification.plugins.whatsapp;
+
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
@@ -11,7 +12,10 @@ import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
-import java.util.List;
+
+import org.eclipse.microprofile.metrics.annotation.Counted;
+import org.eclipse.microprofile.metrics.annotation.Timed;
+import org.eclipse.microprofile.metrics.MetricUnits;
 
 /**
  * A separated resource that sends notifications by WhatsApp and stores the notification in the database
@@ -37,7 +41,7 @@ public class WhatsAppResource {
      * @param groupData Data to create the group
      * @return Response with the data sent.
      **/
-    public Response createGroup(@Context SecurityContext securityContext,NotificationData notificationData) {
+    public Response createGroup(@Context SecurityContext securityContext, NotificationData notificationData) {
 
         Whatsapp whatsapp = new Whatsapp();
         whatsapp.notificationData = notificationData;
@@ -48,8 +52,7 @@ public class WhatsAppResource {
         try {
             WhatsAppGroup wppGroup = whatsappPlugin.createGroup(notificationData);
             return Response.status(Response.Status.CREATED).entity(wppGroup).build();
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
     }
@@ -65,7 +68,7 @@ public class WhatsAppResource {
      * @param notificationData Data to update the group
      * @return Response with the data sent.
      **/
-    public Response addToGroup(@Context SecurityContext securityContext,NotificationData notificationData) {
+    public Response addToGroup(@Context SecurityContext securityContext, NotificationData notificationData) {
 
         Whatsapp whatsapp = new Whatsapp();
         whatsapp.notificationData = notificationData;
@@ -76,8 +79,7 @@ public class WhatsAppResource {
         try {
             whatsappPlugin.updateGroup(notificationData, true);
             return Response.status(Response.Status.CREATED).entity(notificationData).build();
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
     }
@@ -93,7 +95,7 @@ public class WhatsAppResource {
      * @param notificationData Data to update the group
      * @return Response with the data sent.
      **/
-    public Response removeFromGroup(@Context SecurityContext securityContext,NotificationData notificationData) {
+    public Response removeFromGroup(@Context SecurityContext securityContext, NotificationData notificationData) {
 
         Whatsapp whatsapp = new Whatsapp();
         whatsapp.notificationData = notificationData;
@@ -104,12 +106,10 @@ public class WhatsAppResource {
         try {
             whatsappPlugin.updateGroup(notificationData, false);
             return Response.status(Response.Status.CREATED).entity(notificationData).build();
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
     }
-
 
 
     @Path("/message/text")
@@ -117,13 +117,16 @@ public class WhatsAppResource {
     @RolesAllowed({"user"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @Counted(name = "sendTextMessage", description = "How many whatsapp text messages have been sent.")
+    @Timed(name = "sendTextMessageTimer", description = "A measure of how long it takes to send a whatsapp text message."
+            , unit = MetricUnits.MILLISECONDS)
     @Transactional
     /**
      * Sends a text message to a phone number
      * @param notificationData Data to send
      * @return Response with the data sent.
      **/
-    public Response sendTextMessage(@Context SecurityContext securityContext,NotificationData notificationData) {
+    public Response sendTextMessage(@Context SecurityContext securityContext, NotificationData notificationData) {
 
         Whatsapp whatsapp = new Whatsapp();
         whatsapp.notificationData = notificationData;
@@ -134,8 +137,7 @@ public class WhatsAppResource {
         try {
             whatsappPlugin.sendTextMessage(notificationData);
             return Response.status(Response.Status.CREATED).entity(notificationData).build();
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
     }
@@ -145,13 +147,16 @@ public class WhatsAppResource {
     @RolesAllowed({"user"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @Counted(name = "sendMediaMessage", description = "How many whatsapp media messages have been sent.")
+    @Timed(name = "sendMediaMessageTimer", description = "A measure of how long it takes to send a whatsapp media message."
+            , unit = MetricUnits.MILLISECONDS)
     @Transactional
     /**
      * Sends a media message to a phone number
      * @param notificationData Data to send
      * @return Response with the data sent.
      **/
-    public Response sendMediaMessage(@Context SecurityContext securityContext,NotificationData notificationData) {
+    public Response sendMediaMessage(@Context SecurityContext securityContext, NotificationData notificationData) {
 
         Whatsapp whatsapp = new Whatsapp();
         whatsapp.notificationData = notificationData;
@@ -162,24 +167,26 @@ public class WhatsAppResource {
         try {
             whatsappPlugin.sendMediaMessage(notificationData);
             return Response.status(Response.Status.CREATED).entity(notificationData).build();
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
     }
 
-    @Path ("/message/location")
+    @Path("/message/location")
     @POST
     @RolesAllowed({"user"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @Counted(name = "sendLocationMessage", description = "How many whatsapp location messages have been sent.")
+    @Timed(name = "sendLocationMessageTimer", description = "A measure of how long it takes to send a whatsapp location message."
+            , unit = MetricUnits.MILLISECONDS)
     @Transactional
     /**
      * Sends a location message to a phone number
      * @param notificationData Data to send
      * @return Response with the data sent.
      **/
-    public Response sendLocationMessage(@Context SecurityContext securityContext,NotificationData notificationData) {
+    public Response sendLocationMessage(@Context SecurityContext securityContext, NotificationData notificationData) {
 
         Whatsapp whatsapp = new Whatsapp();
         whatsapp.notificationData = notificationData;
@@ -190,8 +197,7 @@ public class WhatsAppResource {
         try {
             whatsappPlugin.sendLocationMessage(notificationData);
             return Response.status(Response.Status.CREATED).entity(notificationData).build();
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
     }
@@ -202,13 +208,16 @@ public class WhatsAppResource {
     @RolesAllowed({"user"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @Counted(name = "sendLinkMessage", description = "How many whatsapp link messages have been sent.")
+    @Timed(name = "sendLinkMessageTimer", description = "A measure of how long it takes to send a whatsapp link message."
+            , unit = MetricUnits.MILLISECONDS)
     @Transactional
     /**
      * Sends a link message to a phone number
      * @param notificationData Data to send
      * @return Response with the data sent.
      **/
-    public Response sendLinkMessage(@Context SecurityContext securityContext,NotificationData notificationData) {
+    public Response sendLinkMessage(@Context SecurityContext securityContext, NotificationData notificationData) {
 
         Whatsapp whatsapp = new Whatsapp();
         whatsapp.notificationData = notificationData;
@@ -219,8 +228,7 @@ public class WhatsAppResource {
         try {
             whatsappPlugin.sendLinkMessage(notificationData);
             return Response.status(Response.Status.CREATED).entity(notificationData).build();
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
     }

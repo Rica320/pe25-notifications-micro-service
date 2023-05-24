@@ -14,7 +14,7 @@ import io.quarkus.security.jpa.Username;
 import java.util.List;
 
 @Entity
-@Table(name = "user")
+@Table(name = "test_user")
 @UserDefinition
 public class User extends PanacheEntity {
     @Username
