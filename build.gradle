@@ -1,6 +1,15 @@
 plugins {
     id 'java'
     id 'io.quarkus'
+    id "org.sonarqube" version "3.5.0.2730"
+}
+
+sonarqube {
+  properties {
+    property "sonar.projectKey", "Rica320_pe25-notifications-micro-service"
+    property "sonar.organization", "rica320"
+    property "sonar.host.url", "https://sonarcloud.io"
+  }
 }
 
 repositories {
@@ -8,8 +17,16 @@ repositories {
     mavenLocal()
 }
 
+configurations {
+    implementation.canBeResolved = true
+}
+
+
+
 dependencies {
+    implementation 'com.google.guava:guava:31.0.1-jre'
     implementation 'io.quarkus:quarkus-smallrye-openapi'
+    implementation 'io.quarkus:quarkus-smallrye-metrics'
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
     implementation 'io.quarkus:quarkus-hibernate-validator'
     implementation 'io.quarkus:quarkus-resteasy-jsonb'
@@ -42,6 +59,23 @@ dependencies {
     testImplementation 'org.mockito:mockito-junit-jupiter:3.12.4'
 
 }
+
+task generateJavadoc(type: Javadoc) {
+    source = sourceSets.main.allJava
+    classpath += configurations.runtimeClasspath
+
+    options {
+        encoding = 'UTF-8'
+        windowTitle = 'Pe25 API Documentation'
+        docTitle = 'Pe25 API Documentation'
+        header = 'Pe25 API Documentation'
+        bottom = 'Copyright © Pe25 - 2023'
+    }
+
+    exclude '**/package-info.java'
+    destinationDir = file("docs/javadoc")
+}
+
 
 group 'pt.up.fe.pe25'
 version '1.0.0-SNAPSHOT'

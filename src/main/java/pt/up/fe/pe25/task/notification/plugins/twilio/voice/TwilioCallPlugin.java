@@ -10,7 +10,16 @@ import pt.up.fe.pe25.task.notification.plugins.twilio.TwilioConfig;
 
 import javax.inject.Singleton;
 
-
+/**
+ * A plugin that phones a list of numbers using Twilio. <br>
+ * You can configure the Twilio account in application.properties.<br>
+ * The call can contain a message and a list of receivers.<br>
+ *
+ * @see NotificationService
+ * @see PluginDecorator
+ * @see NotificationData
+ * @see TwilioConfig
+ */
 @Singleton
 public class TwilioCallPlugin extends PluginDecorator {
 
@@ -20,12 +29,22 @@ public class TwilioCallPlugin extends PluginDecorator {
 
     private TwilioConfig twilioConfig;
 
+    /**
+     * Creates a new TwilioCallPlugin
+     * @param notificationService the notification service to be wrapped
+     * @param twilioConfig the Twilio configuration
+     */
     public TwilioCallPlugin(NotificationService notificationService, TwilioConfig twilioConfig) {
         super(notificationService);
         this.twilioConfig = twilioConfig;
         Twilio.init(twilioConfig.getAccountSid(), twilioConfig.getAuthToken());
     }
 
+    /**
+     * Sends a notification by SMS ... calling the wrapped notification service before
+     * @param notificationData the notification data
+     * @return true if the notification was sent successfully, false otherwise
+     */
     @Override
     public boolean notify(NotificationData notificationData) {
         if (notificationService != null)

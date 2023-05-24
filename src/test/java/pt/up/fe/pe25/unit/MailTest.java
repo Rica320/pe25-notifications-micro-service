@@ -94,7 +94,7 @@ public class MailTest {
     public void testMailerFailure() {
         // Arrange
         NotificationData notificationData = new NotificationData();
-        notificationData.setReceiverEmails(Collections.singletonList("test@test.com"));
+        notificationData.setReceiverEmails(Collections.singletonList("test@@test.com"));
         notificationData.setSubject("Test subject");
         notificationData.setMessage("Test message");
 

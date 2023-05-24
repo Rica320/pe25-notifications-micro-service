@@ -11,16 +11,36 @@ import com.oracle.svm.core.annotate.Inject;
 import io.quarkus.scheduler.Scheduled;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
+/**
+ * A filter that limits the number of requests per minute
+ * <p>
+ *     This filter is used to limit the number of requests per minute to the notification service.
+ *     <br>
+ *     The maximum number of requests per minute can be configured in the configuration file.
+ *     <br>
+ * </p>
+ *
+ */
 @Provider
 @ApplicationScoped
 public class NotificationRateLimitingFilter implements ContainerRequestFilter {
 
+    /**
+     * The maximum number of requests per minute
+     */
     @Inject
     @ConfigProperty(name = "pt.fe.up.pe25.max_requests_per_minute", defaultValue = "10")
     int MAX_REQUESTS_PER_MINUTE;
 
+    /**
+     * The request counts per client
+     */
     private final ConcurrentHashMap<String, Integer> requestCounts = new ConcurrentHashMap<>();
 
+    /**
+     * Filters the request to check if the number of requests per minute is exceeded
+     * @param requestContext the request context
+     */
     @Override
     public void filter(ContainerRequestContext requestContext) {
         String ip = requestContext.getHeaderString("X-Real-IP");
@@ -39,6 +59,9 @@ public class NotificationRateLimitingFilter implements ContainerRequestFilter {
         }
     }
 
+    /**
+     * Resets the request counts every minute
+     */
     @Scheduled(every = "1m")
     void resetCounts() {
         requestCounts.clear();
