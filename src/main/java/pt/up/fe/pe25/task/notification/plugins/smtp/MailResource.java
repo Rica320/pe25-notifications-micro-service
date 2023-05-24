@@ -10,6 +10,7 @@ import pt.up.fe.pe25.task.notification.Notifier;
 import org.eclipse.microprofile.metrics.annotation.Counted;
 import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.eclipse.microprofile.metrics.MetricUnits;
+import pt.up.fe.pe25.task.notification.plugins.smtp.template.factory.TemplateFactory;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -39,10 +40,10 @@ public class MailResource {
     ReactiveMailer mailer;
 
     /**
-     * The template to be used in the email
+     * The template factory to be used in the email
      */
     @Inject
-    Template template;
+    TemplateFactory templateFactory;
 
     /**
      * Sends a notification by email<br>
@@ -78,7 +79,7 @@ public class MailResource {
         notifier.setNotificationData(notificationData);
         notifier.setNotificationServices(List.of("email"));
         notifier.persist();
-        MailPlugin mailPlugin = new MailPlugin(null, mailer, template);
+        MailPlugin mailPlugin = new MailPlugin(null, mailer,templateFactory);
         try {
             mailPlugin.notify(notificationData);
             return Response.status(Response.Status.CREATED).entity(notificationData).build();

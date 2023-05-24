@@ -67,9 +67,20 @@ public class NotificationData {
     private LocalDateTime dateToSend;
     // TODO: Add more fields ... Some will be more specific to each service and will probably be added in another place
 
+    @Column(name = "template_id")
+    @Schema(example = "1")
+    private String mailTemplateId;
 
     public String getTicketId() {
         return ticketId;
+    }
+
+    public String getMailTemplateId() {
+        return mailTemplateId;
+    }
+
+    public void setMailTemplateId(String mailTemplateId) {
+        this.mailTemplateId = mailTemplateId;
     }
 
     public void setTicketId(String ticketId) {
