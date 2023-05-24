@@ -2,7 +2,6 @@ package pt.up.fe.pe25.task.notification.plugins.smtp.template.factory;
 
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
-import pt.up.fe.pe25.task.notification.NotificationData;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
