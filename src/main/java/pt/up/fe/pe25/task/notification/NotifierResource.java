@@ -116,5 +116,14 @@ public class NotifierResource {
         User user = User.findByUsername(securityContext.getUserPrincipal().getName());
         return Response.ok(Notifier.findByUser(user)).build();
     }
+
+
+    @GET
+    @RolesAllowed({"admin"})
+    @Path("/toSend")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getToSentNotifiers(@Context SecurityContext securityContext) {
+        return Response.ok(Notifier.getToSendNotifications()).build();
+    }
 }
 

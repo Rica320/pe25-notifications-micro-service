@@ -3,23 +3,25 @@ package pt.up.fe.pe25.task.notification;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 
 /**
  * The Notification Scheduler
  * <p>
- *     This class is used to schedule the notifications
- *     <br>
- *     The notifications are scheduled using the Quartz library
- *     <br>
- *     The notifications are scheduled based on the date to send
- *     <br>
- *     The notifications are scheduled using the NotificationJob class
- *     <br>
- *     The NotificationJob class is responsible for sending the notifications
- *     <br>
+ * This class is used to schedule the notifications
+ * <br>
+ * The notifications are scheduled using the Quartz library
+ * <br>
+ * The notifications are scheduled based on the date to send
+ * <br>
+ * The notifications are scheduled using the NotificationJob class
+ * <br>
+ * The NotificationJob class is responsible for sending the notifications
+ * <br>
  * </p>
  */
 @ApplicationScoped
@@ -27,7 +29,8 @@ public class NotificationScheduler {
 
     /**
      * Schedules a notification
-     * @param data the notification data
+     *
+     * @param data    the notification data
      * @param service the notification service
      * @throws SchedulerException if the notification could not be scheduled
      */
@@ -52,6 +55,7 @@ public class NotificationScheduler {
         scheduler.scheduleJob(job, trigger);
     }
 
+
     /**
      * The notification job
      * Executes the notification service after the notification is triggered
@@ -66,6 +70,7 @@ public class NotificationScheduler {
 
         /**
          * Executes the notification service
+         *
          * @param context the job context
          */
         public void execute(JobExecutionContext context) {
