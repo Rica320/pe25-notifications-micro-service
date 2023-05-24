@@ -1,5 +1,11 @@
 package pt.up.fe.pe25.task.notification.plugins.smpp;
 
+import org.eclipse.microprofile.metrics.MetricUnits;
+import org.eclipse.microprofile.metrics.annotation.Counted;
+import org.eclipse.microprofile.metrics.annotation.Timed;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import pt.up.fe.pe25.task.notification.NotificationData;
 
 import javax.annotation.security.RolesAllowed;
@@ -22,6 +28,19 @@ public class SmsResource {
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"user"})
     @Transactional
+    @Counted(name = "smppNotifications", description = "How many sms notifications have been sent through smpp.")
+    @Timed(name = "smppNotificationsTimer", description = "A measure of how long it takes to send an sms notification through smpp.",
+            unit = MetricUnits.MILLISECONDS)
+    @RequestBody(
+        content = @Content(mediaType = MediaType.APPLICATION_JSON,
+        schema = @Schema(implementation = NotificationData.class,
+                example = "{\"ticketId\": \"#1\"," +
+                        " \"phoneList\": [\"+351910384072\"]," +
+                        " \"message\": \"A new ticket #1 has been assigned to you\"" +
+                        "}"
+            )
+        )
+    )
     /**
      * Sends a text message to a list of phone numbers
      * @param notificationData Data to send
