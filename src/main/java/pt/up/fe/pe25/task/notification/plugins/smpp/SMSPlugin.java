@@ -66,7 +66,7 @@ public class SMSPlugin extends PluginDecorator {
         if (notificationService != null)
             super.notify(notificationData);
 
-        return sendMessage(notificationData);
+        return sendMessages(notificationData);
     }
 
     /**
@@ -74,19 +74,7 @@ public class SMSPlugin extends PluginDecorator {
      * @param notificationData
      * @return success or failure on sending the message
      */
-    public boolean sendMessage(NotificationData notificationData) {
-        String templateText;
-        if (notificationData.getTemplate() == null) {
-            templateText = "";
-        }
-        else if (notificationData.getTemplate().equals("ticket")) {
-            templateText = "TICKET #" + notificationData.getTicketId() + "\n";
-        }
-        else {
-            templateText = ""; //more templates can be added here
-        }
-        String message = templateText + notificationData.getMessage();
-
+    public boolean sendMessages(NotificationData notificationData) {
         SMPPSession session = new SMPPSession();
         try {
             session.connectAndBind(host, port, new BindParameter(bindType,
@@ -94,22 +82,8 @@ public class SMSPlugin extends PluginDecorator {
                     null));
 
             for (String destPhone: notificationData.getPhoneList()) {
-                try {
-                    SubmitSmResult submitSmResult = session.submitShortMessage("CMT",
-                            sourceAddrTon, sourceAddrNpi, sender,
-                            destAddrTon, destAddrNpi, destPhone,
-                            new ESMClass(esmClass), protocolId, priorityFlag, scheduleDeliveryTime, validityPeriod,
-                            new RegisteredDelivery(registeredDelivery), replaceIfPresentFlag,
-                            new GeneralDataCoding(dataCoding, MessageClass.CLASS1, false),
-                            smDefaultMsgId, (message).getBytes());
-
-
-                } catch (PDUException | ResponseTimeoutException | InvalidResponseException |
-                         NegativeResponseException | IOException e) {
-                    throw new IllegalArgumentException(e);
-                }
+                sendMessage(session, destPhone, notificationData.getMessage(), notificationData.getTemplate(), notificationData.getTicketId());
             }
-
 
             session.unbindAndClose();
 
@@ -118,6 +92,40 @@ public class SMSPlugin extends PluginDecorator {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Sends a message to a single phone number
+     * @param session the SMPP session
+     * @param destPhone the destination phone number
+     */
+    private void sendMessage(SMPPSession session, String destPhone, String msg, String template, String ticketId) {
+        String templateText;
+        if (template == null) {
+            templateText = "";
+        }
+        else if (template.equals("ticket")) {
+            templateText = "TICKET #" + ticketId + "\n";
+        }
+        else {
+            templateText = ""; //more templates can be added here
+        }
+        String message = templateText + msg;
+
+        try {
+            session.submitShortMessage("CMT",
+                    sourceAddrTon, sourceAddrNpi, sender,
+                    destAddrTon, destAddrNpi, destPhone,
+                    new ESMClass(esmClass), protocolId, priorityFlag, scheduleDeliveryTime, validityPeriod,
+                    new RegisteredDelivery(registeredDelivery), replaceIfPresentFlag,
+                    new GeneralDataCoding(dataCoding, MessageClass.CLASS1, false),
+                    smDefaultMsgId, (message).getBytes());
+
+
+        } catch (PDUException | ResponseTimeoutException | InvalidResponseException |
+                 NegativeResponseException | IOException e) {
+            throw new IllegalArgumentException(e);
+        }
     }
 
     /**

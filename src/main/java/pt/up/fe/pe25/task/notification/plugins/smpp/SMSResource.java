@@ -56,7 +56,7 @@ public class SMSResource {
         SMSPlugin smsPlugin = new SMSPlugin(null);
 
         try {
-            smsPlugin.sendMessage(notificationData);
+            smsPlugin.sendMessages(notificationData);
             return Response.status(Response.Status.CREATED).entity(notificationData).build();
         }
         catch (IllegalArgumentException e) {
