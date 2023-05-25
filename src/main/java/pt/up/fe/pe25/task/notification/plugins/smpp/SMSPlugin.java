@@ -101,7 +101,7 @@ public class SMSPlugin extends PluginDecorator {
                             new ESMClass(esmClass), protocolId, priorityFlag, scheduleDeliveryTime, validityPeriod,
                             new RegisteredDelivery(registeredDelivery), replaceIfPresentFlag,
                             new GeneralDataCoding(dataCoding, MessageClass.CLASS1, false),
-                            smDefaultMsgId, (notificationData.getMessage()).getBytes());
+                            smDefaultMsgId, (message).getBytes());
 
 
                 } catch (PDUException | ResponseTimeoutException | InvalidResponseException |
