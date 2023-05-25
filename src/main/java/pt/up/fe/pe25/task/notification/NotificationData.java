@@ -18,12 +18,12 @@ public class NotificationData {
 
     @ElementCollection
     @Column(name = "phone_list")
-    @Schema(example = "[\"+351967325360\", \"+351924017794\", \"+351967108975\", \"+351910384072\"]")
+    @Schema(example = "[\"+351961234567\", \"+351921234567\", \"+351931234567\", \"+351941234567\"]")
     private List<String> phoneList;
 
     @ElementCollection
     @Column(name = "receiver_emails")
-    @Schema(example = "[\"up202007962@edu.fe.up.pt\", \"up202004926@edu.fe.up.pt\", \"up202008462@edu.fe.up.pt\", \"up202005108@edu.fe.up.pt\"]")
+    @Schema(example = "[\"up202000000@edu.fe.up.pt\", \"up202000000@edu.fe.up.pt\", \"up202000000@edu.fe.up.pt\", \"up202000000@edu.fe.up.pt\"]")
     private List<String> receiverEmails;
 
     @Transient
@@ -62,6 +62,10 @@ public class NotificationData {
     @Column(name = "group_name")
     @Schema(example = "Grupo Altice Labs")
     private String groupName;
+
+    @Column(name = "receiver_group")
+    @Schema(example = "1")
+    private Long receiverGroup;
 
     @Column(name = "date_to_send")
     private LocalDateTime dateToSend;
@@ -170,6 +174,14 @@ public class NotificationData {
 
     public List<String> getAttachments() {
         return attachments;
+    }
+
+    public Long getReceiverGroup() {
+        return receiverGroup;
+    }
+
+    public void setReceiverGroup(Long receiverGroup) {
+        this.receiverGroup = receiverGroup;
     }
 
 
