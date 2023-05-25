@@ -16,6 +16,10 @@ public class NotificationData {
     @Schema(example = "#1")
     private String ticketId;
 
+    @Column(name = "template")
+    @Schema(description = "Optional template to be used for the message. Currently supported templates: ticket", example = "ticket")
+    private String template;
+
     @ElementCollection
     @Column(name = "phone_list")
     @Schema(example = "[\"+351967325360\", \"+351924017794\", \"+351967108975\", \"+351910384072\"]")
@@ -78,6 +82,13 @@ public class NotificationData {
 
     public List<String> getPhoneList() {
         return phoneList;
+    }
+    public String getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(String template) {
+        this.template = template;
     }
 
     public void setPhoneList(List<String> phoneList) {

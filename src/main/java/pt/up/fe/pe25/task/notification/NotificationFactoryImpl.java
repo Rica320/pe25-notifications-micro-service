@@ -2,17 +2,17 @@ package pt.up.fe.pe25.task.notification;
 
 import io.quarkus.mailer.reactive.ReactiveMailer;
 import io.quarkus.qute.Template;
-import javax.inject.Inject;
-import javax.enterprise.context.ApplicationScoped;
-import java.util.List;
-
-import pt.up.fe.pe25.task.notification.plugins.smtp.MailPlugin;
 import pt.up.fe.pe25.task.notification.plugins.msteams.MsTeamsPlugin;
-import pt.up.fe.pe25.task.notification.plugins.smpp.SmsPlugin;
+import pt.up.fe.pe25.task.notification.plugins.smpp.SMSPlugin;
+import pt.up.fe.pe25.task.notification.plugins.smtp.MailPlugin;
 import pt.up.fe.pe25.task.notification.plugins.twilio.TwilioConfig;
 import pt.up.fe.pe25.task.notification.plugins.twilio.sms.TwilioSMSPlugin;
 import pt.up.fe.pe25.task.notification.plugins.twilio.voice.TwilioCallPlugin;
 import pt.up.fe.pe25.task.notification.plugins.whatsapp.WhatsAppPlugin;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import java.util.List;
 
 /**
  * The notification factory
@@ -62,7 +62,7 @@ public class NotificationFactoryImpl implements NotificationFactory{
                 case "whatsapp" -> notificationService = new WhatsAppPlugin(notificationService);
                 case "msteams" -> notificationService = new MsTeamsPlugin(notificationService);
                 case "email" -> notificationService = new MailPlugin(notificationService, mailer, template);
-                case "sms" -> notificationService = new SmsPlugin(notificationService);
+                case "sms" -> notificationService = new SMSPlugin(notificationService);
                 case "tSMS" -> notificationService = new TwilioSMSPlugin(notificationService, twilioConfig);
                 case "tCall" -> notificationService = new TwilioCallPlugin(notificationService, twilioConfig);
                 default -> {
