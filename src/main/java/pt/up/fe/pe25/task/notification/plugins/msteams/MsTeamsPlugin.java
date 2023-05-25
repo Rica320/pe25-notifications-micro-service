@@ -16,7 +16,7 @@ import pt.up.fe.pe25.task.notification.plugins.PluginDecorator;
 /**
  * A plugin that sends notifications to Microsoft Teams.<br>
  * It uses a webhook to send messages to a team.<br>
- * You can add a team to the database and then use it to send messages.<br>
+ * To use, first add a team to the database with the webhook and then send messages with the given id.
  *
  * @see NotificationService
  * @see PluginDecorator
@@ -75,7 +75,9 @@ public class MsTeamsPlugin extends PluginDecorator {
      */
     public void sendMessages(NotificationData notificationData) {
         List<Long> errors = new ArrayList<>();
-        for (Long teamId : notificationData.getTeams()) {
+        if (notificationData.getReceiverTeams() == null) throw new IllegalArgumentException("No teams specified");
+        if (notificationData.getMessage() == null) throw new IllegalArgumentException("No message specified");
+        for (Long teamId : notificationData.getReceiverTeams()) {
             MsTeam team = MsTeam.findById(teamId);
             if (team == null) {
                 errors.add(teamId);
@@ -83,7 +85,8 @@ public class MsTeamsPlugin extends PluginDecorator {
             }
             sendMessage(team.getUrl(),
                 notificationData.getMessage(),
-                notificationData.getTicketId());
+                notificationData.getTicketId(),
+                notificationData.getTemplate());
         }
         if (errors.size() > 0) throw new IllegalArgumentException("Those teams do not exist: " + errors.toString());
     }
@@ -94,7 +97,21 @@ public class MsTeamsPlugin extends PluginDecorator {
      * @param message Message to send
      * @param ticketId Id of the ticket
      */
-    public void sendMessage(String url, String message, String ticketId) {
+    public void sendMessage(String url, String message, String ticketId, String template) {
+        String templateText;
+        if (template == null) {
+            templateText = "";
+        }
+        else if (template.equals("ticket")) {
+            templateText = String.format("""
+                    \"activityTitle\": \"Alert!\",
+                    \"activitySubtitle\": \"Service Status Ticket #%s\",
+                """, ticketId);
+        }
+        else {
+            templateText = "";
+        }
+
         String body = String.format("""
                 {
             \"@type\": \"MessageCard\",
@@ -103,12 +120,11 @@ public class MsTeamsPlugin extends PluginDecorator {
             \"summary\": \"New message\",
             \"sections\": [
                 {
-                    \"activityTitle\": \"Alert!\",
-                    \"activitySubtitle\": \"Service Status Ticket #%s\",
+                    %s
                     \"text\": \"%s\"
                 }
             ]
-        }""", ticketId, message);
+        }""", templateText, message);
         /*\"activityImage\": \"https://image_url",*/
 
 

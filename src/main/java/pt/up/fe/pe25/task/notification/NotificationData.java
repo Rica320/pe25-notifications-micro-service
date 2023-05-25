@@ -13,21 +13,25 @@ import java.util.List;
 public class NotificationData {
 
     @Column(name = "ticket_id")
-    @Schema(example = "#1")
+    @Schema(description = "The id of the ticket", example = "KS93KJ")
     private String ticketId;
+
+    @Column(name = "template")
+    @Schema(description = "Optional template to be used for the message. Currently supported templates: ticket", example = "ticket")
+    private String template;
 
     @ElementCollection
     @Column(name = "phone_list")
-    @Schema(example = "[\"+351967325360\", \"+351924017794\", \"+351967108975\", \"+351910384072\"]")
+    @Schema(description = "List of phones that should receive this message", example = "[\"+351967325360\", \"+351924017794\", \"+351967108975\", \"+351910384072\"]")
     private List<String> phoneList;
 
     @ElementCollection
     @Column(name = "receiver_emails")
-    @Schema(example = "[\"up202007962@edu.fe.up.pt\", \"up202004926@edu.fe.up.pt\", \"up202008462@edu.fe.up.pt\", \"up202005108@edu.fe.up.pt\"]")
+    @Schema(description = "List of emails that should receive this message", example = "[\"up202007962@edu.fe.up.pt\", \"up202004926@edu.fe.up.pt\", \"up202008462@edu.fe.up.pt\", \"up202005108@edu.fe.up.pt\"]")
     private List<String> receiverEmails;
 
     @Transient
-    @Schema(example = "")
+    @Schema(description = "Attachments for email messages", example = "")
     private List<String> attachments;
 
     @Column(name = "subject")
@@ -35,38 +39,37 @@ public class NotificationData {
     private String subject;
 
     @Column(name = "message")
-    @Schema(example = "A new ticket #1 has been assigned to you")
+    @Schema(description = "The text to include as a message", example = "A new ticket #1 has been assigned to you")
     private String message;
 
     @ElementCollection
-    @Column(name = "teams")
-    @Schema(example = "[0, 1]")
-    public List<Long> teams;
+    @Column(name = "receiver_teams")
+    @Schema(description = "List of teams that should receive this message", example = "[0, 1]")
+    private List<Long> receiverTeams;
 
     @Column(name = "link")
-    @Schema(example = "https://www.alticelabs.com/")
+    @Schema(description = "Link to be included in the message", example = "https://www.alticelabs.com/")
     private String link;
 
     @Column(name = "latitude")
-    @Schema(example = "41.1780")
+    @Schema(description = "Latitude geographic coordinates in decimal degrees", example = "41.1780")
     private String latitude;
 
     @Column(name = "longitude")
-    @Schema(example = "-8.5980")
+    @Schema(description = "Longitude geographic coordinates in decimal degrees", example = "-8.5980")
     private String longitude;
 
     @Column(name = "media", columnDefinition = "TEXT")
-    @Schema(example = "")
+    @Schema(description = "Either a url for a medial file or a base64 formatted file")
     private String media;
 
     @Column(name = "group_name")
-    @Schema(example = "Grupo Altice Labs")
+    @Schema(description = "Name of the WhatsApp group", example = "Grupo Altice Labs")
     private String groupName;
 
     @Column(name = "date_to_send")
+    @Schema(description = "Date and time to send the message. This can be used to schedule messages", example = "2021-05-20T10:00:00")
     private LocalDateTime dateToSend;
-    // TODO: Add more fields ... Some will be more specific to each service and will probably be added in another place
-
 
     public String getTicketId() {
         return ticketId;
@@ -74,6 +77,14 @@ public class NotificationData {
 
     public void setTicketId(String ticketId) {
         this.ticketId = ticketId;
+    }
+
+    public String getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(String template) {
+        this.template = template;
     }
 
     public List<String> getPhoneList() {
@@ -92,12 +103,12 @@ public class NotificationData {
         this.message = message;
     }
 
-    public List<Long> getTeams() {
-        return teams;
+    public List<Long> getReceiverTeams() {
+        return receiverTeams;
     }
 
-    public void setTeams(List<Long> teams) {
-        this.teams = teams;
+    public void setReceiverTeams(List<Long> receiverTeams) {
+        this.receiverTeams = receiverTeams;
     }
 
     public String getLink() {
