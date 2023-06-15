@@ -9,6 +9,8 @@ import io.smallrye.mutiny.Uni;
 import pt.up.fe.pe25.task.notification.NotificationData;
 import pt.up.fe.pe25.task.notification.NotificationService;
 import pt.up.fe.pe25.task.notification.plugins.PluginDecorator;
+import pt.up.fe.pe25.task.notification.plugins.smtp.template.factory.TemplateFactory;
+import pt.up.fe.pe25.task.notification.plugins.smtp.template.factory.TemplateFactoryImpl;
 
 import javax.inject.Inject;
 import java.io.*;
@@ -35,22 +37,18 @@ public class MailPlugin extends PluginDecorator {
      */
     ReactiveMailer mailer;
 
-    /**
-     * The template to be used in the email
-     */
-    Template template;
+    TemplateFactory templateFactory;
 
     /**
      * Creates a new MailPlugin
      * @param notificationService the notification service
      * @param mailer the mailer
-     * @param template the template
      */
     @Inject
-    public MailPlugin(NotificationService notificationService, ReactiveMailer mailer, Template template) {
+    public MailPlugin(NotificationService notificationService, ReactiveMailer mailer, TemplateFactory templateFactory) {
         super(notificationService);
         this.mailer = mailer;
-        this.template = template;
+        this.templateFactory = templateFactory;
     }
 
     public MailPlugin() {
@@ -106,14 +104,18 @@ public class MailPlugin extends PluginDecorator {
 
 
         boolean valid = true;
+        String id = notificationData.getMailTemplateId();
+        if (id == null)
+            id = "0";
+
+        TemplateInstance templateInstance = templateFactory.create(id, notificationData.getMessage());
         for (String email : notificationData.getReceiverEmails()) {
 
-            if (!email.matches("^[a-z0-9]+@[a-z]+\\.[a-z]{2,3}")) {
+            if (!email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
                 valid = false;
                 continue;
             }
             try {
-                TemplateInstance templateInstance = template.data("message", notificationData.getMessage());
 
                 Mail mail = Mail.withHtml(email, notificationData.getSubject(), templateInstance.render());
 
@@ -130,6 +132,7 @@ public class MailPlugin extends PluginDecorator {
                         failure -> System.out.println("Failed to send email: " + failure.getMessage())
                 );
             } catch (Exception e) {
+                e.printStackTrace();
                 valid = false;
             }
         }

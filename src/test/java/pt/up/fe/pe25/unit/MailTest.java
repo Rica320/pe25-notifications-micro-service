@@ -13,6 +13,7 @@ import org.mockito.MockitoAnnotations;
 import pt.up.fe.pe25.task.notification.NotificationData;
 import pt.up.fe.pe25.task.notification.NotificationService;
 import pt.up.fe.pe25.task.notification.plugins.smtp.MailPlugin;
+import pt.up.fe.pe25.task.notification.plugins.smtp.template.factory.TemplateFactory;
 
 import java.util.Collections;
 
@@ -31,12 +32,15 @@ public class MailTest {
     @Mock
     private Template template;
 
+    @Mock
+    private TemplateFactory templateFactory;
+
     private MailPlugin mailPlugin;
 
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        mailPlugin = new MailPlugin(notificationService, mailer, template);
+        mailPlugin = new MailPlugin(notificationService, mailer, templateFactory);
     }
 
     @Test
@@ -46,10 +50,17 @@ public class MailTest {
         notificationData.setReceiverEmails(Collections.singletonList("test@test.com"));
         notificationData.setSubject("Test subject");
         notificationData.setMessage("Test message");
+        notificationData.setMailTemplateId("1");
 
         TemplateInstance templateInstance = mock(TemplateInstance.class);
         when(template.data(anyString(), anyString())).thenReturn(templateInstance);
         when(templateInstance.render()).thenReturn("Test message");
+
+
+        when(templateFactory.create(anyString(), anyString())).thenReturn(templateInstance);
+
+        System.out.println("");
+
 
         when(mailer.send(any(Mail.class))).thenReturn(Uni.createFrom().voidItem());
 
@@ -76,6 +87,8 @@ public class MailTest {
         notificationData.setReceiverEmails(Collections.singletonList("test@test.com"));
         notificationData.setSubject("Test subject");
         notificationData.setMessage("Test message");
+        notificationData.setMailTemplateId("1");
+
 
         TemplateInstance templateInstance = mock(TemplateInstance.class);
         when(template.data(anyString(), anyString())).thenReturn(templateInstance);
@@ -97,6 +110,7 @@ public class MailTest {
         notificationData.setReceiverEmails(Collections.singletonList("test@@test.com"));
         notificationData.setSubject("Test subject");
         notificationData.setMessage("Test message");
+        notificationData.setMailTemplateId("1");
 
         TemplateInstance templateInstance = mock(TemplateInstance.class);
         when(template.data(anyString(), anyString())).thenReturn(templateInstance);

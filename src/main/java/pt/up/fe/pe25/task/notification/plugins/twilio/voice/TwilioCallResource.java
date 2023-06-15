@@ -1,5 +1,8 @@
 package pt.up.fe.pe25.task.notification.plugins.twilio.voice;
 
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import pt.up.fe.pe25.task.notification.NotificationData;
 import pt.up.fe.pe25.task.notification.plugins.twilio.TwilioConfig;
 
@@ -41,6 +44,16 @@ public class TwilioCallResource {
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"user"})
     @Transactional
+    @RequestBody(
+            content = @Content(mediaType = MediaType.APPLICATION_JSON,
+                    schema = @Schema(implementation = NotificationData.class,
+                            example = "{\"ticketId\": \"#1\"," +
+                                    " \"phoneList\": [\"+351967325360\", \"+351924017794\", \"+351967108975\", \"+351910384072\"]," +
+                                    " \"message\": \"A new ticket #1 has been assigned to you\"" +
+                                    "}"
+                    )
+            )
+    )
     public Response sendMessage(NotificationData notificationData) {
         TwilioCallPlugin twilioCallPlugin = new TwilioCallPlugin(null, twilioConfig);
         try {

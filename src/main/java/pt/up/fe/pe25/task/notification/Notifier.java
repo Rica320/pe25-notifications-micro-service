@@ -65,6 +65,10 @@ public class Notifier extends PanacheEntity {
         return find("user", user).list();
     }
 
+    public static List<Notifier>  getToSendNotifications() {
+        return Notifier.find("notificationData.dateToSend > ?1", LocalDateTime.now()).list();
+    }
+
     public void setNotificationServices(List<String> notificationServices) {
         this.notificationServices = notificationServices;
     }

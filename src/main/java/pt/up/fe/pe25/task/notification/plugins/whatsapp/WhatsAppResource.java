@@ -1,21 +1,24 @@
 package pt.up.fe.pe25.task.notification.plugins.whatsapp;
 
-import javax.annotation.security.RolesAllowed;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
-
+import org.eclipse.microprofile.metrics.MetricUnits;
+import org.eclipse.microprofile.metrics.annotation.Counted;
+import org.eclipse.microprofile.metrics.annotation.Timed;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import pt.up.fe.pe25.authentication.User;
 import pt.up.fe.pe25.task.notification.NotificationData;
 import pt.up.fe.pe25.task.notification.Notifier;
 
+import javax.annotation.security.RolesAllowed;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
-
-import org.eclipse.microprofile.metrics.annotation.Counted;
-import org.eclipse.microprofile.metrics.annotation.Timed;
-import org.eclipse.microprofile.metrics.MetricUnits;
 
 /**
  * A separated resource that sends notifications by WhatsApp and stores the notification in the database
@@ -26,6 +29,7 @@ import org.eclipse.microprofile.metrics.MetricUnits;
  * @see Whatsapp
  */
 @Path("/whatsapp")
+@Tag(name = "WhatsApp Resource", description = "Send notifications by WhatsApp")
 public class WhatsAppResource {
 
     WhatsAppPlugin whatsappPlugin = new WhatsAppPlugin(null);
@@ -36,6 +40,19 @@ public class WhatsAppResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
+    @Operation(summary = "Create a WhatsApp group",
+            description = "Creates a group with the given name and adds the given phone numbers to it.")
+    @RequestBody(
+            content = @Content(mediaType = MediaType.APPLICATION_JSON,
+                    schema = @Schema(implementation = NotificationData.class,
+                            description = "Data to create the group. Must contain the group name and a list of phone numbers.",
+                            requiredProperties = {"groupName", "phoneList"},
+                            example = "{\"phoneList\": [\"+351961234567\", \"+351921234567\", \"+351931234567\", \"+351941234567\"]," +
+                                    " \"groupName\": \"Grupo Altice Labs\"" +
+                                    "}"
+                    )
+            )
+    )
     /**
      * Creates a group with the given name and adds the given phone numbers to it.
      * @param groupData Data to create the group
@@ -63,6 +80,18 @@ public class WhatsAppResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
+    @Operation(summary = "Add person to group",
+            description = "Adds a phone number to a WhatsApp group.")
+    @RequestBody(
+            content = @Content(mediaType = MediaType.APPLICATION_JSON,
+                    schema = @Schema(implementation = NotificationData.class,
+                            description = "Data to update the group. Must contain the group id and a non-empty list of phone numbers.",
+                            requiredProperties = {"receiverGroup", "phoneList"},
+                            example = "{    \"receiverGroup\" : \"4\",\n" +
+                                    "    \"phoneList\" : [\"905301234567\"]}"
+                    )
+            )
+    )
     /**
      * Adds a phone number from a group.
      * @param notificationData Data to update the group
@@ -90,6 +119,18 @@ public class WhatsAppResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
+    @Operation(summary = "Remove person from group",
+            description = "Removes a phone number from a WhatsApp group.")
+    @RequestBody(
+            content = @Content(mediaType = MediaType.APPLICATION_JSON,
+                    schema = @Schema(implementation = NotificationData.class,
+                            description = "Data to update the group. Must contain the group id and a non-empty list of phone numbers.",
+                            requiredProperties = {"receiverGroup", "phoneList"},
+                            example = "{    \"receiverGroup\" : \"4\",\n" +
+                                    "    \"phoneList\" : [\"905301234567\"]}"
+                    )
+            )
+    )
     /**
      * Removes a phone number from a group.
      * @param notificationData Data to update the group
@@ -121,6 +162,19 @@ public class WhatsAppResource {
     @Timed(name = "sendTextMessageTimer", description = "A measure of how long it takes to send a whatsapp text message."
             , unit = MetricUnits.MILLISECONDS)
     @Transactional
+    @Operation(summary = "Send a text message",
+            description = "Sends a text message to a group or to a phone number.")
+    @RequestBody(
+            content = @Content(mediaType = MediaType.APPLICATION_JSON,
+                    schema = @Schema(implementation = NotificationData.class,
+                            description = "Data to send the message. Must contain the group id or the phone number and the message" +
+                                    ". It will prioritize the group id. If both are present, the phone number will be ignored.",
+                            requiredProperties = {"receiverGroup", "message", "phoneList"},
+                            example = "{    \"receiverGroup\" : \"4\",\n" +
+                                    "    \"message\" : \"ola tudo bem?\"}"
+                    )
+            )
+    )
     /**
      * Sends a text message to a phone number
      * @param notificationData Data to send
@@ -151,6 +205,20 @@ public class WhatsAppResource {
     @Timed(name = "sendMediaMessageTimer", description = "A measure of how long it takes to send a whatsapp media message."
             , unit = MetricUnits.MILLISECONDS)
     @Transactional
+    @Operation(summary = "Send a media message",
+            description = "Sends a media message to a group or to a phone number.")
+    @RequestBody(
+            content = @Content(mediaType = MediaType.APPLICATION_JSON,
+                    schema = @Schema(implementation = NotificationData.class,
+                            description = "Data to send the message. Must contain the group id or the phone number and the media" +
+                                    ". It will prioritize the group id. If both are present, the phone number will be ignored.",
+                            requiredProperties = {"receiverGroup", "media", "phoneList"},
+                            example = "{    \"receiverGroup\" : \"4\",\n" +
+                                    "    \"message\" : \"Altice labs\",\n" +
+                                    "    \"media\" : \"https://pt.wikipedia.org/wiki/Ficheiro:Altice.png\"}"
+                    )
+            )
+    )
     /**
      * Sends a media message to a phone number
      * @param notificationData Data to send
@@ -181,6 +249,21 @@ public class WhatsAppResource {
     @Timed(name = "sendLocationMessageTimer", description = "A measure of how long it takes to send a whatsapp location message."
             , unit = MetricUnits.MILLISECONDS)
     @Transactional
+    @Operation(summary = "Send a location message",
+            description = "Sends a location message to a group or to a phone number.")
+    @RequestBody(
+            content = @Content(mediaType = MediaType.APPLICATION_JSON,
+                    schema = @Schema(implementation = NotificationData.class,
+                            description = "Data to send the message. Must contain the group id or the phone number and the latitude and longitude" +
+                                    ". It will prioritize the group id. If both are present, the phone number will be ignored.",
+                            requiredProperties = {"receiverGroup", "latitude", "longitude", "phoneList"},
+                            example = "{    \"receiverGroup\" : \"4\",\n" +
+                                    "    \"message\" : \"Estou aqui na FEUP\",\n" +
+                                    "    \"latitude\" : \"41.1780\",\n" +
+                                    "    \"longitude\" : \"-8.5980\"}"
+                    )
+            )
+    )
     /**
      * Sends a location message to a phone number
      * @param notificationData Data to send
@@ -212,6 +295,21 @@ public class WhatsAppResource {
     @Timed(name = "sendLinkMessageTimer", description = "A measure of how long it takes to send a whatsapp link message."
             , unit = MetricUnits.MILLISECONDS)
     @Transactional
+    @Operation(summary = "Send a link message",
+            description = "Sends a link message to a group or to a phone number.")
+    @RequestBody(
+            content = @Content(mediaType = MediaType.APPLICATION_JSON,
+                    schema = @Schema(implementation = NotificationData.class,
+                            description = "Data to send the message. Must contain the group id or the phone number and the link" +
+                                    ". It will prioritize the group id. If both are present, the phone number will be ignored.",
+                            requiredProperties = {"receiverGroup", "link", "phoneList"},
+                            example = "{    \"receiverGroup\" : \"4\",\n" +
+                                    "    \"message\" : \"Altice labs\",\n" +
+                                    "    \"link\" : \"https://www.alticelabs.com/\"}"
+                    )
+            )
+    )
+
     /**
      * Sends a link message to a phone number
      * @param notificationData Data to send
@@ -235,6 +333,8 @@ public class WhatsAppResource {
 
     @Path("/groups")
     @GET
+    @Operation(summary = "Get all groups",
+            description = "Gets all groups that have been created by the user")
     @RolesAllowed({"user"})
     @Produces(MediaType.APPLICATION_JSON)
     public Response getGroups(@Context SecurityContext securityContext) {
@@ -245,6 +345,8 @@ public class WhatsAppResource {
 
     @GET
     @RolesAllowed({"user"})
+    @Operation(summary = "Get all whatsapps requests",
+            description = "Gets all whatsapps requests that have been created by the user")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getWhatsapps(@Context SecurityContext securityContext) {
         User user = User.findByUsername(securityContext.getUserPrincipal().getName());
