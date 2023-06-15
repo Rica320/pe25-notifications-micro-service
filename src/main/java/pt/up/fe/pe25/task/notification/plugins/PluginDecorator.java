@@ -18,7 +18,7 @@ import java.util.Map;
  * It is used in the {@link pt.up.fe.pe25.task.notification.plugins.whatsapp.WhatsAppPlugin} to send notifications by whatsapp<br>
  * It is used in the {@link pt.up.fe.pe25.task.notification.plugins.twilio.sms.TwilioSMSPlugin} to send notifications by sms<br>
  * It is used in the {@link pt.up.fe.pe25.task.notification.plugins.twilio.voice.TwilioCallPlugin} to send notifications by voice<br>
- * It is used in the {@link pt.up.fe.pe25.task.notification.plugins.smpp.SmsPlugin} to send notifications by sms using a smpp server<br>
+ * It is used in the {@link pt.up.fe.pe25.task.notification.plugins.smpp.SMSPlugin} to send notifications by sms using a smpp server<br>
  *
  * @see NotificationService
  * @see NotificationData
