@@ -1,4 +1,40 @@
-# pe25-notifications-micro-service
+# Notifications Microservice
+
+This project was developed in the context of the Capstone Project Curricular Unit of the Informatics
+and Computer Engineering course at FEUP and in collaboration with Altice Labs.
+
+The developer team is composed by 4 students from the Bachelor of Informatics and Computing Engineering at FEUP: 
+
+| Member | Email |
+|-------------------------------------|-----------------------------------------------------|
+| José Luís Cunha Rodrigues           | [up202008462@fe.up.pt](mailto:up202008462@fe.up.pt) |
+| Ricardo André Araújo de Matos       | [up202007962@fe.up.pt](mailto:up202007962@fe.up.pt) |
+| Rúben Costa Viana                   | [up202005108@fe.up.pt](mailto:up202005108@fe.up.pt) |
+| Tiago Filipe Magalhães Barbosa      | [up202004926@fe.up.pt](mailto:up202004926@fe.up.pt) |
+
+
+This team worked under the monitoring of professor Jácome Cunha ([jacome@fe.up.pt](mailto:jacome@fe.up.pt)) and Altice Labs mentor José Nuno Lapa Bonifácio ([jose-n-bonifacio@alticelabs.com](mailto:jose-n-bonifacio@alticelabs.com)).
+The proposal of the project was made by Carlos Guilherme Araújo ([carlos-guilherme-araujo@alticelabs.com](mailto:carlos-guilherme-araujo@alticelabs.com)). \mypar
+
+
+With the fast-paced development of the world, technologies and services in the telecommunications sector have undergone a major evolution.
+In order to manage the networks, services, and operational tasks, telecommunication service providers have resourced to use platforms known as Operations Support Systems (OSS).
+These systems help manage a high volume of data produced, which has to be monitored to maintain service quality and guarantee operational effectiveness.
+The objective of the OSS department is to offer companies technology that raise the standard of services delivered to society.
+
+The capacity to alert users in real-time of any network and service problems is one of the essential needs for an OSS platform.
+These alerts provide the teams the chance to take quick action and avoid service interruptions.
+Yet, as collaboration technologies have grown in popularity, users want to receive these notifications over a variety of platforms like WhatsApp, phone calls, SMS, Microsoft Teams and email.
+
+It is also crucial for companies to have a fast response time to failures that might happen.
+With this project, machines will be able to contact the appropriate entities when a failures happens in the product they are in.
+For instance, contacting a repairman when your internet fails. 
+
+In order to satisfy these needs, Altice Labs has suggested creating a micro-service that can send notifications across these channels to inform users and products of network and/or service problems.
+
+The social impact of this project is substantial since it immediately enhances people's lives by guaranteeing that telecommunications services are effective, dependable, and continuous.
+
+# Quarkus
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
