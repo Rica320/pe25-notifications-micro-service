@@ -12,7 +12,12 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.support.ui.Select;
 import java.util.List;
 
-@QuarkusTest
+/**
+ * *******************************************************
+ * IMPORTANT: THIS TEST REQUIRES THE APPLICATION TO BE RUNNING on port 8080
+ * *******************************************************
+ *
+ */
 public class SendNotificationsTest {
 
     private final String url = "http://localhost:8080/view";

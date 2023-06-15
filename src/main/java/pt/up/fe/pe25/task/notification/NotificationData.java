@@ -77,8 +77,20 @@ public class NotificationData {
     @Schema(description = "Date and time to send the message. This can be used to schedule messages", example = "2021-05-20T10:00:00")
     private LocalDateTime dateToSend;
 
+    @Column(name = "template_id")
+    @Schema(example = "1")
+    private String mailTemplateId;
+
     public String getTicketId() {
         return ticketId;
+    }
+
+    public String getMailTemplateId() {
+        return mailTemplateId;
+    }
+
+    public void setMailTemplateId(String mailTemplateId) {
+        this.mailTemplateId = mailTemplateId;
     }
 
     public void setTicketId(String ticketId) {
