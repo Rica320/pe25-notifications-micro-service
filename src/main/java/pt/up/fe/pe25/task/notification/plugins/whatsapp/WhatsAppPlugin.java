@@ -88,7 +88,6 @@ public class WhatsAppPlugin extends PluginDecorator {
                 "\"numbers\": " + new JSONArray(phoneList) + "}";
         JSONObject response = sendRequest(url, requestBody, httpMethod, headers);
         AtomicReference<String> groupIdRef = new AtomicReference<>("");
-        //groupIdRef.set(groupName.toLowerCase(Locale.ROOT));
         processResponse(response, groupIdRef);
         WhatsAppGroup wppGroup = new WhatsAppGroup(groupName, groupIdRef.get());
         wppGroup.persist();
@@ -101,12 +100,12 @@ public class WhatsAppPlugin extends PluginDecorator {
      *
      */
     public void updateGroup(NotificationData notificationData, boolean isAddOperation){
-        String groupName = notificationData.getGroupName();
+        Long groupId = notificationData.getReceiverGroup();
         List<String> phoneList = notificationData.getPhoneList();
-        if (groupName == null || phoneList == null || phoneList.isEmpty())
+        if (groupId == null || phoneList == null || phoneList.isEmpty())
             throw new IllegalArgumentException("Group name and phone list must be given");
 
-        WhatsAppGroup wppGroup = WhatsAppGroup.find("name", groupName).firstResult();
+        WhatsAppGroup wppGroup = WhatsAppGroup.findById(groupId);
 
         if (wppGroup == null)
             throw new IllegalArgumentException("That group does not exist");
@@ -132,7 +131,7 @@ public class WhatsAppPlugin extends PluginDecorator {
 
         String message = notificationData.getMessage();
         List<String> phoneList = notificationData.getPhoneList();
-        String groupName = notificationData.getGroupName();
+        Long groupId = notificationData.getReceiverGroup();
 
         // Throw exceptions if any of the conditions are not met
         if (message == null) {
@@ -145,8 +144,8 @@ public class WhatsAppPlugin extends PluginDecorator {
 
         String url = "https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/sendMessage";
 
-        if (groupName != null){
-            WhatsAppGroup wppGroup = WhatsAppGroup.find("name", groupName).firstResult();
+        if (groupId != null){
+            WhatsAppGroup wppGroup = WhatsAppGroup.findById(groupId);
             if (wppGroup == null)
                 throw new IllegalArgumentException("That group does not exist");
             String requestBody = "{\"to_number\": \"" + wppGroup.getGroupId() + "\", " +
@@ -179,15 +178,15 @@ public class WhatsAppPlugin extends PluginDecorator {
         String media = notificationData.getMedia();
         String caption = notificationData.getMessage();
         List<String> phoneList = notificationData.getPhoneList();
-        String groupName = notificationData.getGroupName();
+        Long groupId = notificationData.getReceiverGroup();
 
         // Throw exceptions if any of the conditions are not met
         if (media == null) {
             throw new IllegalArgumentException("Media must be given");
         }
-        //if (caption == null) {
-          //  caption = "";
-        //}
+        if (caption == null) {
+            caption = "";
+        }
         if (caption.length() > 1024) {
             // Message text must be less than 1024 characters
             throw new IllegalArgumentException("Caption must be less than 1024 characters");
@@ -195,8 +194,8 @@ public class WhatsAppPlugin extends PluginDecorator {
 
         String url = "https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/sendMessage";
 
-        if (groupName != null){
-            WhatsAppGroup wppGroup = WhatsAppGroup.find("name", groupName).firstResult();
+        if (groupId != null){
+            WhatsAppGroup wppGroup = WhatsAppGroup.findById(groupId);
             if (wppGroup == null)
                 throw new IllegalArgumentException("That group does not exist");
             String requestBody = "{\"to_number\": \"" + wppGroup.getGroupId() + "\", " +
@@ -233,12 +232,12 @@ public class WhatsAppPlugin extends PluginDecorator {
         String latitude = notificationData.getLatitude();
         String longitude = notificationData.getLongitude();
         List<String> phoneList = notificationData.getPhoneList();
-        String groupName = notificationData.getGroupName();
+        Long groupId = notificationData.getReceiverGroup();
 
         // Throw exceptions if any of the conditions are not met
-        //if (locationText == null) {
-            //throw new IllegalArgumentException("Location text must be given");
-        //}
+        if (locationText == null) {
+            locationText = "";
+        }
         if (locationText.length() > 1024) {
             // Message text must be less than 1024 characters
             throw new IllegalArgumentException("Location text must be less than 1024 characters");
@@ -252,8 +251,8 @@ public class WhatsAppPlugin extends PluginDecorator {
 
         String url = "https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/sendMessage";
 
-        if (groupName != null){
-            WhatsAppGroup wppGroup = WhatsAppGroup.find("name", groupName).firstResult();
+        if (groupId != null){
+            WhatsAppGroup wppGroup = WhatsAppGroup.findById(groupId);
             if (wppGroup == null)
                 throw new IllegalArgumentException("That group does not exist");
             String requestBody = "{\"to_number\": \"" + wppGroup.getGroupId() + "\", " +
@@ -291,15 +290,15 @@ public class WhatsAppPlugin extends PluginDecorator {
         String link = notificationData.getLink();
         String text = notificationData.getMessage();
         List<String> phoneList = notificationData.getPhoneList();
-        String groupName = notificationData.getGroupName();
+        Long groupId = notificationData.getReceiverGroup();
 
         // Throw exceptions if any of the conditions are not met
         if (link == null) {
             throw new IllegalArgumentException("Link must be given");
         }
-        //if (text == null) {
-          //  text = "";
-        //}
+        if (text == null) {
+            text = "";
+        }
         if (text.length() > 1024) {
             // Message text must be less than 1024 characters
             throw new IllegalArgumentException("Text must be less than 1024 characters");
@@ -307,8 +306,8 @@ public class WhatsAppPlugin extends PluginDecorator {
 
         String url = "https://api.maytapi.com/api/" + PRODUCT_ID + "/" + PHONE_ID + "/sendMessage";
 
-        if (groupName != null){
-            WhatsAppGroup wppGroup = WhatsAppGroup.find("name", groupName).firstResult();
+        if (groupId != null){
+            WhatsAppGroup wppGroup = WhatsAppGroup.findById(groupId);
             if (wppGroup == null)
                 throw new IllegalArgumentException("That group does not exist");
             String requestBody = "{\"to_number\": \"" + wppGroup.getGroupId() + "\", " +
