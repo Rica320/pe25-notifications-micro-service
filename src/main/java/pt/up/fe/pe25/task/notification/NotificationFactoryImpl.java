@@ -1,9 +1,8 @@
 package pt.up.fe.pe25.task.notification;
 
 import io.quarkus.mailer.reactive.ReactiveMailer;
-import io.quarkus.qute.Template;
 import pt.up.fe.pe25.task.notification.plugins.msteams.MsTeamsPlugin;
-import pt.up.fe.pe25.task.notification.plugins.smpp.SmsPlugin;
+import pt.up.fe.pe25.task.notification.plugins.smpp.SMSPlugin;
 import pt.up.fe.pe25.task.notification.plugins.smtp.template.factory.TemplateFactory;
 import pt.up.fe.pe25.task.notification.plugins.smtp.MailPlugin;
 import pt.up.fe.pe25.task.notification.plugins.twilio.TwilioConfig;

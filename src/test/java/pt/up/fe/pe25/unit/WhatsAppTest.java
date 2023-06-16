@@ -89,7 +89,7 @@ public class WhatsAppTest {
 
         NotificationData notificationData = new NotificationData();
         notificationData.setPhoneList(Arrays.asList(phoneNumber));
-        notificationData.setGroupName("test-group");
+        notificationData.setReceiverGroup(3L);
 
         spyWhatsAppPlugin.updateGroup(notificationData, true);
 
@@ -111,11 +111,12 @@ public class WhatsAppTest {
 
         NotificationData notificationData = new NotificationData();
         notificationData.setPhoneList(Arrays.asList(phoneNumber));
-        notificationData.setGroupName("test-group-not-exists");
+        notificationData.setReceiverGroup(3L);
 
         try {
             spyWhatsAppPlugin.updateGroup(notificationData, true);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             assertTrue(e.getMessage().contains("That group does not exist"));
         }
     }

@@ -50,7 +50,7 @@ public class MsTeamsTest {
     @Transactional
     public void testSendMessages() {
         MsTeamsPlugin msTeamsPlugin = mock(MsTeamsPlugin.class);
-        doNothing().when(msTeamsPlugin).sendMessage(any(String.class), any(String.class), any(String.class));
+        doNothing().when(msTeamsPlugin).sendMessage(any(String.class), any(String.class), any(String.class), any(String.class));
         when(msTeamsPlugin.addTeam(any(String.class))).thenCallRealMethod();
         doCallRealMethod().when(msTeamsPlugin).sendMessages(any(NotificationData.class));
 
@@ -62,10 +62,10 @@ public class MsTeamsTest {
         List<MsTeam> teams = MsTeam.listAll();
         List<Long> idTeams = new ArrayList<>();
         teams.forEach(team -> {idTeams.add(team.getId());});
-        notificationData.setTeams(idTeams);
+        notificationData.setReceiverTeams(idTeams);
         msTeamsPlugin.sendMessages(notificationData);
 
-        verify(msTeamsPlugin, times(1)).sendMessage("test_message", "test", "test");
+        verify(msTeamsPlugin, times(1)).sendMessage("test_message", "test", "test", null);
     }
 
 

@@ -103,7 +103,7 @@ public class WhatsAppPlugin extends PluginDecorator {
         Long groupId = notificationData.getReceiverGroup();
         List<String> phoneList = notificationData.getPhoneList();
         if (groupId == null || phoneList == null || phoneList.isEmpty())
-            throw new IllegalArgumentException("Group name and phone list must be given");
+            throw new IllegalArgumentException("Group Id and phone list must be given");
 
         WhatsAppGroup wppGroup = WhatsAppGroup.findById(groupId);
 

@@ -39,7 +39,7 @@ public class MsTeamsResourceTest {
     @BeforeEach
     public void setup() {
         pluginMock = mock(MsTeamsPlugin.class);
-        doNothing().when(pluginMock).sendMessage(any(String.class), any(String.class), any(String.class));
+        doNothing().when(pluginMock).sendMessage(any(String.class), any(String.class), any(String.class), any(String.class));
         when(pluginMock.addTeam(any(String.class))).thenCallRealMethod();
 
         resource.setMsTeamsPlugin(pluginMock);
