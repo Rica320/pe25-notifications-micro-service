@@ -23,13 +23,11 @@ public class NotificationData {
     @ElementCollection
     @Column(name = "phone_list")
     @Schema(description = "List of phones that should receive this message", example = "[\"+351967325360\", \"+351924017794\", \"+351967108975\", \"+351910384072\"]")
-    @Schema(example = "[\"+351961234567\", \"+351921234567\", \"+351931234567\", \"+351941234567\"]")
     private List<String> phoneList;
 
     @ElementCollection
     @Column(name = "receiver_emails")
     @Schema(description = "List of emails that should receive this message", example = "[\"up202007962@edu.fe.up.pt\", \"up202004926@edu.fe.up.pt\", \"up202008462@edu.fe.up.pt\", \"up202005108@edu.fe.up.pt\"]")
-    @Schema(example = "[\"up202000000@edu.fe.up.pt\", \"up202000000@edu.fe.up.pt\", \"up202000000@edu.fe.up.pt\", \"up202000000@edu.fe.up.pt\"]")
     private List<String> receiverEmails;
 
     @Transient
@@ -95,14 +93,6 @@ public class NotificationData {
 
     public void setTicketId(String ticketId) {
         this.ticketId = ticketId;
-    }
-
-    public String getTemplate() {
-        return template;
-    }
-
-    public void setTemplate(String template) {
-        this.template = template;
     }
 
     public List<String> getPhoneList() {
