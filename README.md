@@ -3,6 +3,8 @@
 This project was developed in the context of the Capstone Project Curricular Unit of the Informatics
 and Computer Engineering course at FEUP and in collaboration with Altice Labs.
 
+For additional details, please refer to our [report](docs/pe25_report.pdf) and [poster](docs/pe25_poster.pdf). Should you require further information, please consult these resources.
+
 The developer team is composed by 4 students from the Bachelor of Informatics and Computing Engineering at FEUP: 
 
 | Member | Email |
